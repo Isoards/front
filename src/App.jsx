@@ -10,18 +10,17 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-      {
-        path: "/register",
-        element: <Register />
-      }
+      { path: "/register", element: <Register /> },
+
     ]
   }
 ]);
 
 function App() {
   return (
-    <RouterProvider router={router} />
+
+      <RouterProvider router={router} />
   );
 }
 
-export default App
+export default App;
