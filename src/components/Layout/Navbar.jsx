@@ -5,9 +5,11 @@ import './Navbar.css';
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <h1>Test</h1>
+      <h1>Name</h1>
       <ul>
-        <li><NavLink to="/register">회원가입</NavLink></li>
+        <li><NavLink to="/search">간병인 찾기</NavLink></li>
+        <li><NavLink to="/register">일감 찾기</NavLink></li>
+        <li><NavLink to="/mypage">마이 페이지</NavLink></li>
       </ul>
     </nav>
   );
