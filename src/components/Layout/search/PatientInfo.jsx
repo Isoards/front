@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import TabButton from '../TabButton.jsx';
+import logo from '../../../assets/icon.png'
+
 
 export default function Search() {
+  function handleSelect() {
+    console.log('hello world');
+  }
+
   const [formData, setFormData] = useState({
     name: '',
-    birthdate: '',
+    date: '',
     height: '',
     weight: '',
     gender: '',
@@ -27,7 +33,6 @@ export default function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
     console.log(formData);
   };
 
@@ -35,6 +40,7 @@ export default function Search() {
     <div className="caregiver-search">
       <div className="container">
         <div className="content">
+          <img src={logo} alt='logo' />
           <h2>간병인 찾기</h2>
           <p>환자의 정보를 입력하고 맞춤 케어가 가능한 이력의 간병인을 찾아보세요!</p>
         </div>
@@ -47,7 +53,7 @@ export default function Search() {
             </div>
             <div className="form-group">
               <label>생년월일</label>
-              <input type="date" name="birthdate" value={formData.birthdate} onChange={handleChange} />
+              <input type="date" name="date" value={formData.date} onChange={handleChange} />
             </div>
             <div className="form-group">
               <label>키</label>
@@ -62,7 +68,7 @@ export default function Search() {
               <button type="button" className={formData.gender === '남성' ? 'selected' : ''} onClick={() => handleGenderSelect('남성')}>남성</button>
               <button type="button" className={formData.gender === '여성' ? 'selected' : ''} onClick={() => handleGenderSelect('여성')}>여성</button>
             </div>
-            <TabButton className="next-button">다음</TabButton>
+            <TabButton className="next-button" onSelect={handleSelect}>다음</TabButton>
           </form>
         </div>
       </div>

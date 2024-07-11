@@ -1,8 +1,11 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  width: auto;
+  height: auto;
+  font-family: Pretendard;
   line-height: 1.5;
   font-weight: 400;
-  
+  background: linear-gradient(270deg, #4C8DF4 0%, #714FFD 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,21 +27,24 @@ h1 {
 }
 
 button {
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   padding: 13.5px 68px;
   gap: 10px;
-  color: #ffffff;
+  background: var(--Primary-100, #D2C3FD);
   font-size: large;
   font-weight: bold;
   font-family: inherit;
-  background-color: #6E6E6E;
+  color: #fff;
   cursor: pointer;
   
 }
 
 button:hover {
   border-color: #646cff;
+  border-radius: 8px;
+  background: var(--Primary-400, #714FFD);
+  color: #fff;
 }
 button:focus,
 button:focus-visible {
