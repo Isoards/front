@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import TabButton from "../../components/TabButton.jsx";
+import Content from "../../components/Content.jsx";
 
 export default function PatientSymptoms() {
   const navigate = useNavigate();
@@ -14,13 +15,7 @@ export default function PatientSymptoms() {
   return (
     <div className="symptoms">
       <div className="container">
-        <div className="content">
-          <h2>간병인 찾기</h2>
-          <p>
-            환자의 정보를 입력하고 맞춤 케어가 가능한 이력의 간병인을
-            찾아보세요!
-          </p>
-        </div>
+        <Content />
         <div className="form-section">
           <h2>환자 증상 입력</h2>
           <div className="form-group">

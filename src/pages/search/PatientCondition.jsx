@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./PatientCondition.css";
 import TabButton from "../../components/TabButton.jsx";
+import Content from "../../components/Content.jsx";
 
 export default function PatientCondition() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function PatientCondition() {
   return (
     <div className="patient-condition">
       <div className="container">
+        <Content />
         <div className="image-section">
           <img />
         </div>

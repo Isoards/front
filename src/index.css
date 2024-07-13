@@ -1,13 +1,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 :root {
   font-family: Pretendard;
-  line-height: 1.5;
-  font-weight: 400;
-  background: linear-gradient(270deg, #4C8DF4 0%, #714FFD 100%);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(270deg, #4c8df4 0%, #714ffd 100%);
 }
 
 h1 {
@@ -20,24 +14,17 @@ button {
   border: 1px solid #ccc;
   padding: 13.5px 68px;
   gap: 10px;
-  background: var(--Primary-100, #D2C3FD);
+  background: var(--Primary-100, #d2c3fd);
   font-size: large;
   font-weight: bold;
   font-family: inherit;
   color: #fff;
   cursor: pointer;
-  
 }
 
 button:hover {
   border-color: #646cff;
   border-radius: 8px;
-  background: var(--Primary-400, #714FFD);
+  background: var(--Primary-400, #714ffd);
   color: #fff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-
