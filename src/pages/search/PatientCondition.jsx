@@ -1,10 +1,18 @@
-import React from 'react';
-import './PatientCondition.css';
-import TabButton from '../TabButton.jsx';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./PatientCondition.css";
+import TabButton from "../../components/TabButton.jsx";
 
-export default function PatientCondition () {
+export default function PatientCondition() {
+  const navigate = useNavigate();
+  function goBack() {
+    navigate("/search");
+  }
+  function goNext() {
+    navigate("/symptoms");
+  }
   return (
-    <div className="patient-condition-location">
+    <div className="patient-condition">
       <div className="container">
         <div className="image-section">
           <img />
@@ -19,10 +27,7 @@ export default function PatientCondition () {
               placeholder="진단명을 입력해주세요."
             />
             <label>
-              <input
-                type="checkbox"
-                name="noCondition"
-              />
+              <input type="checkbox" name="noCondition" />
               현재 진단명이 없습니다.
             </label>
           </div>
@@ -41,41 +46,26 @@ export default function PatientCondition () {
           </div>
           <div className="form-group">
             <label>간병 기간</label>
-            <input
-              type="date"
-              name="startDate"
-            />
+            <input type="date" name="startDate" />
             <span> ~ </span>
-            <input
-              type="date"
-              name="endDate"
-            />
+            <input type="date" name="endDate" />
             <label>
-              <input
-                type="checkbox"
-                name="includeWeekends"
-              />
+              <input type="checkbox" name="includeWeekends" />
               주말 포함
             </label>
           </div>
           <div className="form-group">
             <label>간병 시간</label>
-            <input
-              type="time"
-              name="startTime"
-            />
+            <input type="time" name="startTime" />
             <span> ~ </span>
-            <input
-              type="time"
-              name="endTime"
-            />
+            <input type="time" name="endTime" />
           </div>
           <div className="form-navigation">
-            <TabButton>이전</TabButton>
-            <TabButton>다음</TabButton>
+            <TabButton onSelect={goBack}>이전</TabButton>
+            <TabButton onSelect={goNext}>다음</TabButton>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}

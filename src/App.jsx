@@ -6,7 +6,8 @@ import Register from './pages/Register.jsx';
 import RootLayout from './pages/Root.jsx';
 import Search from './pages/Search.jsx';
 import Mypage from './pages/Mypage.jsx';
-import PatientCondition from './components/layout/search/PatientCondition.jsx';
+import PatientCondition from './pages/search/PatientCondition.jsx';
+import PatientSymptoms from './pages/search/PatientSymptoms.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,7 +16,8 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/search", element: <Search />},
       { path: "/mypage", element: <Mypage />},
-      { path: "/patient", element: <PatientCondition />}
+      { path: "/patient", element: <PatientCondition />},
+      { path: "/symptoms", element: <PatientSymptoms />}
     ]
   }
 ]);
