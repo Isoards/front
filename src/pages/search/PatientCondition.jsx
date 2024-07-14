@@ -22,7 +22,9 @@ export default function PatientCondition() {
         <div className="form-section">
           <h2>간병 정보 입력</h2>
           <div className="form-group">
-            <label>진단명</label>
+            <label>
+              진단명<span>*</span>
+            </label>
             <input
               type="text"
               name="condition"
@@ -34,7 +36,9 @@ export default function PatientCondition() {
             </label>
           </div>
           <div className="form-group">
-            <label>간병 장소</label>
+            <label>
+              간병 장소<span>*</span>
+            </label>
             <input
               type="text"
               name="location"
@@ -47,7 +51,9 @@ export default function PatientCondition() {
             />
           </div>
           <div className="form-group">
-            <label>간병 기간</label>
+            <label>
+              간병 기간<span>*</span>
+            </label>
             <input type="date" name="startDate" />
             <span> ~ </span>
             <input type="date" name="endDate" />
@@ -57,7 +63,9 @@ export default function PatientCondition() {
             </label>
           </div>
           <div className="form-group">
-            <label>간병 시간</label>
+            <label>
+              간병 시간<span>*</span>
+            </label>
             <input type="time" name="startTime" />
             <span> ~ </span>
             <input type="time" name="endTime" />

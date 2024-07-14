@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Content from "../../components/Content.jsx";
 export default function Search() {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     name: "",
     date: "",
@@ -45,7 +44,9 @@ export default function Search() {
           <h2>환자 정보 입력</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>이름</label>
+              <label>
+                이름<span>*</span>
+              </label>
               <input
                 type="text"
                 name="name"
@@ -54,7 +55,9 @@ export default function Search() {
               />
             </div>
             <div className="form-group">
-              <label>생년월일</label>
+              <label>
+                생년월일<span>*</span>
+              </label>
               <input
                 type="date"
                 name="date"
@@ -63,7 +66,9 @@ export default function Search() {
               />
             </div>
             <div className="form-group">
-              <label>키</label>
+              <label>
+                키<span>*</span>
+              </label>
               <input
                 type="number"
                 name="height"
@@ -72,7 +77,9 @@ export default function Search() {
               />
             </div>
             <div className="form-group">
-              <label>몸무게</label>
+              <label>
+                몸무게<span>*</span>
+              </label>
               <input
                 type="number"
                 name="weight"
@@ -81,7 +88,9 @@ export default function Search() {
               />
             </div>
             <div className="form-group gender-selection">
-              <label>성별</label>
+              <label>
+                성별<span>*</span>
+              </label>
               <button
                 type="button"
                 className={formData.gender === "남성" ? "selected" : ""}
