@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import TabButton from "../../components/TabButton.jsx";
 import { useNavigate } from "react-router-dom";
 import Content from "../../components/Content.jsx";
+
 export default function Search() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [patientInfo, setPatientInfo] = useState({
     name: "",
     date: "",
     height: "",
@@ -14,22 +15,27 @@ export default function Search() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setPatientInfo({
+      ...patientInfo,
       [name]: value,
     });
   };
 
   const handleGenderSelect = (gender) => {
-    setFormData({
-      ...formData,
+    setPatientInfo({
+      ...patientInfo,
       gender: gender,
     });
   };
-
+  const isVaild =
+    patientInfo.name &&
+    patientInfo.date &&
+    patientInfo.height &&
+    patientInfo.weight &&
+    patientInfo.gender;
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log(patientInfo);
   };
 
   function goNext() {
@@ -50,7 +56,7 @@ export default function Search() {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
+                value={patientInfo.name}
                 onChange={handleChange}
               />
             </div>
@@ -61,7 +67,7 @@ export default function Search() {
               <input
                 type="date"
                 name="date"
-                value={formData.date}
+                value={patientInfo.date}
                 onChange={handleChange}
               />
             </div>
@@ -72,7 +78,7 @@ export default function Search() {
               <input
                 type="number"
                 name="height"
-                value={formData.height}
+                value={patientInfo.height}
                 onChange={handleChange}
               />
             </div>
@@ -83,7 +89,7 @@ export default function Search() {
               <input
                 type="number"
                 name="weight"
-                value={formData.weight}
+                value={patientInfo.weight}
                 onChange={handleChange}
               />
             </div>
@@ -93,20 +99,22 @@ export default function Search() {
               </label>
               <button
                 type="button"
-                className={formData.gender === "남성" ? "selected" : ""}
+                className={patientInfo.gender === "남성" ? "selected" : ""}
                 onClick={() => handleGenderSelect("남성")}
               >
                 남성
               </button>
               <button
                 type="button"
-                className={formData.gender === "여성" ? "selected" : ""}
+                className={patientInfo.gender === "여성" ? "selected" : ""}
                 onClick={() => handleGenderSelect("여성")}
               >
                 여성
               </button>
             </div>
-            <TabButton onSelect={goNext}>다음 </TabButton>
+            <TabButton onSelect={goNext} checked={!isVaild}>
+              다음
+            </TabButton>
           </form>
         </div>
       </div>

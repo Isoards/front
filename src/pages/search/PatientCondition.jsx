@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PatientCondition.css";
 import TabButton from "../../components/TabButton.jsx";
@@ -6,6 +6,22 @@ import Content from "../../components/Content.jsx";
 
 export default function PatientCondition() {
   const navigate = useNavigate();
+  const [careInfo, setCareInfo] = useState({
+    name: "",
+    place: "",
+    date: "",
+    time: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCareInfo({
+      ...careInfo,
+      [name]: value,
+    });
+  };
+  const isVaild =
+    careInfo.name && careInfo.place && careInfo.date && careInfo.time;
+
   function goBack() {
     navigate("/search");
   }
@@ -29,6 +45,7 @@ export default function PatientCondition() {
               type="text"
               name="condition"
               placeholder="진단명을 입력해주세요."
+              value={careInfo.name}
             />
             <label>
               <input type="checkbox" name="noCondition" />
@@ -43,6 +60,7 @@ export default function PatientCondition() {
               type="text"
               name="location"
               placeholder="주소를 입력해주세요."
+              value={careInfo.place}
             />
             <input
               type="text"

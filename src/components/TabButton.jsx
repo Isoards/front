@@ -1,3 +1,7 @@
-export default function TabButton({ children, onSelect }) {
-  return <button onClick={onSelect}>{children}</button>;
+export default function TabButton({ children, onSelect, checked }) {
+  return (
+    <button disabled={checked} onClick={onSelect}>
+      {children}
+    </button>
+  );
 }

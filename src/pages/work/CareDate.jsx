@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TabButton from "../../components/TabButton.jsx";
 import { useNavigate } from "react-router-dom";
 import Content from "../../components/Content.jsx";
+import "./CareDate.css";
 
 export default function CareDate() {
   const navigate = useNavigate();
