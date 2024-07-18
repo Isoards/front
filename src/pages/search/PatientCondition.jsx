@@ -3,14 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./PatientCondition.css";
 import TabButton from "../../components/TabButton.jsx";
 import Content from "../../components/Content.jsx";
+import DaumPost from "../../components/DaumPost.jsx";
 
 export default function PatientCondition() {
   const navigate = useNavigate();
   const [careInfo, setCareInfo] = useState({
     name: "",
     place: "",
-    date: "",
-    time: "",
+    startDate: "",
+    endDate: "",
+    startTime: "",
+    endTime: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,8 +22,7 @@ export default function PatientCondition() {
       [name]: value,
     });
   };
-  const isVaild =
-    careInfo.name && careInfo.place && careInfo.date && careInfo.time;
+  const isVaild = careInfo.name && careInfo.place;
 
   function goBack() {
     navigate("/search");
@@ -56,6 +58,7 @@ export default function PatientCondition() {
             <label>
               간병 장소<span>*</span>
             </label>
+            <DaumPost />
             <input
               type="text"
               name="location"
@@ -72,9 +75,9 @@ export default function PatientCondition() {
             <label>
               간병 기간<span>*</span>
             </label>
-            <input type="date" name="startDate" />
+            <input type="date" name="startDate" value={careInfo.startDate} />
             <span> ~ </span>
-            <input type="date" name="endDate" />
+            <input type="date" name="endDate" value={careInfo.endDate} />
             <label>
               <input type="checkbox" name="includeWeekends" />
               주말 포함
@@ -84,9 +87,9 @@ export default function PatientCondition() {
             <label>
               간병 시간<span>*</span>
             </label>
-            <input type="time" name="startTime" />
+            <input type="time" name="startTime" value={careInfo.startTime} />
             <span> ~ </span>
-            <input type="time" name="endTime" />
+            <input type="time" name="endTime" value={careInfo.endTime} />
           </div>
           <div className="form-navigation">
             <TabButton onSelect={goBack}>이전</TabButton>

@@ -6,7 +6,7 @@ import logo from "../../img/icon.png";
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <h1>하이닥터</h1>
+      <h1>하이케어</h1>
       <ul>
         <li>
           <NavLink to="/search">간병인 찾기</NavLink>
