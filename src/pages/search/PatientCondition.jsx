@@ -1,22 +1,40 @@
 import { React, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import CareInfoForm from "../../components/form/CareInfoForm.jsx";
 import Content from "../../components/Content.jsx";
 
 export default function PatientCondition() {
-  const navigate = useNavigate();
+  const [careInfo, setCareInfo] = useState({
+    reservationReason: "",
+    reservationLocation: "",
+    startDate: "",
+    endDate: "",
+    dailyStartTime: "",
+    dailyEndTime: "",
+  });
 
-  function goBack() {
-    navigate("/search");
-  }
-  function goNext() {
-    navigate("/symptoms");
-  }
+  const handleChange = (name, value) => {
+    setCareInfo({
+      ...careInfo,
+      [name]: value,
+    });
+  };
+  // const url = "tempUrl";
+
+  const handleSubmit = (e) => {
+    // defaultInstace.post(url, { ...patientInfo }).then(function (res) {
+    //     if (res.status === 200) {
+    //         console.log("인증성공");
+    //     }
+    // });
+    e.preventDefault();
+    console.log(patientInfo);
+  };
   return (
     <div className="patient-condition">
       <div className="container">
         <Content />
-        <CareInfoForm goBack={goBack} goNext={goNext} />
+        <CareInfoForm data={careInfo} />
       </div>
     </div>
   );

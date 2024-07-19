@@ -1,12 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../../img/icon.png";
+import logo from "../../img/Logo violet ver..png";
 
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <h1>하이케어</h1>
+      <div>
+        <img src={logo} />
+        <h1>하이케어</h1>
+      </div>
       <ul>
         <li>
           <NavLink to="/search">간병인 찾기</NavLink>

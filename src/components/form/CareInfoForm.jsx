@@ -2,25 +2,16 @@ import React, { useState } from "react";
 import DaumPost from "../DaumPost";
 import TabButton from "../TabButton";
 
-export default function CareInfoForm({ goBack, goNext }) {
-  const [careInfo, setCareInfo] = useState({
-    name: "",
-    place: "",
-    startDate: "",
-    endDate: "",
-    startTime: "",
-    endTime: "",
-  });
-
+export default function CareInfoForm({ data }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCareInfo({
-      ...careInfo,
+      ...data,
       [name]: value,
     });
   };
 
-  const isVaild = careInfo.name && careInfo.place;
+  const isVaild = data.reservationReason && data.reservationLocation;
 
   return (
     <div className="form-section">
@@ -33,10 +24,16 @@ export default function CareInfoForm({ goBack, goNext }) {
           type="text"
           name="condition"
           placeholder="진단명을 입력해주세요."
-          value={careInfo.name}
+          value={data.reservationReason}
+          onChange={handleChange}
         />
         <label>
-          <input type="checkbox" name="noCondition" />
+          <input
+            type="checkbox"
+            name="noCondition"
+            value={(data.reservationReason = 0)}
+            onChange={handleChange}
+          />
           현재 진단명이 없습니다.
         </label>
       </div>
@@ -49,7 +46,8 @@ export default function CareInfoForm({ goBack, goNext }) {
           type="text"
           name="location"
           placeholder="주소를 입력해주세요."
-          value={careInfo.place}
+          value={data.reservationLocation}
+          onChange={handleChange}
         />
         <input
           type="text"
@@ -61,9 +59,19 @@ export default function CareInfoForm({ goBack, goNext }) {
         <label>
           간병 기간<span>*</span>
         </label>
-        <input type="date" name="startDate" value={careInfo.startDate} />
+        <input
+          type="date"
+          name="startDate"
+          value={data.startDate}
+          onChange={handleChange}
+        />
         <span> ~ </span>
-        <input type="date" name="endDate" value={careInfo.endDate} />
+        <input
+          type="date"
+          name="endDate"
+          value={data.endDate}
+          onChange={handleChange}
+        />
         <label>
           <input type="checkbox" name="includeWeekends" />
           주말 포함
@@ -73,13 +81,13 @@ export default function CareInfoForm({ goBack, goNext }) {
         <label>
           간병 시간<span>*</span>
         </label>
-        <input type="time" name="startTime" value={careInfo.startTime} />
+        <input type="time" name="startTime" value={data.dailyStartTime} />
         <span> ~ </span>
-        <input type="time" name="endTime" value={careInfo.endTime} />
+        <input type="time" name="endTime" value={data.dailyEndTime} />
       </div>
       <div className="form-navigation">
-        <TabButton onSelect={goBack}>이전</TabButton>
-        <TabButton onSelect={goNext}>다음</TabButton>
+        <TabButton>이전</TabButton>
+        <TabButton>다음</TabButton>
       </div>
     </div>
   );
