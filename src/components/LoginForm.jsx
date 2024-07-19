@@ -13,7 +13,12 @@ export default function Register() {
 
   return (
     <div className="register">
-      <h2>회원 가입</h2>
+      <div className="register-content">
+        <h2>회원 등록</h2>
+        <h3>
+          환자의 정보를 입력하고 맞춤 케어가 가능한 이력의 간병인을 찾아보세요!
+        </h3>
+      </div>
       <div className="register-options">
         <section>
           <h2>환자 정보를 등록하고 나에게 꼭 맞는 간병인을 만나보세요!</h2>

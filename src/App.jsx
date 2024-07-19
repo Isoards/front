@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./App.css";
 import Register from "./pages/Register.jsx";
-import RootLayout from "./pages/Root.jsx";
+import RootLayout from "./layout/Root.jsx";
 import Search from "./pages/Search.jsx";
 import Mypage from "./pages/Mypage.jsx";
 import PatientCondition from "./pages/search/PatientCondition.jsx";

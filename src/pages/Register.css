@@ -13,8 +13,10 @@
 
 section {
   text-align: center;
+  justify-content: center;
   width: 100%;
-  background-color: #ccc;
+  border-radius: 12px;
+  background: var(--Neutral-100, #f2f2f4);
 }
 
 .register-options {
