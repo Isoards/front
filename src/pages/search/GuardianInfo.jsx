@@ -1,8 +1,8 @@
 import React from "react";
 import "./GuardianInfo.css";
-import Content from "../../components/Content";
+import Content from "../../components/form/ContentForm";
 import { useNavigate } from "react-router-dom";
-import GuardianInfoForm from "../../components/form/GuardianInfoForm";
+import GuardianInfoForm from "../../components/caregiver/GuardianInfoForm";
 
 export default function GuardianInfo() {
   const navigate = useNavigate();

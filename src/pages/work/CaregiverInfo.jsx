@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Content from "../../components/Content.jsx";
-import CaregiverInfoForm from "../../components/form/CaregiverInfoForm.jsx";
+import Content from "../../components/form/ContentForm.jsx";
+import CaregiverInfoForm from "../../components/work/CaregiverInfoForm.jsx";
 
 export default function CaregiverInfo() {
   const navigate = useNavigate();

@@ -1,17 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Content from "../../components/Content.jsx";
-import PatientSymptomsForm from "../../components/form/PatientSymptomsForm.jsx";
+import Content from "../../components/form/ContentForm.jsx";
+import PatientSymptomsForm from "../../components/caregiver/PatientSymptomsForm.jsx";
+
 export default function PatientSymptoms() {
   const navigate = useNavigate();
-  const [symptomsInfo, setSymptomsInfo] = useState({
-    reservationReason: "",
-    reservationLocation: "",
-    startDate: "",
-    endDate: "",
-    dailyStartTime: "",
-    dailyEndTime: "",
-  });
+
   function goBack() {
     navigate("/patient");
   }

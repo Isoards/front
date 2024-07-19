@@ -1,41 +1,27 @@
 import React, { useState } from "react";
 import TabButton from "../TabButton";
 
-export default function PatientForm({ goNext, handleSubmit }) {
-  const [patientInfo, setPatientInfo] = useState({
-    name: "",
-    date: "",
-    height: "",
-    weight: "",
-    gender: "",
-  });
-
+export default function PatientForm({ data, reflectChange, setStep }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPatientInfo({
-      ...patientInfo,
-      [name]: value,
-    });
+    reflectChange(name, value);
   };
 
   const handleGenderSelect = (gender) => {
-    setPatientInfo({
-      ...patientInfo,
-      gender: gender,
-    });
+    reflectChange("patientGender", gender);
   };
 
   const isVaild =
-    patientInfo.name &&
-    patientInfo.date &&
-    patientInfo.height &&
-    patientInfo.weight &&
-    patientInfo.gender;
+    data.patientName &&
+    data.patientBirthDate &&
+    data.PatientHeight &&
+    data.PatientWeight &&
+    data.PatientGender;
 
   return (
     <div className="form-section">
       <h2>환자 정보 입력</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="form-group">
           <label>
             이름<span>*</span>
@@ -43,7 +29,7 @@ export default function PatientForm({ goNext, handleSubmit }) {
           <input
             type="text"
             name="name"
-            value={patientInfo.name}
+            value={data.patientName}
             placeholder="홍길동"
             onChange={handleChange}
           />
@@ -55,7 +41,7 @@ export default function PatientForm({ goNext, handleSubmit }) {
           <input
             type="date"
             name="date"
-            value={patientInfo.date}
+            value={data.patientBirthDate}
             onChange={handleChange}
           />
         </div>
@@ -66,7 +52,7 @@ export default function PatientForm({ goNext, handleSubmit }) {
           <input
             type="number"
             name="height"
-            value={patientInfo.height}
+            value={data.PatientHeight}
             placeholder="160"
             onChange={handleChange}
           />
@@ -78,7 +64,7 @@ export default function PatientForm({ goNext, handleSubmit }) {
           <input
             type="number"
             name="weight"
-            value={patientInfo.weight}
+            value={data.PatientWeight}
             placeholder="50"
             onChange={handleChange}
           />
@@ -89,21 +75,21 @@ export default function PatientForm({ goNext, handleSubmit }) {
           </label>
           <button
             type="button"
-            className={patientInfo.gender === "남성" ? "selected" : ""}
+            className={data.PatientGender === "남성" ? "selected" : ""}
             onClick={() => handleGenderSelect("남성")}
           >
             남성
           </button>
           <button
             type="button"
-            className={patientInfo.gender === "여성" ? "selected" : ""}
+            className={data.PatientGender === "여성" ? "selected" : ""}
             onClick={() => handleGenderSelect("여성")}
           >
             여성
           </button>
         </div>
         <div className="next-button">
-          <TabButton onSelect={goNext} checked={!isVaild}>
+          <TabButton onClick={() => setStep()} checked={!isVaild}>
             다음
           </TabButton>
         </div>

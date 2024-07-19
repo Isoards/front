@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Content from "../../components/Content.jsx";
-import WorkExperienceForm from "../../components/form/WorkExperienceForm.jsx";
+import Content from "../../components/form/ContentForm.jsx";
+import WorkExperienceForm from "../../components/work/WorkExperienceForm.jsx";
 
 export default function WorkExperience() {
   const navigate = useNavigate();

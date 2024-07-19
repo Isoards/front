@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import CareInfoForm from "../../components/form/CareInfoForm.jsx";
-import Content from "../../components/Content.jsx";
+import CareInfoForm from "../../components/caregiver/CareInfoForm.jsx";
+import Content from "../../components/form/ContentForm.jsx";
 
 export default function PatientCondition() {
   const [careInfo, setCareInfo] = useState({

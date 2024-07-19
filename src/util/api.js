@@ -1,6 +1,6 @@
 import axios from "axios";
 import { QueryClient } from "@tanstack/react-query";
-import { getAuthToken } from "./auth";
+import { getAuthToken } from "./auth.js";
 
 export const queryClient = new QueryClient();
 

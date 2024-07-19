@@ -1,11 +1,11 @@
 import React from "react";
-import TabButton from "./TabButton.jsx";
+import TabButton from "../TabButton.jsx";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const navigate = useNavigate();
   function goPatient() {
-    navigate("/patient");
+    navigate("/search");
   }
   function goCaregiver() {
     navigate("/test");
