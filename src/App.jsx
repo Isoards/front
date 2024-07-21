@@ -14,6 +14,8 @@ import GuardianInfo from "./pages/search/GuardianInfo.jsx";
 import CaregiverInfo from "./pages/work/CaregiverInfo.jsx";
 import WorkExperience from "./pages/work/WorkExperience.jsx";
 import CareDate from "./pages/work/CareDate.jsx";
+import Searching from "./components/Searching.jsx";
+import RecommendedCaregiverList from "./components/caregiver/RecommendedCaregiverList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,8 @@ const router = createBrowserRouter([
       { path: "/test", element: <CaregiverInfo /> },
       { path: "/experience", element: <WorkExperience /> },
       { path: "/caredate", element: <CareDate /> },
+      { path: "/searching", element: <Searching /> },
+      { path: "/list", element: <RecommendedCaregiverList /> },
     ],
   },
 ]);

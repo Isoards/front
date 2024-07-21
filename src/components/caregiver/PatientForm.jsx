@@ -1,35 +1,57 @@
 import React, { useState } from "react";
 import TabButton from "../TabButton";
 
-export default function PatientForm({ data, reflectChange, setStep }) {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    reflectChange(name, value);
-  };
+export default function PatientForm() {
+  const [formData, setFormData] = useState({
+    patientName: "",
+    patientBirthDate: "",
+    patientHeight: "",
+    patientWeight: "",
+    patientGender: "",
+  });
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
   const handleGenderSelect = (gender) => {
-    reflectChange("patientGender", gender);
+    setFormData({
+      ...formData,
+      patientGender: gender,
+    });
   };
 
-  const isVaild =
-    data.patientName &&
-    data.patientBirthDate &&
-    data.PatientHeight &&
-    data.PatientWeight &&
-    data.PatientGender;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    // defaultInstace.post(url, { ...formData }).then(function (res) {
+    //     if (res.status === 200) {
+    //         console.log("인증성공");
+    //     }
+    // });
+  };
+  // const isVaild =
+  //   formData.patientName &&
+  //   formData.patientBirthDate &&
+  //   formData.patientHeight &&
+  //   formData.patientWeight &&
+  //   formData.patientGender;
 
   return (
     <div className="form-section">
       <h2>환자 정보 입력</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>
             이름<span>*</span>
           </label>
           <input
             type="text"
-            name="name"
-            value={data.patientName}
+            name="patientName"
+            value={formData.patientName}
             placeholder="홍길동"
             onChange={handleChange}
           />
@@ -40,8 +62,8 @@ export default function PatientForm({ data, reflectChange, setStep }) {
           </label>
           <input
             type="date"
-            name="date"
-            value={data.patientBirthDate}
+            name="patientBirthDate"
+            value={formData.patientBirthDate}
             onChange={handleChange}
           />
         </div>
@@ -51,8 +73,8 @@ export default function PatientForm({ data, reflectChange, setStep }) {
           </label>
           <input
             type="number"
-            name="height"
-            value={data.PatientHeight}
+            name="patientHeight"
+            value={formData.patientHeight}
             placeholder="160"
             onChange={handleChange}
           />
@@ -63,35 +85,33 @@ export default function PatientForm({ data, reflectChange, setStep }) {
           </label>
           <input
             type="number"
-            name="weight"
-            value={data.PatientWeight}
+            name="patientWeight"
+            value={formData.patientWeight}
             placeholder="50"
             onChange={handleChange}
           />
         </div>
-        <div className="form-group gender-selection">
+        <div className="form-group selection">
           <label>
             성별<span>*</span>
           </label>
           <button
             type="button"
-            className={data.PatientGender === "남성" ? "selected" : ""}
+            className={formData.patientGender === "남성" ? "selected" : ""}
             onClick={() => handleGenderSelect("남성")}
           >
             남성
           </button>
           <button
             type="button"
-            className={data.PatientGender === "여성" ? "selected" : ""}
+            className={formData.patientGender === "여성" ? "selected" : ""}
             onClick={() => handleGenderSelect("여성")}
           >
             여성
           </button>
         </div>
         <div className="next-button">
-          <TabButton onClick={() => setStep()} checked={!isVaild}>
-            다음
-          </TabButton>
+          <TabButton>다음</TabButton>
         </div>
       </form>
     </div>

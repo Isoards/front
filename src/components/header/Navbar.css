@@ -10,12 +10,18 @@
   width: 50px;
   height: auto;
   margin: 0;
+  margin-left: 100px;
+  margin-right: 36px;
 }
 
 .navbar h1 {
   float: right;
-  margin: 0;
   color: #714ffd;
+  font-family: var(--Font-Family-Heading, Pretendard);
+  font-size: var(--Font-Size-xlg, 40px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
 }
 
 .navbar ul {

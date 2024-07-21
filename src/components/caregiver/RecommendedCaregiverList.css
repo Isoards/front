@@ -1,0 +1,60 @@
+.recommended-caregiver-list {
+  background-color: #f9fafc;
+}
+
+.text-section {
+  background-color: #f9fafc;
+  width: 100%;
+  height: auto;
+  display: block;
+  float: left;
+  margin-bottom: 32px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.text-section h2 {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-2xlg, 56px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.text-section p {
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: var(--Font-Size-md, 24px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
+}
+
+.estimated-cost {
+  height: 80%;
+  width: 80%;
+  background: var(--Primary-400, #714ffd);
+  border-radius: 24px;
+  color: var(--Neutral-100, #f2f2f4);
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.cost-details {
+  align-self: stretch;
+  color: var(--Neutral-100, #f2f2f4);
+  text-align: right;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+.cost-range {
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  text-align: right;
+  margin-bottom: 15px;
+}
