@@ -16,6 +16,7 @@ import WorkExperience from "./pages/work/WorkExperience.jsx";
 import CareDate from "./pages/work/CareDate.jsx";
 import Searching from "./components/Searching.jsx";
 import RecommendedCaregiverList from "./components/caregiver/RecommendedCaregiverList.jsx";
+import FindWork from "./components/work/FindWork.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/caredate", element: <CareDate /> },
       { path: "/searching", element: <Searching /> },
       { path: "/list", element: <RecommendedCaregiverList /> },
+      { path: "/findwork", element: <FindWork /> },
     ],
   },
 ]);

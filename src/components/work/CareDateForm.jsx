@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TabButton from "../TabButton";
+import styles from "./CareDateForm.module.css";
 
 export default function CareDateForm({ goBack, goNext }) {
   const [formData, setFormData] = useState({
@@ -22,10 +23,20 @@ export default function CareDateForm({ goBack, goNext }) {
     console.log(formData);
   };
   return (
-    <div className="form-section">
-      <h2>간병 가능한 날짜와 시간을 알려주세요!</h2>
+    <div className={styles.formSection}>
+      {" "}
+      <div className={styles.headerContainer}>
+        <h2 className={styles.headerTitle}>
+          간병 가능한 날짜와 시간을 알려주세요!
+        </h2>
+        <div className={styles.steps}>
+          <span className={styles.step}>1</span>
+          <span className={styles.step}>2</span>
+          <span className={styles.onStep}>3</span>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>간병 가능 기간</label>
           <input
             type="date"
@@ -41,7 +52,7 @@ export default function CareDateForm({ goBack, goNext }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>간병 가능 시간</label>
           <input
             type="time"

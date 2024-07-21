@@ -1,0 +1,86 @@
+.recommendedCaregiverList {
+  background-color: #f9fafc;
+}
+
+.textSection {
+  background-color: #f9fafc;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-top: 200px;
+  margin-bottom: 36px;
+  margin-left: 100px;
+  margin: 160 320 100 0;
+}
+
+.textSection h2 {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-2xlg, 56px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.textSection p {
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: var(--Font-Size-md, 24px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
+}
+
+.card {
+  width: 530px;
+  padding: 41px;
+  border-radius: 12px;
+  border: 2px solid var(--Neutral-300, #dadada);
+  background: var(--Neutral-50, #f9fafc);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  align-items: center;
+  gap: 24px;
+  margin-left: 30px;
+  margin-bottom: 36px;
+}
+
+.photo {
+  display: inline-block;
+  align-items: flex-start;
+  width: 154px;
+  height: 154px;
+}
+
+.info {
+  display: inline-block;
+  align-items: flex-start;
+  margin-left: 24px;
+}
+
+.info h3 {
+  height: 100%;
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+}
+
+.info p,
+.request p {
+  display: flex;
+  color: var(--Neutral-600, #6e6e6e);
+  font-family: var(--Font-Family-Body, Pretendard);
+  font-size: var(--Font-Size-s, 20px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+h4 {
+  margin-top: 24px;
+  color: var(--Secondary-600, #4c8df4);
+  font-family: var(--Font-Family-Heading, Pretendard);
+  font-size: var(--Font-Size-md, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 31.2px */
+}

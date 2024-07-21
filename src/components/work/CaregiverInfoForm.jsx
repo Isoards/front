@@ -31,7 +31,14 @@ export default function CaregiverInfoForm({ goNext }) {
   };
   return (
     <div className={styles.formSection}>
-      <h2>간병인의 기본정보를 알려주세요!</h2>
+      <div className={styles.headerContainer}>
+        <h2 className={styles.headerTitle}>간병인의 기본 정보를 알려주세요</h2>
+        <div className={styles.steps}>
+          <span className={styles.onStep}>1</span>
+          <span className={styles.step}>2</span>
+          <span className={styles.step}>3</span>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label>
