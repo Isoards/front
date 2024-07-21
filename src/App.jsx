@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       { path: "/patient", element: <PatientCondition /> },
       { path: "/symptoms", element: <PatientSymptoms /> },
       { path: "/info", element: <GuardianInfo /> },
-      { path: "/test", element: <CaregiverInfo /> },
+      { path: "/caregiver", element: <CaregiverInfo /> },
       { path: "/experience", element: <WorkExperience /> },
       { path: "/caredate", element: <CareDate /> },
       { path: "/searching", element: <Searching /> },

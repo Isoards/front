@@ -1,5 +1,5 @@
 import React from "react";
-import "./RecommendedCaregiverList.css";
+import styles from "./RecommendedCaregiverList.module.css";
 
 const caregivers = [
   {
@@ -18,74 +18,51 @@ const caregivers = [
 
 export default function RecommendedCaregiverList() {
   return (
-    <div className="recommended-caregiver-list">
-      <div>
-        <div className="text-section">
-          <h2>추천 간병인 리스트</h2>
-          <p>
-            환자 정보를 기반으로 맞춤케어가 가능한 추천 간병인 리스트입니다.
-          </p>
-        </div>
-        <form className="estimated-cost">
+    <div className={styles.recommendedCaregiverList}>
+      <div className={styles.textSection}>
+        <h2>추천 간병인 리스트</h2>
+        <p>환자 정보를 기반으로 맞춤케어가 가능한 추천 간병인 리스트입니다.</p>
+      </div>
+      <div className={styles.costSection}>
+        <form className={styles.estimatedCost}>
           <h3>예상 간병 비용</h3>
-          <div className="cost-details">
+          <div className={styles.costDetails}>
             <p>15,000원 x 6시간</p>
             <p> x 46일</p>
             <p>x 거동도움 추가비</p>
           </div>
-          <div className="cost-range">
+          <div className={styles.costRange}>
             <p>5,700,000 ~ 6,500,000원</p>
           </div>
         </form>
-        <table className="caregiver-list">
-          <thead>
-            <tr>
-              <th>프로필사진</th>
-              <th>간병 경력 및 지역</th>
-              <th>대표이력</th>
-              <th>간병 평점</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {caregivers.map((caregiver, index) => (
-              <tr key={index} className="caregiver-card">
-                <td className="profile-picture">
-                  <img src={caregiver.image} alt={`${caregiver.name}`} />
-                </td>
-                <td className="caregiver-details">
-                  <div className="caregiver-name">
-                    <strong>{caregiver.name}</strong>
-                    <span>
-                      {caregiver.experience} · {caregiver.location}
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <ul className="caregiver-history">
-                    {caregiver.details.map((detail, idx) => (
-                      <li key={idx}>{detail}</li>
-                    ))}
-                  </ul>
-                </td>
-                <td className="caregiver-rating">
-                  {"★".repeat(caregiver.rating)}
-                  {"☆".repeat(5 - caregiver.rating)}
-                  <span>({caregiver.reviews})</span>
-                </td>
-                <td className="request-button">
-                  <button>간병 요청하기</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="pagination">
-          <button>&laquo;</button>
-          <button className="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>&raquo;</button>
+      </div>
+      <div className={styles.listSection}>
+        <div className={styles.listTable}>
+          <h4>프로필사진</h4>
+          <h4>간병 경력 및 지역</h4>
+          <h4>대표 이력</h4>
+          <h4>간병 평점</h4>
+        </div>
+        <div className={styles.caregiverList}>
+          {caregivers.map((caregiver) => (
+            <div key={caregiver.id} className={styles.caregiverCard}>
+              <img
+                src={caregiver.profilePhoto}
+                alt={caregiver.name}
+                className={styles.profilePhoto}
+              />
+              <div className={styles.caregiverInfo}>
+                <div className={styles.caregiverDetails}>
+                  <h3>{caregiver.name}</h3>
+                  <p>경력: {caregiver.experience}</p>
+                  <p>지역: {caregiver.location}</p>
+                </div>
+                <p>대표이력 : {caregiver.introduction}</p>
+                <p>평점: {caregiver.rating}</p>
+              </div>
+              <button className={styles.requestButton}>간병 요청하기</button>
+            </div>
+          ))}
         </div>
       </div>
     </div>

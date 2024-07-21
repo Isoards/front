@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TabButton from "../TabButton";
+import styles from "./PatientForm.module.css";
 
 export default function PatientForm() {
   const [formData, setFormData] = useState({
@@ -41,10 +42,10 @@ export default function PatientForm() {
   //   formData.patientGender;
 
   return (
-    <div className="form-section">
+    <div className={styles.formSection}>
       <h2>환자 정보 입력</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>
             이름<span>*</span>
           </label>
@@ -56,7 +57,7 @@ export default function PatientForm() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>
             생년월일<span>*</span>
           </label>
@@ -67,7 +68,7 @@ export default function PatientForm() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>
             키<span>*</span>
           </label>
@@ -79,7 +80,7 @@ export default function PatientForm() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>
             몸무게<span>*</span>
           </label>
@@ -91,26 +92,30 @@ export default function PatientForm() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group selection">
+        <div className={styles.selection}>
           <label>
             성별<span>*</span>
           </label>
           <button
             type="button"
-            className={formData.patientGender === "남성" ? "selected" : ""}
+            className={`${styles.genderButton} ${
+              formData.patientGender === "남성" ? styles.selected : ""
+            }`}
             onClick={() => handleGenderSelect("남성")}
           >
             남성
           </button>
           <button
             type="button"
-            className={formData.patientGender === "여성" ? "selected" : ""}
+            className={`${styles.genderButton} ${
+              formData.patientGender === "여성" ? styles.selected : ""
+            }`}
             onClick={() => handleGenderSelect("여성")}
           >
             여성
           </button>
         </div>
-        <div className="next-button">
+        <div className={styles.nextButton}>
           <TabButton>다음</TabButton>
         </div>
       </form>

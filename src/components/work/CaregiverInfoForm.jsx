@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TabButton from "../TabButton";
+import styles from "./CaregiverInfoForm.module.css";
 
 export default function CaregiverInfoForm({ goNext }) {
   const [formData, setFormData] = useState({
@@ -29,10 +30,10 @@ export default function CaregiverInfoForm({ goNext }) {
     console.log(formData);
   };
   return (
-    <div className="form-section">
+    <div className={styles.formSection}>
       <h2>간병인의 기본정보를 알려주세요!</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>
             이름<span>*</span>
           </label>
@@ -43,7 +44,7 @@ export default function CaregiverInfoForm({ goNext }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>
             생년월일<span>*</span>
           </label>
@@ -54,45 +55,53 @@ export default function CaregiverInfoForm({ goNext }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group selection">
+        <div className={styles.selection}>
           <label>
             성별<span>*</span>
           </label>
           <button
             type="button"
-            className={formData.gender === "남성" ? "selected" : ""}
+            className={`${styles.selectionButton} ${
+              formData.gender === "남성" ? styles.selected : ""
+            }`}
             onClick={() => handleSelect("gender", "남성")}
           >
             남성
           </button>
           <button
             type="button"
-            className={formData.gender === "여성" ? "selected" : ""}
+            className={`${styles.selectionButton} ${
+              formData.gender === "여성" ? styles.selected : ""
+            }`}
             onClick={() => handleSelect("gender", "여성")}
           >
             여성
           </button>
         </div>
-        <div className="form-group selection">
+        <div className={styles.selection}>
           <label>
             내/외국인<span>*</span>
           </label>
           <button
             type="button"
-            className={formData.foreigner === "내국인" ? "selected" : ""}
+            className={`${styles.selectionButton} ${
+              formData.foreigner === "내국인" ? styles.selected : ""
+            }`}
             onClick={() => handleSelect("foreigner", "내국인")}
           >
             내국인
           </button>
           <button
             type="button"
-            className={formData.foreigner === "외국인" ? "selected" : ""}
+            className={`${styles.selectionButton} ${
+              formData.foreigner === "외국인" ? styles.selected : ""
+            }`}
             onClick={() => handleSelect("foreigner", "외국인")}
           >
             외국인
           </button>
         </div>
-        <div className="next-button">
+        <div className={styles.nextButton}>
           <TabButton>다음 </TabButton>
         </div>
       </form>

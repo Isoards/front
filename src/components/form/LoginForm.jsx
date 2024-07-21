@@ -8,7 +8,7 @@ export default function Register() {
     navigate("/search");
   }
   function goCaregiver() {
-    navigate("/test");
+    navigate("/caregiver");
   }
 
   return (

@@ -1,0 +1,147 @@
+.recommendedCaregiverList {
+  background-color: #f9fafc;
+}
+
+.textSection {
+  background-color: #f9fafc;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-top: 160px;
+  margin-bottom: 32px;
+  margin-left: 100px;
+  margin: 160 320 100 0;
+}
+
+.textSection h2 {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-2xlg, 56px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.textSection p {
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: var(--Font-Size-md, 24px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
+}
+
+.costSection {
+  display: flex;
+  justify-content: center;
+}
+.costSection h3 {
+  display: flex;
+  width: 50%;
+  height: 10px;
+  font-size: 28px;
+}
+.estimatedCost {
+  width: 1722px;
+  height: 256px;
+  border-radius: 24px;
+  background: var(--Primary-400, #714ffd);
+  color: var(--Neutral-100, #f2f2f4);
+  padding: 30px;
+  margin-top: 32px;
+  align-items: center;
+}
+
+.costDetails {
+  color: var(--Neutral-100, #f2f2f4);
+  text-align: right;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+.costRange {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  text-align: right;
+}
+
+.listSection {
+  width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background: #f9fafc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.listSection h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.caregiverList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listTable {
+  display: flex;
+}
+
+.listTable h4 {
+  margin-right: 100px;
+}
+
+.caregiverCard {
+  display: flex;
+  float: left;
+  align-items: center;
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid var(--Neutral-300, #dadada);
+  background: var(--Neutral-50, #f9fafc);
+}
+
+.profilePhoto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.caregiverInfo {
+  display: flex;
+  width: 700px;
+}
+
+.caregiverDetails {
+  margin-left: 50px;
+}
+
+.caregiverInfo h3 {
+  font-size: 20px;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.caregiverInfo p {
+  margin-right: 94px;
+}
+
+.requestButton {
+  border-radius: 8px;
+  background: var(--Primary-400, #714ffd);
+  color: #f9fafc;
+  padding: 14px 24px;
+  align-items: center;
+  font-size: 18px;
+}
+
+.requestButton:hover {
+  background-color: #d2c3fd;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DaumPost from "../DaumPost";
 import TabButton from "../TabButton";
+import styles from "./CareInfoForm.module.css";
 
 export default function CareInfoForm() {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ export default function CareInfoForm() {
   };
 
   return (
-    <div className="form-section">
+    <div className={styles.formSection}>
       <h2>간병 정보 입력</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
