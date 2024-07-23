@@ -1,7 +1,7 @@
 import React from "react";
 import TabButton from "../TabButton";
 
-export default function PatientSymptomsForm({ goBack, goNext }) {
+export default function PatientSymptomsForm({ setStep }) {
   return (
     <div className="form-section">
       <h2>환자 증상 입력</h2>
@@ -39,8 +39,8 @@ export default function PatientSymptomsForm({ goBack, goNext }) {
         />
       </div>
       <div className="form-navigation">
-        <TabButton onSelect={goBack}>이전</TabButton>
-        <TabButton onSelect={goNext}>다음</TabButton>
+        <TabButton onSelect={() => setStep(false)}>이전</TabButton>
+        <TabButton>다음</TabButton>
       </div>
     </div>
   );

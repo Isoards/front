@@ -1,8 +1,9 @@
 import { useState } from "react";
 import TabButton from "../TabButton";
 import styles from "./WorkExperienceForm.module.css";
+import { CERTIFICATIONS } from "../../data.js";
 
-export default function WorkExperienceForm({ goBack, goNext }) {
+export default function WorkExperienceForm({ setStep }) {
   const [formData, setFormData] = useState({
     licenseType: "",
     licenseFile: null,
@@ -29,6 +30,7 @@ export default function WorkExperienceForm({ goBack, goNext }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    setStep(true);
   };
   return (
     <div className={styles.formSection}>
@@ -50,9 +52,12 @@ export default function WorkExperienceForm({ goBack, goNext }) {
               onChange={handleChange}
               className={styles.selectInput}
             >
-              <option value="간호사 면허증">간호사 면허증</option>
-              <option value="간호조무사 자격증">간호조무사 자격증</option>
-              <option value="사회복지사 자격증">사회복지사 자격증</option>
+              {" "}
+              {CERTIFICATIONS.map((CERTIFICATION, index) => (
+                <option key={index} value={CERTIFICATION}>
+                  {CERTIFICATION}
+                </option>
+              ))}
             </select>
             <div className={styles.fileInputContainer}>
               <input
@@ -105,7 +110,7 @@ export default function WorkExperienceForm({ goBack, goNext }) {
           />
         </div>
         <div className={styles.formNavigation}>
-          <TabButton>이전</TabButton>
+          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
           <TabButton>다음</TabButton>
         </div>
       </form>

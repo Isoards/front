@@ -2,7 +2,7 @@ import { useState } from "react";
 import TabButton from "../TabButton";
 import styles from "./CareDateForm.module.css";
 
-export default function CareDateForm({ goBack, goNext }) {
+export default function CareDateForm({ setStep }) {
   const [formData, setFormData] = useState({
     startDate: "",
     endDate: "",
@@ -21,7 +21,9 @@ export default function CareDateForm({ goBack, goNext }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    setStep(true);
   };
+
   return (
     <div className={styles.formSection}>
       {" "}
@@ -69,7 +71,7 @@ export default function CareDateForm({ goBack, goNext }) {
           />
         </div>
         <div className="form-navigation">
-          <TabButton onSelect={goBack}>이전</TabButton>
+          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
           <TabButton>다음</TabButton>
         </div>
       </form>

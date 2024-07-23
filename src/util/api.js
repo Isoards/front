@@ -4,7 +4,7 @@ import { getAuthToken } from "./auth.js";
 
 export const queryClient = new QueryClient();
 
-const BASE_URL = "http://localhost:9090";
+const BASE_URL = "http://localhost:8080";
 
 const axiosAPI = (url, options) => {
   const instance = axios.create({ baseURL: url, ...options });

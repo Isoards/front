@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TabButton from "../TabButton";
 import styles from "./PatientForm.module.css";
 
-export default function PatientForm() {
+export default function PatientForm({ setStep }) {
   const [formData, setFormData] = useState({
     patientName: "",
     patientBirthDate: "",
@@ -28,6 +28,7 @@ export default function PatientForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    setStep(true);
     // defaultInstace.post(url, { ...formData }).then(function (res) {
     //     if (res.status === 200) {
     //         console.log("인증성공");

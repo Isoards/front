@@ -3,7 +3,7 @@ import DaumPost from "../DaumPost";
 import TabButton from "../TabButton";
 import styles from "./CareInfoForm.module.css";
 
-export default function CareInfoForm() {
+export default function CareInfoForm({ setStep }) {
   const [formData, setFormData] = useState({
     reservationReason: "",
     reservationLocation: "",
@@ -24,6 +24,7 @@ export default function CareInfoForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    setStep(true);
   };
 
   return (
@@ -112,7 +113,7 @@ export default function CareInfoForm() {
           />
         </div>
         <div className="form-navigation">
-          <TabButton>이전</TabButton>
+          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
           <TabButton>다음</TabButton>
         </div>
       </form>

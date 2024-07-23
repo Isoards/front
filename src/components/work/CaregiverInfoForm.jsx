@@ -2,7 +2,7 @@ import { useState } from "react";
 import TabButton from "../TabButton";
 import styles from "./CaregiverInfoForm.module.css";
 
-export default function CaregiverInfoForm({ goNext }) {
+export default function CaregiverInfoForm({ setStep }) {
   const [formData, setFormData] = useState({
     name: "",
     date: "",
@@ -28,6 +28,7 @@ export default function CaregiverInfoForm({ goNext }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    setStep(true);
   };
   return (
     <div className={styles.formSection}>
@@ -109,7 +110,7 @@ export default function CaregiverInfoForm({ goNext }) {
           </button>
         </div>
         <div className={styles.nextButton}>
-          <TabButton>다음 </TabButton>
+          <TabButton>다음</TabButton>
         </div>
       </form>
     </div>
