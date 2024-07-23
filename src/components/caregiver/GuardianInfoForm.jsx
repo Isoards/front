@@ -1,11 +1,26 @@
 import React from "react";
 import TabButton from "../TabButton";
+import { useNavigate } from "react-router-dom";
 
-export default function GuardianInfoForm({ goBack, goNext }) {
+export default function GuardianInfoForm({ setStep }) {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    setStep(true);
+    // defaultInstace.post(url, { ...formData }).then(function (res) {
+    //     if (res.status === 200) {
+    //         console.log("인증성공");
+    //     }
+    // });
+  };
+
+  function goNext() {
+    navigate("/searching");
+  }
   return (
     <div className="form-section">
       <h2>보호자 정보 입력</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>
             보호자 이름<span>*</span>
@@ -53,7 +68,7 @@ export default function GuardianInfoForm({ goBack, goNext }) {
           />
         </div>
         <div className="form-navigation">
-          <TabButton onSelect={goBack}>이전</TabButton>
+          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
           <TabButton onSelect={goNext}>찾기</TabButton>
         </div>
       </form>

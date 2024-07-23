@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import DaumPost from "../DaumPost";
 import TabButton from "../TabButton";
 import styles from "./CareInfoForm.module.css";
+import Modal from "../Modal";
+import DiseaseName from "../DiseaseName";
 
 export default function CareInfoForm({ setStep }) {
   const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ export default function CareInfoForm({ setStep }) {
     dailyStartTime: "",
     dailyEndTime: "",
   });
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -19,6 +22,14 @@ export default function CareInfoForm({ setStep }) {
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleSelectDisease = (diagnosis) => {
+    setFormData({
+      ...formData,
+      reservationReason: diagnosis,
+    });
+    setShowModal(false);
   };
 
   const handleSubmit = (e) => {
@@ -29,9 +40,17 @@ export default function CareInfoForm({ setStep }) {
 
   return (
     <div className={styles.formSection}>
-      <h2>간병 정보 입력</h2>
+      <div className={styles.headerContainer}>
+        <h2 className={styles.headerTitle}>간병 정보 입력</h2>
+        <div className={styles.steps}>
+          <span className={styles.step}>1</span>
+          <span className={styles.onStep}>2</span>
+          <span className={styles.step}>3</span>
+          <span className={styles.step}>4</span>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles.reason}>
           <label>
             진단명<span>*</span>
           </label>
@@ -41,8 +60,9 @@ export default function CareInfoForm({ setStep }) {
             placeholder="진단명을 입력해주세요."
             value={formData.reservationReason}
             onChange={handleChange}
+            onClick={() => setShowModal(true)}
           />
-          <label>
+          <h5>
             <input
               type="checkbox"
               name="noCondition"
@@ -51,9 +71,9 @@ export default function CareInfoForm({ setStep }) {
               }
             />
             현재 진단명이 없습니다.
-          </label>
+          </h5>
         </div>
-        <div className="form-group">
+        <div className={styles.location}>
           <label>
             간병 장소<span>*</span>
           </label>
@@ -72,7 +92,7 @@ export default function CareInfoForm({ setStep }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className={styles.date}>
           <label>
             간병 기간<span>*</span>
           </label>
@@ -89,12 +109,8 @@ export default function CareInfoForm({ setStep }) {
             value={formData.endDate}
             onChange={handleChange}
           />
-          <label>
-            <input type="checkbox" name="includeWeekends" />
-            주말 포함
-          </label>
         </div>
-        <div className="form-group">
+        <div className={styles.time}>
           <label>
             간병 시간<span>*</span>
           </label>
@@ -112,11 +128,18 @@ export default function CareInfoForm({ setStep }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-navigation">
+        <h5>
+          <input type="checkbox" name="includeWeekends" />
+          주말 포함
+        </h5>
+        <div className={styles.formNavigation}>
           <TabButton onSelect={() => setStep(false)}>이전</TabButton>
           <TabButton>다음</TabButton>
         </div>
       </form>
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <DiseaseName onSelect={handleSelectDisease} />
+      </Modal>
     </div>
   );
 }

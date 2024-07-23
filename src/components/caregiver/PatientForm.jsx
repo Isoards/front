@@ -9,6 +9,12 @@ export default function PatientForm({ setStep }) {
     patientHeight: "",
     patientWeight: "",
     patientGender: "",
+    reservationReason: "",
+    reservationLocation: "",
+    startDate: "",
+    endDate: "",
+    dailyStartTime: "",
+    dailyEndTime: "",
   });
 
   const handleChange = (event) => {
@@ -44,7 +50,15 @@ export default function PatientForm({ setStep }) {
 
   return (
     <div className={styles.formSection}>
-      <h2>환자 정보 입력</h2>
+      <div className={styles.headerContainer}>
+        <h2 className={styles.headerTitle}>환자 정보 입력</h2>
+        <div className={styles.steps}>
+          <span className={styles.onStep}>1</span>
+          <span className={styles.step}>2</span>
+          <span className={styles.step}>3</span>
+          <span className={styles.step}>4</span>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label>
@@ -99,7 +113,7 @@ export default function PatientForm({ setStep }) {
           </label>
           <button
             type="button"
-            className={`${styles.genderButton} ${
+            className={`${styles.selectionButton} ${
               formData.patientGender === "남성" ? styles.selected : ""
             }`}
             onClick={() => handleGenderSelect("남성")}
@@ -108,7 +122,7 @@ export default function PatientForm({ setStep }) {
           </button>
           <button
             type="button"
-            className={`${styles.genderButton} ${
+            className={`${styles.selectionButton} ${
               formData.patientGender === "여성" ? styles.selected : ""
             }`}
             onClick={() => handleGenderSelect("여성")}

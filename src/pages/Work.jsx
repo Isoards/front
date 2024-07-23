@@ -6,7 +6,22 @@ import WorkExperienceForm from "../components/work/WorkExperienceForm.jsx";
 import CareDateForm from "../components/work/CareDateForm.jsx";
 
 export default function Work() {
-  const MAXSTEP = 3;
+  const [formData, setFormData] = useState({
+    name: "",
+    date: "",
+    gender: "",
+    foreigner: "",
+    licenseType: "",
+    licenseFile: null,
+    workExperience: "",
+    workDate: "",
+    introduction: "",
+    startDate: "",
+    endDate: "",
+    startTime: "",
+    endTime: "",
+  });
+  const MAXSTEP = 2;
   const [step, setStep] = useState(0);
   let curMaxStep = 0;
 

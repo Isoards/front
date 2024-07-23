@@ -7,6 +7,20 @@ import GuardianInfoForm from "../components/caregiver/GuardianInfoForm.jsx";
 import { defaultInstance } from "../util/api.js";
 
 export default function Search() {
+  const [formData, setFormData] = useState({
+    patientName: "",
+    patientBirthDate: "",
+    patientHeight: "",
+    patientWeight: "",
+    patientGender: "",
+    reservationReason: "",
+    reservationLocation: "",
+    startDate: "",
+    endDate: "",
+    dailyStartTime: "",
+    dailyEndTime: "",
+  });
+
   const MAXSTEP = 3;
   const [step, setStep] = useState(0);
   let curMaxStep = 0;

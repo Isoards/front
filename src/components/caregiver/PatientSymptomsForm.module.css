@@ -1,26 +1,12 @@
-label {
-  display: flex;
-  margin-bottom: 16px;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 150%;
+p {
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: 18px;
+  padding: 20px;
 }
 
 label span {
+  height: 40%;
   color: red;
-}
-
-h5 {
-  color: var(--Neutral-600, #6e6e6e);
-  font-size: var(--Font-Size-xs, 18px);
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%; /* 27px */
-  margin-top: 8px;
-}
-
-input[type="checkbox"] {
-  margin-right: 5px;
 }
 
 .formSection {
@@ -39,7 +25,6 @@ input[type="checkbox"] {
   justify-content: space-between;
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 30px;
 }
 
 .headerTitle {
@@ -75,48 +60,41 @@ input[type="checkbox"] {
   font-size: 18px;
 }
 
-.reason,
-.location {
+.formGroup {
   display: block;
-  height: auto;
-  margin-top: 32px;
+  width: 100%;
+  margin-left: 20px;
+  margin-bottom: 28px;
 }
 
-.reason input[type="text"],
-.location input[type="text"] {
-  width: 90%;
-  padding: 14px 18px;
+.formGroup label {
   display: flex;
-  margin-right: 10px;
-  border-radius: 4px;
-  border: 2px solid var(--Neutral-300, #dadada);
-  background: var(--Neutral-100, #f2f2f4);
+  height: 40%;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 150%;
 }
 
-.reason input[type="text"] {
-  width: 55%;
-}
-
-.date,
-.time {
-  margin-top: 20px;
-  display: inline-block;
-  justify-content: space-between;
-}
-
-.date input[type="date"],
-.time input[type="time"] {
-  display: inline-block;
-  width: 25%;
-  height: 20px;
+.formGroup input {
+  display: flex;
+  width: 90%;
+  height: 102px;
   gap: 10px;
-  padding: 14px 30px;
+  padding: 10px;
   border-radius: 4px;
   border: 2px solid var(--Neutral-300, #dadada);
   background: var(--Neutral-100, #f2f2f4);
+}
+
+.formGroup input::selection {
+  border-radius: 4px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
 }
 
 .formNavigation {
+  align-items: end;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;

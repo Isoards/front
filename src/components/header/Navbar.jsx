@@ -15,10 +15,10 @@ export default function Navbar() {
           <NavLink to="/search">간병인 찾기</NavLink>
         </li>
         <li>
-          <NavLink to="/register">일감 찾기</NavLink>
+          <NavLink to="/work">일감 찾기</NavLink>
         </li>
         <li>
-          <NavLink to="/mypage">마이 페이지</NavLink>
+          <NavLink to="/register">마이 페이지</NavLink>
         </li>
       </ul>
     </nav>
