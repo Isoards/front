@@ -25,7 +25,7 @@ export default function Register() {
           <TabButton onSelect={goPatient}>환자/보호자 가입하기</TabButton>
         </section>
         <section>
-          <h2>내 경력을 바탕으로 ...의 간병인이 되어보세요!</h2>
+          <h2>내 경력을 바탕으로 하이케어의 간병인이 되어보세요!</h2>
           <TabButton onSelect={goCaregiver}>간병인 가입하기</TabButton>
         </section>
       </div>
