@@ -1,6 +1,7 @@
 import React from "react";
 import TabButton from "../TabButton";
 import { useNavigate } from "react-router-dom";
+import styles from "./GuardianInfoForm.module.css";
 
 export default function GuardianInfoForm({ setStep }) {
   const navigate = useNavigate();
@@ -15,23 +16,27 @@ export default function GuardianInfoForm({ setStep }) {
   };
 
   function goNext() {
-    navigate("/searching");
+    navigate("/loading");
   }
   return (
-    <div className="form-section">
-      <h2>보호자 정보 입력</h2>
+    <div className={styles.formSection}>
+      <div className={styles.headerContainer}>
+        <h2 className={styles.headerTitle}>보호자 정보 입력</h2>
+        <div className={styles.steps}>
+          <span className={styles.step}>1</span>
+          <span className={styles.step}>2</span>
+          <span className={styles.step}>3</span>
+          <span className={styles.onStep}>4</span>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>
             보호자 이름<span>*</span>
           </label>
           <input type="text" name="guardianName" placeholder="홍길동" />
-          <label>
-            <input type="checkbox" name="useMemberInfo" />
-            회원정보 불러오기
-          </label>
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>환자와의 관계</label>
           <select name="relationship">
             <option value="">관계를 선택해주세요</option>
@@ -43,10 +48,14 @@ export default function GuardianInfoForm({ setStep }) {
             <option value="other">기타</option>
           </select>
         </div>
-        <div className="form-group">
+        <p>
+          <input type="checkbox" name="useMemberInfo" />
+          회원정보 불러오기
+        </p>
+        <div className={styles.formGroup}>
           <label>보호자 연락처</label>
           <input
-            type="text"
+            type="number"
             name="guardianPhone"
             placeholder="010 - 1234 - 5678"
           />
@@ -54,7 +63,7 @@ export default function GuardianInfoForm({ setStep }) {
             + 연락처 추가하기
           </button>
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label>보호자 주소</label>
           <input
             type="text"
@@ -67,7 +76,7 @@ export default function GuardianInfoForm({ setStep }) {
             placeholder="상세주소를 입력해주세요."
           />
         </div>
-        <div className="form-navigation">
+        <div className={styles.formNavigation}>
           <TabButton onSelect={() => setStep(false)}>이전</TabButton>
           <TabButton onSelect={goNext}>찾기</TabButton>
         </div>

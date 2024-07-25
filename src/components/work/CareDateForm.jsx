@@ -1,8 +1,14 @@
 import { useState } from "react";
 import TabButton from "../TabButton";
 import styles from "./CareDateForm.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CareDateForm({ setStep }) {
+  const navigate = useNavigate();
+
+  function goNext() {
+    navigate("/findwork");
+  }
   const [formData, setFormData] = useState({
     startDate: "",
     endDate: "",
@@ -72,7 +78,7 @@ export default function CareDateForm({ setStep }) {
         </div>
         <div className="form-navigation">
           <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton>다음</TabButton>
+          <TabButton onSelect={goNext}>다음</TabButton>
         </div>
       </form>
     </div>
