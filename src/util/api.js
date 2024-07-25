@@ -4,7 +4,7 @@ import { getAuthToken } from "./auth.js";
 
 export const queryClient = new QueryClient();
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "http://localhost:7000";
 
 const axiosAPI = (url, options) => {
   const instance = axios.create({ baseURL: url, ...options });
@@ -33,3 +33,10 @@ authInstance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+
+
+
+//dk
+export const userSignUp = (email, password, name, phone, gender, birthDate) => defaultInstance.post('/api/v1/auth/user/signup', {email, password, name, phone, gender, birthDate});
+export const userLogin = (email, password) => defaultInstance.post('/api/v1/auth/user/login', {email, password});

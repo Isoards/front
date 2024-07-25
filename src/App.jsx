@@ -15,12 +15,16 @@ import RecommendedCaregiverList from "./components/caregiver/RecommendedCaregive
 import FindWork from "./components/work/FindWork.jsx";
 import Profile from "./pages/Profile.jsx";
 import Matching from "./pages/Matching.jsx";
+import UserSignUp from "./pages/UserSignUp.jsx";
+import UserLogin from "./pages/UserLogin.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
+      { path: "/userLogin", element : <UserLogin/>},
+      { path: "/userSignUp", element : <UserSignUp/>},
       { path: "/register", element: <Register /> },
       { path: "/search", element: <Search /> },
       { path: "/work", element: <Work /> },
