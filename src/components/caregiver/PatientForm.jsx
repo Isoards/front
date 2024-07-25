@@ -67,8 +67,10 @@ export default function PatientForm({ setStep }) {
           <input
             type="text"
             name="patientName"
-            value={formData.patientName}
             placeholder="홍길동"
+            required
+            aria-required="true"
+            value={formData.patientName}
             onChange={handleChange}
           />
         </div>
@@ -79,6 +81,9 @@ export default function PatientForm({ setStep }) {
           <input
             type="date"
             name="patientBirthDate"
+            placeholder="1900.01.01"
+            required
+            aria-required="true"
             value={formData.patientBirthDate}
             onChange={handleChange}
           />
@@ -90,8 +95,8 @@ export default function PatientForm({ setStep }) {
           <input
             type="number"
             name="patientHeight"
-            value={formData.patientHeight}
             placeholder="160"
+            value={formData.patientHeight}
             onChange={handleChange}
           />
         </div>
@@ -102,8 +107,10 @@ export default function PatientForm({ setStep }) {
           <input
             type="number"
             name="patientWeight"
-            value={formData.patientWeight}
             placeholder="50"
+            required
+            aria-required="true"
+            value={formData.patientWeight}
             onChange={handleChange}
           />
         </div>
@@ -131,7 +138,7 @@ export default function PatientForm({ setStep }) {
           </button>
         </div>
         <div className={styles.nextButton}>
-          <TabButton>다음</TabButton>
+          <button>다음</button>
         </div>
       </form>
     </div>

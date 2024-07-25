@@ -49,6 +49,8 @@ export default function CareDateForm({ setStep }) {
           <input
             type="date"
             name="startDate"
+            required
+            aria-required="true"
             value={formData.startDate}
             onChange={handleChange}
           />
@@ -56,6 +58,8 @@ export default function CareDateForm({ setStep }) {
           <input
             type="date"
             name="endDate"
+            required
+            aria-required="true"
             value={formData.endDate}
             onChange={handleChange}
           />
@@ -65,6 +69,8 @@ export default function CareDateForm({ setStep }) {
           <input
             type="time"
             name="startTime"
+            required
+            aria-required="true"
             value={formData.startTime}
             onChange={handleChange}
           />
@@ -72,13 +78,20 @@ export default function CareDateForm({ setStep }) {
           <input
             type="time"
             name="endTime"
+            required
+            aria-required="true"
             value={formData.endTime}
             onChange={handleChange}
           />
         </div>
-        <div className="form-navigation">
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton onSelect={goNext}>다음</TabButton>
+        <div className={styles.formNavigation}>
+          <button
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton}>다음</button>
         </div>
       </form>
     </div>

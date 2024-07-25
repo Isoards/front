@@ -124,13 +124,6 @@ input[type="checkbox"] {
   color: #fff;
 }
 
-.nextButton {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 100px;
-  margin-right: 18px;
-}
-
 .add-contact-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -143,4 +136,29 @@ input[type="checkbox"] {
 
 .add-contact-btn:hover {
   background-color: #5939cb;
+}
+
+.previousButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  color: var(--Primary-400, #714ffd);
+  text-align: center;
+}
+
+.nextButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  background: var(--Neutral-300, #dadada);
+  color: var(--Neutral-50, #f9fafc);
 }

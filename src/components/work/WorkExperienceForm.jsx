@@ -110,8 +110,13 @@ export default function WorkExperienceForm({ setStep }) {
           />
         </div>
         <div className={styles.formNavigation}>
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton>다음</TabButton>
+          <button
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton}>다음</button>
         </div>
       </form>
     </div>

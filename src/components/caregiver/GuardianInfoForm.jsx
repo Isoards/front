@@ -77,8 +77,15 @@ export default function GuardianInfoForm({ setStep }) {
           />
         </div>
         <div className={styles.formNavigation}>
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton onSelect={goNext}>찾기</TabButton>
+          <button
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton} onClick={goNext}>
+            찾기
+          </button>
         </div>
       </form>
     </div>

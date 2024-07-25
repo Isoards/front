@@ -6,10 +6,6 @@ label {
   line-height: 150%;
 }
 
-label span {
-  color: red;
-}
-
 h5 {
   color: var(--Neutral-600, #6e6e6e);
   font-size: var(--Font-Size-xs, 18px);
@@ -107,17 +103,41 @@ input[type="checkbox"] {
 .date input[type="date"],
 .time input[type="time"] {
   display: inline-block;
-  width: 25%;
+  font-weight: 500;
+  line-height: 150%;
+  text-align: center;
+  width: 27%;
   height: 20px;
-  gap: 10px;
   padding: 14px 30px;
-  border-radius: 4px;
-  border: 2px solid var(--Neutral-300, #dadada);
-  background: var(--Neutral-100, #f2f2f4);
 }
 
 .formNavigation {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+
+.previousButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  color: var(--Primary-400, #714ffd);
+  text-align: center;
+}
+
+.nextButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  background: var(--Neutral-300, #dadada);
+  color: var(--Neutral-50, #f9fafc);
 }

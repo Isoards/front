@@ -48,6 +48,9 @@ export default function CaregiverInfoForm({ setStep }) {
           <input
             type="text"
             name="name"
+            placeholder="홍길동"
+            required
+            aria-required="true"
             value={formData.name}
             onChange={handleChange}
           />
@@ -59,6 +62,9 @@ export default function CaregiverInfoForm({ setStep }) {
           <input
             type="date"
             name="date"
+            placeholder="1900.01.01"
+            required
+            aria-required="true"
             value={formData.date}
             onChange={handleChange}
           />
@@ -110,7 +116,7 @@ export default function CaregiverInfoForm({ setStep }) {
           </button>
         </div>
         <div className={styles.nextButton}>
-          <TabButton>다음</TabButton>
+          <button>다음</button>
         </div>
       </form>
     </div>

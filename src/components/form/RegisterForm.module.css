@@ -54,9 +54,7 @@ section {
   width: 500px;
   height: 74px;
   padding: 19px 127px 19px 128px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
+  margin: 30px;
   border-radius: 8px;
   background: var(--Primary-400, #714ffd);
   color: var(--Neutral-50, #f9fafc);
@@ -64,4 +62,8 @@ section {
   font-size: var(--Font-Size-lg, 28px);
   font-weight: 700;
   line-height: 130%; /* 36.4px */
+}
+
+.options button hover {
+  color: #fff;
 }

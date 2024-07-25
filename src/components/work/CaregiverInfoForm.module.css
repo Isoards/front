@@ -108,5 +108,16 @@ label span {
   display: flex;
   justify-content: flex-end;
   margin-top: 100px;
+}
+
+.nextButton button {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   margin-right: 18px;
+  border-radius: 8px;
+  background: var(--Neutral-300, #dadada);
+  color: var(--Neutral-50, #f9fafc);
 }

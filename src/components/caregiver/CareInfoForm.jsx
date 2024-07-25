@@ -96,45 +96,58 @@ export default function CareInfoForm({ setStep }) {
           <label>
             간병 기간<span>*</span>
           </label>
-          <input
-            type="date"
-            name="startDate"
-            value={formData.startDate}
-            onChange={handleChange}
-          />
-          <span> ~ </span>
-          <input
-            type="date"
-            name="endDate"
-            value={formData.endDate}
-            onChange={handleChange}
-          />
+          <div className={styles.dateSection}>
+            <input
+              type="date"
+              name="startDate"
+              required
+              aria-required="true"
+              value={formData.startDate}
+              onChange={handleChange}
+            />
+            <span> ~ </span>
+            <input
+              type="date"
+              name="endDate"
+              required
+              aria-required="true"
+              value={formData.endDate}
+              onChange={handleChange}
+            />
+          </div>
         </div>
         <div className={styles.time}>
           <label>
             간병 시간<span>*</span>
           </label>
-          <input
-            type="time"
-            name="dailyStartTime"
-            value={formData.dailyStartTime}
-            onChange={handleChange}
-          />
-          <span> ~ </span>
-          <input
-            type="time"
-            name="dailyEndTime"
-            value={formData.dailyEndTime}
-            onChange={handleChange}
-          />
+          <div className={styles.timeSection}>
+            <input
+              type="time"
+              name="dailyStartTime"
+              value={formData.dailyStartTime}
+              onChange={handleChange}
+            />
+            <span> ~ </span>
+            <input
+              type="time"
+              name="dailyEndTime"
+              value={formData.dailyEndTime}
+              onChange={handleChange}
+            />
+          </div>
         </div>
         <h5>
           <input type="checkbox" name="includeWeekends" />
           주말 포함
         </h5>
         <div className={styles.formNavigation}>
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton>다음</TabButton>
+          <button
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton}>다음</button>
         </div>
       </form>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
