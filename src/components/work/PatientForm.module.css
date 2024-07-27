@@ -1,0 +1,99 @@
+.container {
+  width: 100%;
+  margin: auto;
+  background: var(--Neutral-50, #f9fafc);
+}
+
+.container span {
+  color: var(--Primary-400, #714ffd);
+  font-size: var(--Font-Size-s, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+}
+
+.textSection {
+  background-color: #f9fafc;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-top: 100px;
+  margin-bottom: 36px;
+  margin-left: 50px;
+}
+
+.textSection h2 {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-2xlg, 56px);
+  font-weight: 700;
+  line-height: 130%;
+  margin-bottom: 20px;
+}
+
+.textSection p {
+  padding: 5px;
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: var(--Font-Size-md, 24px);
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.careInfo {
+  display: flex;
+}
+
+.profileSection {
+  display: flex;
+  gap: 20px;
+}
+
+.basicInfo,
+.careInfo,
+.requestSection {
+  margin-bottom: 20px;
+}
+
+.requestSection {
+  width: 500px;
+  display: inline-flex;
+  padding: 0px 34px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.basicInfo p,
+.careInfo p {
+  display: inline-grid;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.requestButton {
+  display: flex;
+  justify-content: center;
+}
+
+.requestButton button {
+  padding: 14px 54px;
+  gap: 10px;
+  border-radius: 8px;
+  background: var(--Primary-400, #714ffd);
+}
+
+.requestButton button:hover {
+  border-radius: 8px;
+  background: var(--Primary-300, #9170fd);
+}
+
+.requestButton button:focus {
+  border-radius: 8px;
+  background: var(--Violet-500, #4b2cfb);
+}

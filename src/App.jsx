@@ -15,6 +15,7 @@ import RecommendedCaregiverList from "./components/caregiver/RecommendedCaregive
 import FindWork from "./components/work/FindWork.jsx";
 import Profile from "./pages/Profile.jsx";
 import Matching from "./pages/Matching.jsx";
+import PatientForm from "./components/work/PatientForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "/findwork", element: <FindWork /> },
       { path: "/profile", element: <Profile /> },
       { path: "/matching", element: <Matching /> },
+      { path: "/test", element: <PatientForm /> },
     ],
   },
 ]);
