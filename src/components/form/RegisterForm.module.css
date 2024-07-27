@@ -33,8 +33,7 @@ section {
 }
 
 .options {
-  margin-left: 600px;
-  margin-right: 600px;
+  margin: 100px;
   display: flex;
   justify-content: space-between;
   gap: 20px;

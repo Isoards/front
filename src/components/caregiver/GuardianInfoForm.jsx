@@ -15,9 +15,6 @@ export default function GuardianInfoForm({ setStep }) {
     // });
   };
 
-  function goNext() {
-    navigate("/loading");
-  }
   return (
     <div className={styles.formSection}>
       <div className={styles.headerContainer}>
@@ -59,10 +56,10 @@ export default function GuardianInfoForm({ setStep }) {
             name="guardianPhone"
             placeholder="010 - 1234 - 5678"
           />
-          <button type="button" className="add-contact-btn">
-            + 연락처 추가하기
-          </button>
         </div>
+        <button type="button" className="addContactButton">
+          + 연락처 추가하기
+        </button>
         <div className={styles.formGroup}>
           <label>보호자 주소</label>
           <input
@@ -83,9 +80,7 @@ export default function GuardianInfoForm({ setStep }) {
           >
             이전
           </button>
-          <button className={styles.nextButton} onClick={goNext}>
-            찾기
-          </button>
+          <button className={styles.nextButton}>찾기</button>
         </div>
       </form>
     </div>

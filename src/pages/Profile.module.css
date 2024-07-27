@@ -1,101 +1,133 @@
 .container {
-  width: 800px;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
   margin: auto;
-  padding: 20px;
-  background: #f9fafc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: var(--Neutral-50, #f9fafc);
 }
 
-.title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
+.textSection {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-top: 200px;
+  margin-bottom: 36px;
+  margin-left: 100px;
 }
 
-.subtitle {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #666;
+.textSection h2 {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-2xlg, 56px);
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.textSection p {
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: var(--Font-Size-md, 24px);
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
 }
 
 .profileSection {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  display: inline-block;
+  width: 30%;
+  text-align: left;
+  padding: 20px;
 }
 
-.photo {
+.infoSection {
+  width: 60%;
+  display: inline-block;
+  padding: 20px;
+}
+
+.profileImage {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  margin-right: 20px;
-  object-fit: cover;
+  margin-bottom: 20px;
 }
 
-.info {
-  flex: 1;
+.profileInfo {
+  margin-bottom: 12px;
+  display: inline-block;
 }
 
-.info h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: bold;
+.profileInfo h3 {
+  color: var(--Primary-400, #714ffd);
+  font-size: var(--Font-Size-s, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
 }
 
-.experience,
-.location,
-.license {
-  margin: 5px 0;
+.profileInfo p {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-lg, 28px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 36.4px */
 }
 
-.sectionTitle {
-  margin: 20px 0 10px;
+.introductionSection {
+  margin-bottom: 20px;
+}
+
+.introductionSection h4 {
   font-size: 20px;
-  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .reviewsSection {
   margin-bottom: 20px;
 }
 
-.reviews {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
+.reviewsSection h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .review {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  margin-bottom: 10px;
 }
 
-.reviewText {
-  margin: 0;
-}
-
-.reviewRating {
-  margin: 0;
-  color: #007bff;
+.rating {
+  color: gold;
 }
 
 .costSection {
+  background: #714ffd;
+  width: 100%;
   padding: 20px;
-  background: #f0f0f0;
+  color: white;
+  text-align: center;
   border-radius: 10px;
 }
 
-.costDetails {
+.costInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.totalCost {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
 .requestButton {
   width: 100%;
-  padding: 10px;
-  background: #007bff;
+  padding: 15px;
+  background: white;
+  color: #714ffd;
   border: none;
   border-radius: 5px;
-  color: white;
   cursor: pointer;
-  font-size: 16px;
+}
+
+.requestButton:hover {
+  background: #5a3fcf;
+  color: white;
 }

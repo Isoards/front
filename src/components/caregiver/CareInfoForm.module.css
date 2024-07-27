@@ -98,15 +98,14 @@ input[type="checkbox"] {
   margin-top: 20px;
   display: inline-block;
   justify-content: space-between;
+  margin-right: 100px;
 }
 
 .date input[type="date"],
 .time input[type="time"] {
   display: inline-block;
-  font-weight: 500;
-  line-height: 150%;
   text-align: center;
-  width: 27%;
+  width: 25%;
   height: 20px;
   padding: 14px 30px;
 }

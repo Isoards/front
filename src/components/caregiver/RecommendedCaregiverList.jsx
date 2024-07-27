@@ -1,12 +1,27 @@
 import React from "react";
 import styles from "./RecommendedCaregiverList.module.css";
+import photo from "../../img/photo1.png";
 
 const caregivers = [
   {
     name: "김정희",
     experience: "8개월",
     location: "서울특별시",
-    details: [
+    profilePhoto: photo,
+    introduction: [
+      "서울대학교병원 신경외과 간호사",
+      "한강대학교병원 신경외과 간호사",
+      "해성실버병원 간호사",
+    ],
+    rating: 5,
+    reviews: 16,
+  },
+  {
+    name: "김정희",
+    experience: "8개월",
+    location: "서울특별시",
+    profilePhoto: photo,
+    introduction: [
       "서울대학교병원 신경외과 간호사",
       "한강대학교병원 신경외과 간호사",
       "해성실버병원 간호사",
@@ -54,10 +69,15 @@ export default function RecommendedCaregiverList() {
               <div className={styles.caregiverInfo}>
                 <div className={styles.caregiverDetails}>
                   <h3>{caregiver.name}</h3>
-                  <p>경력: {caregiver.experience}</p>
-                  <p>지역: {caregiver.location}</p>
+                  <p>
+                    {caregiver.experience} ・{caregiver.location}
+                  </p>
+                </div>{" "}
+                <div className={styles.introduction}>
+                  {caregiver.introduction.map((intro, index) => (
+                    <p key={index}>・{intro}</p>
+                  ))}
                 </div>
-                <p>대표이력 : {caregiver.introduction}</p>
                 <p>평점: {caregiver.rating}</p>
               </div>
               <button className={styles.requestButton}>간병 요청하기</button>

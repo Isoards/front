@@ -124,17 +124,21 @@ input[type="checkbox"] {
   color: #fff;
 }
 
-.add-contact-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #714ffd;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+.addContactButton {
+  display: flex;
+  width: 303px;
+  height: 56px;
+  padding: 13.5px 68px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  background: var(--Primary-400, #714ffd);
   cursor: pointer;
 }
 
-.add-contact-btn:hover {
+.addContactButton:hover {
   background-color: #5939cb;
 }
 
