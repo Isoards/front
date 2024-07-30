@@ -78,9 +78,6 @@ export const embeddingResponse = async (diseaseName, reservationReason) => {
       model: "text-embedding-ada-002",
       input: `${diseaseName} ${reservationReason}`
     }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
     });
     return response.data.data[0].embedding;
   } catch (error) {
