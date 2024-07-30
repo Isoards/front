@@ -79,7 +79,6 @@ export const embeddingResponse = async (diseaseName, reservationReason) => {
       input: `${diseaseName} ${reservationReason}`
     }, {
       headers: {
-        'Authorization': "",
         'Content-Type': 'application/json'
       }
     });
