@@ -71,7 +71,7 @@ export const careRequestAllAPI = (email, password) =>
 
 
 
-// OpenAI Embedding API
+
 export const embeddingResponse = async (diseaseName, reservationReason) => {
   try {
     return 1;
