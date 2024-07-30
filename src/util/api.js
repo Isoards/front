@@ -71,12 +71,20 @@ export const careRequestAllAPI = (email, password) =>
 
 
 
-
+// OpenAI Embedding API
 export const embeddingResponse = async (diseaseName, reservationReason) => {
   try {
-    return 1;
+    const response = await axios.post('https://api.openai.com/v1/embeddings', {
+      model: "text-embedding-ada-002",
+      input: `${diseaseName} ${reservationReason}`
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.data.data[0].embedding;
   } catch (error) {
-    console.error('Error:', error);
+    console.error('OpenAI API Error:', error);
     throw error;
   }
 };
