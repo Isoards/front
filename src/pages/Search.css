@@ -1,7 +1,8 @@
 .caregiver-search,
 .find-work,
 .matching,
-.mypage {
+.mypage,
+.sign-up {
   height: 100%;
   padding: 20px;
   display: flex;

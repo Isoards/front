@@ -44,7 +44,12 @@ export default function Work() {
   return (
     <div className="find-work">
       <div className="container">
-        <Content />
+        <Content
+          title={"일감 찾기"}
+          description={
+            "내 경력을 바탕으로 하이케어의 전문 간병인이 되어보세요!"
+          }
+        />
         {step == 0 && <CaregiverInfoForm setStep={handleStep} />}
         {step == 1 && <WorkExperienceForm setStep={handleStep} />}
         {step == 2 && <CareDateForm setStep={handleStep} />}
