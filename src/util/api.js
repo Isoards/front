@@ -76,7 +76,7 @@ export const embeddingResponse = async (diseaseName, reservationReason) => {
   try {
     return 1;
   } catch (error) {
-    console.error('OpenAI API Error:', error);
+    console.error('Error:', error);
     throw error;
   }
 };
