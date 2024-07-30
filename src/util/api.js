@@ -74,12 +74,7 @@ export const careRequestAllAPI = (email, password) =>
 // OpenAI Embedding API
 export const embeddingResponse = async (diseaseName, reservationReason) => {
   try {
-    const response = await axios.post('https://api.openai.com/v1/embeddings', {
-      model: "text-embedding-ada-002",
-      input: `${diseaseName} ${reservationReason}`
-    }, {
-    });
-    return response.data.data[0].embedding;
+    return 1;
   } catch (error) {
     console.error('OpenAI API Error:', error);
     throw error;
