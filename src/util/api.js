@@ -79,7 +79,7 @@ export const embeddingResponse = async (diseaseName, reservationReason) => {
       input: `${diseaseName} ${reservationReason}`
     }, {
       headers: {
-        'Authorization': "Bearer sk-None-cJr3UU4b45CPPFHmBSTIT3BlbkFJhs6D4rfweRMvYD7Iannq",
+        'Authorization': "",
         'Content-Type': 'application/json'
       }
     });
