@@ -1,19 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TabButton from "../TabButton";
 import { useNavigate } from "react-router-dom";
 import styles from "./GuardianInfoForm.module.css";
+import { careReservationInputAPI, embeddingResponse, esResponse } from "../../util/api";
+import { useRecoilState } from "recoil";
+import { careReservationRequest } from "../../state/atoms";
 
 export default function GuardianInfoForm({ setStep }) {
-  const navigate = useNavigate();
+  const nav = useNavigate();
+  const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
+ 
 
-  const handleSubmit = (e) => {
-    setStep(true);
-    // defaultInstace.post(url, { ...formData }).then(function (res) {
-    //     if (res.status === 200) {
-    //         console.log("인증성공");
-    //     }
-    // });
+  useEffect(() => {
+    setCareReservationRequestState({
+      ...careReservationRequestState,
+      ["userId"]:parseInt(localStorage.getItem("userId"))
+    })
+  }, []);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await careReservationInputAPI(careReservationRequestState);
+      const { diseaseName, reservationReason } = response.data;
+      const embeddedVector = await embeddingResponse(diseaseName, reservationReason);
+      const esResult = await esResponse(embeddedVector);
+      console.log(esResult);
+      nav("/list")
+    } catch (error) {
+      console.error('Submission failed:', error);
+    }
   };
+
+  
 
   function goNext() {
     navigate("/loading");
@@ -63,22 +83,10 @@ export default function GuardianInfoForm({ setStep }) {
             + 연락처 추가하기
           </button>
         </div>
-        <div className={styles.formGroup}>
-          <label>보호자 주소</label>
-          <input
-            type="text"
-            name="guardianAddress"
-            placeholder="주소를 입력해주세요."
-          />
-          <input
-            type="text"
-            name="guardianAddressDetail"
-            placeholder="상세주소를 입력해주세요."
-          />
-        </div>
+        
         <div className={styles.formNavigation}>
           <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton onSelect={goNext}>찾기</TabButton>
+          <TabButton onSelect={handleSubmit}>찾기</TabButton>
         </div>
       </form>
     </div>

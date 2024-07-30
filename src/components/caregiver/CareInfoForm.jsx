@@ -4,37 +4,33 @@ import TabButton from "../TabButton";
 import styles from "./CareInfoForm.module.css";
 import Modal from "../Modal";
 import DiseaseName from "../DiseaseName";
+import { useRecoilState } from "recoil";
+import { careReservationRequest } from "../../state/atoms";
+
 
 export default function CareInfoForm({ setStep }) {
-  const [formData, setFormData] = useState({
-    reservationReason: "",
-    reservationLocation: "",
-    startDate: "",
-    endDate: "",
-    dailyStartTime: "",
-    dailyEndTime: "",
-  });
+  const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
+
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setCareReservationRequestState({
+      ...careReservationRequestState,
       [name]: value,
     });
   };
 
   const handleSelectDisease = (diagnosis) => {
-    setFormData({
-      ...formData,
-      reservationReason: diagnosis,
+    setCareReservationRequestState({
+      ...careReservationRequestState,
+      diseaseName: diagnosis,
     });
     setShowModal(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     setStep(true);
   };
 
@@ -56,9 +52,9 @@ export default function CareInfoForm({ setStep }) {
           </label>
           <input
             type="text"
-            name="reservationReason"
+            name="diseaseName"
             placeholder="진단명을 입력해주세요."
-            value={formData.reservationReason}
+            value={careReservationRequestState.diseaseName}
             onChange={handleChange}
             onClick={() => setShowModal(true)}
           />
@@ -67,7 +63,7 @@ export default function CareInfoForm({ setStep }) {
               type="checkbox"
               name="noCondition"
               onChange={() =>
-                setFormData({ ...formData, reservationReason: "" })
+                setCareReservationRequestState({ ...careReservationRequestState, reservationReason: "" })
               }
             />
             현재 진단명이 없습니다.
@@ -82,7 +78,7 @@ export default function CareInfoForm({ setStep }) {
             type="text"
             name="reservationLocation"
             placeholder="주소를 입력해주세요."
-            value={formData.reservationLocation}
+            value={careReservationRequestState.reservationLocation}
             onChange={handleChange}
           />
           <input
@@ -99,14 +95,14 @@ export default function CareInfoForm({ setStep }) {
           <input
             type="date"
             name="startDate"
-            value={formData.startDate}
+            value={careReservationRequestState.startDate}
             onChange={handleChange}
           />
           <span> ~ </span>
           <input
             type="date"
             name="endDate"
-            value={formData.endDate}
+            value={careReservationRequestState.endDate}
             onChange={handleChange}
           />
         </div>
@@ -117,14 +113,14 @@ export default function CareInfoForm({ setStep }) {
           <input
             type="time"
             name="dailyStartTime"
-            value={formData.dailyStartTime}
+            value={careReservationRequestState.dailyStartTime}
             onChange={handleChange}
           />
           <span> ~ </span>
           <input
             type="time"
             name="dailyEndTime"
-            value={formData.dailyEndTime}
+            value={careReservationRequestState.dailyEndTime}
             onChange={handleChange}
           />
         </div>

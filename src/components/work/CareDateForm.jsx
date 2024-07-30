@@ -40,7 +40,8 @@ export default function CareDateForm({ setStep }) {
         <div className={styles.steps}>
           <span className={styles.step}>1</span>
           <span className={styles.step}>2</span>
-          <span className={styles.onStep}>3</span>
+          <span className={styles.step}>3</span>
+          <span className={styles.onStep}>4</span>
         </div>
       </div>
       <form onSubmit={handleSubmit}>

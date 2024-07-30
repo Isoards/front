@@ -121,3 +121,9 @@ input[type="checkbox"] {
   justify-content: space-between;
   margin-top: 20px;
 }
+
+.selected {
+  /* 선택된 버튼 스타일 */
+  background-color: #714ffd; /* 예시 스타일 */
+  color: white;
+}

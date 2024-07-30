@@ -1,52 +1,30 @@
 import React, { useState } from "react";
 import TabButton from "../TabButton";
 import styles from "./PatientForm.module.css";
+import { useRecoilState } from "recoil";
+import { careReservationRequest } from "../../state/atoms";
 
 export default function PatientForm({ setStep }) {
-  const [formData, setFormData] = useState({
-    patientName: "",
-    patientBirthDate: "",
-    patientHeight: "",
-    patientWeight: "",
-    patientGender: "",
-    reservationReason: "",
-    reservationLocation: "",
-    startDate: "",
-    endDate: "",
-    dailyStartTime: "",
-    dailyEndTime: "",
-  });
-
+  const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setCareReservationRequestState({
+      ...careReservationRequestState,
       [name]: value,
     });
   };
   const handleGenderSelect = (gender) => {
-    setFormData({
-      ...formData,
+    setCareReservationRequestState({
+      ...careReservationRequestState,
       patientGender: gender,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     setStep(true);
-    // defaultInstace.post(url, { ...formData }).then(function (res) {
-    //     if (res.status === 200) {
-    //         console.log("인증성공");
-    //     }
-    // });
   };
-  // const isVaild =
-  //   formData.patientName &&
-  //   formData.patientBirthDate &&
-  //   formData.patientHeight &&
-  //   formData.patientWeight &&
-  //   formData.patientGender;
 
   return (
     <div className={styles.formSection}>
@@ -67,7 +45,7 @@ export default function PatientForm({ setStep }) {
           <input
             type="text"
             name="patientName"
-            value={formData.patientName}
+            value={careReservationRequestState.patientName}
             placeholder="홍길동"
             onChange={handleChange}
           />
@@ -79,7 +57,7 @@ export default function PatientForm({ setStep }) {
           <input
             type="date"
             name="patientBirthDate"
-            value={formData.patientBirthDate}
+            value={careReservationRequestState.patientBirthDate}
             onChange={handleChange}
           />
         </div>
@@ -90,7 +68,7 @@ export default function PatientForm({ setStep }) {
           <input
             type="number"
             name="patientHeight"
-            value={formData.patientHeight}
+            value={careReservationRequestState.patientHeight}
             placeholder="160"
             onChange={handleChange}
           />
@@ -102,7 +80,7 @@ export default function PatientForm({ setStep }) {
           <input
             type="number"
             name="patientWeight"
-            value={formData.patientWeight}
+            value={careReservationRequestState.patientWeight}
             placeholder="50"
             onChange={handleChange}
           />
@@ -114,7 +92,7 @@ export default function PatientForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              formData.patientGender === "남성" ? styles.selected : ""
+              careReservationRequestState.patientGender === "남성" ? styles.selected : ""
             }`}
             onClick={() => handleGenderSelect("남성")}
           >
@@ -123,7 +101,7 @@ export default function PatientForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              formData.patientGender === "여성" ? styles.selected : ""
+              careReservationRequestState.patientGender === "여성" ? styles.selected : ""
             }`}
             onClick={() => handleGenderSelect("여성")}
           >

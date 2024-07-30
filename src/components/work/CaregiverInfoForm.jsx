@@ -1,33 +1,32 @@
 import { useState } from "react";
 import TabButton from "../TabButton";
 import styles from "./CaregiverInfoForm.module.css";
+import { useRecoilState } from "recoil";
+
+import { caregiverSignUpState } from "../../state/atoms";
 
 export default function CaregiverInfoForm({ setStep }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    date: "",
-    gender: "",
-    foreigner: "",
-  });
 
+  const [caregiverSignUp, setCaregiverSignUp] = useRecoilState(caregiverSignUpState)
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setCaregiverSignUp({
+      ...caregiverSignUp,
       [name]: value,
     });
   };
 
+
   const handleSelect = (name, value) => {
-    setFormData({
-      ...formData,
+    setCaregiverSignUp({
+      ...caregiverSignUp,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log(caregiverSignUp);
     setStep(true);
   };
   return (
@@ -35,8 +34,8 @@ export default function CaregiverInfoForm({ setStep }) {
       <div className={styles.headerContainer}>
         <h2 className={styles.headerTitle}>간병인의 기본 정보를 알려주세요</h2>
         <div className={styles.steps}>
-          <span className={styles.onStep}>1</span>
-          <span className={styles.step}>2</span>
+          <span className={styles.step}>1</span>  
+          <span className={styles.onStep}>2</span>
           <span className={styles.step}>3</span>
         </div>
       </div>
@@ -48,7 +47,7 @@ export default function CaregiverInfoForm({ setStep }) {
           <input
             type="text"
             name="name"
-            value={formData.name}
+            value={caregiverSignUp.name}
             onChange={handleChange}
           />
         </div>
@@ -58,8 +57,8 @@ export default function CaregiverInfoForm({ setStep }) {
           </label>
           <input
             type="date"
-            name="date"
-            value={formData.date}
+            name="birthDate"
+            value={caregiverSignUp.birthDate}
             onChange={handleChange}
           />
         </div>
@@ -70,7 +69,7 @@ export default function CaregiverInfoForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              formData.gender === "남성" ? styles.selected : ""
+              caregiverSignUp.gender === "남성" ? styles.selected : ""
             }`}
             onClick={() => handleSelect("gender", "남성")}
           >
@@ -79,7 +78,7 @@ export default function CaregiverInfoForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              formData.gender === "여성" ? styles.selected : ""
+              caregiverSignUp.gender === "여성" ? styles.selected : ""
             }`}
             onClick={() => handleSelect("gender", "여성")}
           >
@@ -93,7 +92,7 @@ export default function CaregiverInfoForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              formData.foreigner === "내국인" ? styles.selected : ""
+              caregiverSignUp.foreigner === "내국인" ? styles.selected : ""
             }`}
             onClick={() => handleSelect("foreigner", "내국인")}
           >
@@ -102,14 +101,15 @@ export default function CaregiverInfoForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              formData.foreigner === "외국인" ? styles.selected : ""
+              caregiverSignUp.foreigner === "외국인" ? styles.selected : ""
             }`}
             onClick={() => handleSelect("foreigner", "외국인")}
           >
             외국인
           </button>
         </div>
-        <div className={styles.nextButton}>
+        <div className={styles.formNavigation}>
+          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
           <TabButton>다음</TabButton>
         </div>
       </form>

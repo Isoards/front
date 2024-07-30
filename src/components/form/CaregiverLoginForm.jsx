@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { userState } from '../../state/atoms';
+import { caregiverState, userState } from '../../state/atoms';
 import styles from "../caregiver/PatientForm.module.css";
-import { userLogin } from '../../util/api';
+import { caregiverLogInAPI, userLogin } from '../../util/api';
 import { useNavigate } from 'react-router-dom';
 
-const UserLoginForm = () => {
+const CaregiverLoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const setUser = useSetRecoilState(userState);
+  const setCaregiverState = useSetRecoilState(caregiverState);
   const nav = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await userLogin(email, password);
-      setUser(response.data);
-      localStorage.setItem("userId",response.data.data)
-      nav("/search")
+      const response = await caregiverLogInAPI(email, password);
+      setCaregiverState(response.data);
+      localStorage.setItem("caregiverId",response.data.data)
+      nav("/register")
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -43,7 +43,7 @@ const UserLoginForm = () => {
                         패스워드<span>*</span>
                     </label>
                     <input
-                        type="password"
+                        type="text"
                         name="password"
                         value={password}
                         placeholder="password"
@@ -58,4 +58,4 @@ const UserLoginForm = () => {
   );
 };
 
-export default UserLoginForm;
+export default CaregiverLoginForm;

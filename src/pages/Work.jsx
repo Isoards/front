@@ -4,23 +4,9 @@ import Content from "../components/form/ContentForm.jsx";
 import CaregiverInfoForm from "../components/work/CaregiverInfoForm.jsx";
 import WorkExperienceForm from "../components/work/WorkExperienceForm.jsx";
 import CareDateForm from "../components/work/CareDateForm.jsx";
+import CaregiverSignUpForm from "../components/work/CaregiverSignUpForm.jsx";
 
 export default function Work() {
-  const [formData, setFormData] = useState({
-    name: "",
-    date: "",
-    gender: "",
-    foreigner: "",
-    licenseType: "",
-    licenseFile: null,
-    workExperience: "",
-    workDate: "",
-    introduction: "",
-    startDate: "",
-    endDate: "",
-    startTime: "",
-    endTime: "",
-  });
   const MAXSTEP = 2;
   const [step, setStep] = useState(0);
   let curMaxStep = 0;
@@ -45,9 +31,9 @@ export default function Work() {
     <div className="find-work">
       <div className="container">
         <Content />
-        {step == 0 && <CaregiverInfoForm setStep={handleStep} />}
-        {step == 1 && <WorkExperienceForm setStep={handleStep} />}
-        {step == 2 && <CareDateForm setStep={handleStep} />}
+        {step == 0 && <CaregiverSignUpForm setStep={handleStep} />}
+        {step == 1 && <CaregiverInfoForm setStep={handleStep} />}
+        {step == 2 && <WorkExperienceForm setStep={handleStep} />}
       </div>
     </div>
   );

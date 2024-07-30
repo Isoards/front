@@ -6,7 +6,7 @@ import styles from "./RegisterForm.module.css";
 export default function RegisterForm() {
   const navigate = useNavigate();
   function goPatient() {
-    navigate("/search");
+    navigate("/userSignUp");
   }
   function goCaregiver() {
     navigate("/work");

@@ -34,9 +34,84 @@ authInstance.interceptors.request.use(
   }
 );
 
+// User sign up
+export const userSignUp = (email, password, name, phone, gender, birthDate) =>
+  defaultInstance.post('/api/v1/auth/user/signup', { email, password, name, phone, gender, birthDate });
+
+// User login
+export const userLogin = (email, password) =>
+  defaultInstance.post('/api/v1/auth/user/login', { email, password });
+
+// Caregiver sign up
+export const caregiverSignUpAPI = (caregiverSignupState) =>
+  defaultInstance.post('/api/v1/auth/caregiver/signup', caregiverSignupState);
+
+export const caregiverLogInAPI = (email, password) =>
+  defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
+//간병 등록
+export const careReservationInputAPI = (careReservationRequest) =>
+  defaultInstance.post('api/v1/care-reservation/careReservationInput', careReservationRequest);
+//특정 간병인 요청
+export const careReservationRequestAPI = (email, password) =>
+  defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
+//간병인 수락 
+export const careReservationAcceptAPI = (email, password) =>
+  defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
+//간병인 거절
+export const careReservationDenyAPI = (email, password) =>
+  defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
+//전체 간병인 요청 전환
+export const careRequestAllAPI = (email, password) =>
+  defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
 
 
 
-//dk
-export const userSignUp = (email, password, name, phone, gender, birthDate) => defaultInstance.post('/api/v1/auth/user/signup', {email, password, name, phone, gender, birthDate});
-export const userLogin = (email, password) => defaultInstance.post('/api/v1/auth/user/login', {email, password});
+
+
+
+
+
+// OpenAI Embedding API
+export const embeddingResponse = async (diseaseName, reservationReason) => {
+  try {
+    const response = await axios.post('https://api.openai.com/v1/embeddings', {
+      model: "text-embedding-ada-002",
+      input: `${diseaseName} ${reservationReason}`
+    }, {
+      headers: {
+        'Authorization': "Bearer sk-None-cJr3UU4b45CPPFHmBSTIT3BlbkFJhs6D4rfweRMvYD7Iannq",
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.data.data[0].embedding;
+  } catch (error) {
+    console.error('OpenAI API Error:', error);
+    throw error;
+  }
+};
+
+// Elasticsearch API
+export const esResponse = async (embeddingVector) => {
+  try {
+    const response = await axios.post('http://localhost:9200/newdick.newdick.caregiver_table/_search', {
+      size: 5,
+      query: {
+        script_score: {
+          query: { match_all: {} },
+          script: {
+            source: "cosineSimilarity(params.query_vector, 'career_description_double_vector') + 1.0",
+            params: { query_vector: embeddingVector }
+          }
+        }
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.data.hits.hits;
+  } catch (error) {
+    console.error('Elasticsearch API Error:', error);
+    throw error;
+  }
+};
