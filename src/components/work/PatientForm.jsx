@@ -32,6 +32,7 @@ export default function PatientForm() {
                 <span className={styles.label}>간병 요청 지역</span>
                 {patientInfo.location}
               </p>
+              <p class={styles.line}></p>
             </div>
             <div className={styles.requestSection}>
               <span>{patientInfo.name} 환자님 요청사항</span>
@@ -48,6 +49,7 @@ export default function PatientForm() {
               {patientInfo.careTime}
             </p>
           </div>
+          <p class={styles.line}></p>
         </div>
       </div>
       <div className={styles.requestButton}>

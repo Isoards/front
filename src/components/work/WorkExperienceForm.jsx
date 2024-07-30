@@ -52,7 +52,6 @@ export default function WorkExperienceForm({ setStep }) {
               onChange={handleChange}
               className={styles.selectInput}
             >
-              {" "}
               {CERTIFICATIONS.map((CERTIFICATION, index) => (
                 <option key={index} value={CERTIFICATION}>
                   {CERTIFICATION}

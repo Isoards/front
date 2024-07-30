@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import Content from "../components/form/ContentForm.jsx";
 import PatientForm from "../components/caregiver/PatientForm.jsx";
 import CareInfoForm from "../components/caregiver/CareInfoForm.jsx";
@@ -21,7 +23,7 @@ export default function Search() {
     dailyEndTime: "",
   });
 
-  const MAXSTEP = 3;
+  const MAXSTEP = 4;
   const [step, setStep] = useState(0);
   let curMaxStep = 0;
 
@@ -51,6 +53,7 @@ export default function Search() {
         {step == 1 && <CareInfoForm setStep={handleStep} />}
         {step == 2 && <PatientSymptomsForm setStep={handleStep} />}
         {step == 3 && <GuardianInfoForm setStep={handleStep} />}
+        {step == 4 && <NavLink to="/list" />}
       </div>
     </div>
   );

@@ -19,18 +19,18 @@ export default function Profile() {
       { text: "정말 감사드려요 :)", rating: 5 },
       { text: "어머니가 정말 좋아하셨어요", rating: 4 },
     ],
+    rating: 4,
     profileImage: "https://via.placeholder.com/150",
   };
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>간병인 정보</h2>
-      <p className={styles.subtitle}>
-        환자 정보를 기반으로 맞춤케어가 가능한 추천 간병인 리스트입니다.
-      </p>
-
+      <div className={styles.textSection}>
+        <h2>간병인 정보</h2>
+        <p>환자 정보를 기반으로 맞춤케어가 가능한 추천 간병인 리스트입니다.</p>
+      </div>
       <div className={styles.profileSection}>
-        <div className={styles.leftSection}>
+        <div className={styles.introSection}>
           <img
             src={caregiverInfo.profileImage}
             alt="간병인 프로필"
@@ -41,33 +41,71 @@ export default function Profile() {
             <p>{caregiverInfo.introduction}</p>
           </div>
         </div>
-
         <div className={styles.rightSection}>
           <div className={styles.profileInfo}>
             <div className={styles.basicInfo}>
-              <h3>{caregiverInfo.name}</h3>
-              <p>경력 | {caregiverInfo.experience}</p>
-              <p>가능 지역 | {caregiverInfo.availableAreas}</p>
-              <p>보유 면허증 | {caregiverInfo.license}</p>
+              <p>
+                <span className={styles.label}>이름</span> {caregiverInfo.name}
+              </p>
+              <p>
+                <span className={styles.label}>간병 경력</span>{" "}
+                {caregiverInfo.experience}
+              </p>
+              <p>
+                <span className={styles.label}>간병 가능 지역</span>
+                {caregiverInfo.availableAreas}
+              </p>
             </div>
-            <h4>간병인 경력 병원</h4>
-            <ul>
-              {caregiverInfo.hospitals.map((hospital, index) => (
-                <li key={index}>{hospital}</li>
-              ))}
-            </ul>
+            <p class={styles.line}></p>
+            <div className={styles.box}>
+              <p>
+                <span className={styles.label}>보유 면허증</span>{" "}
+                {caregiverInfo.license}
+              </p>
+              <p>
+                <span className={styles.label}>간병 후기</span>{" "}
+                <p className={styles.rating}>
+                  {"⭐".repeat(caregiverInfo.rating)}
+                </p>
+              </p>
+            </div>
           </div>
-
-          <div className={styles.reviewsSection}>
-            <h4>간병 후기</h4>
-            {caregiverInfo.reviews.map((review, index) => (
-              <div key={index} className={styles.review}>
-                <p>{review.text}</p>
-                <p className={styles.rating}>{"⭐".repeat(review.rating)}</p>
-              </div>
-            ))}
+          <div className={styles.box}>
+            <div className={styles.hospitals}>
+              <span>간병인을 대표하는 3가지 이력</span>
+              <ul>
+                {caregiverInfo.hospitals.map((hospital, index) => (
+                  <li key={index}>{hospital}</li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.reviewsSection}>
+              {caregiverInfo.reviews.map((review, index) => (
+                <div key={index} className={styles.review}>
+                  <p>{review.text}</p>
+                  <p className={styles.rating}>{"⭐".repeat(review.rating)}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+      </div>
+      <div className={styles.costSection}>
+        <form className={styles.estimatedCost}>
+          <h3>간병 비용 계산</h3>
+          <div className={styles.costDetails}>
+            <p>15,000원 x 6시간</p>
+            <p> x 46일</p>
+            <p>x 거동도움 하루 42,000원</p>
+          </div>
+          <p class={styles.line}></p>
+          <div className={styles.costRange}>
+            <p>6,072,000원</p>
+          </div>
+        </form>
+      </div>
+      <div className={styles.request}>
+        <button className={styles.requestButton}>간병 요청하기</button>
       </div>
     </div>
   );

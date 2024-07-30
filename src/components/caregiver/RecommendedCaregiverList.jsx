@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./RecommendedCaregiverList.module.css";
 import photo from "../../img/photo1.png";
 
@@ -80,7 +81,9 @@ export default function RecommendedCaregiverList() {
                 </div>
                 <p>평점: {caregiver.rating}</p>
               </div>
-              <button className={styles.requestButton}>간병 요청하기</button>
+              <NavLink to="/profile">
+                <button className={styles.requestButton}>간병 요청하기</button>
+              </NavLink>
             </div>
           ))}
         </div>

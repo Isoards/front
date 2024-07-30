@@ -92,48 +92,50 @@ export default function CareInfoForm({ setStep }) {
             onChange={handleChange}
           />
         </div>
-        <div className={styles.date}>
-          <label>
-            간병 기간<span>*</span>
-          </label>
-          <div className={styles.dateSection}>
-            <input
-              type="date"
-              name="startDate"
-              required
-              aria-required="true"
-              value={formData.startDate}
-              onChange={handleChange}
-            />
-            <span> ~ </span>
-            <input
-              type="date"
-              name="endDate"
-              required
-              aria-required="true"
-              value={formData.endDate}
-              onChange={handleChange}
-            />
+        <div className={styles.box}>
+          <div className={styles.date}>
+            <label>
+              간병 기간<span>*</span>
+            </label>
+            <div className={styles.dateSection}>
+              <input
+                type="date"
+                name="startDate"
+                required
+                aria-required="true"
+                value={formData.startDate}
+                onChange={handleChange}
+              />
+              <span> ~ </span>
+              <input
+                type="date"
+                name="endDate"
+                required
+                aria-required="true"
+                value={formData.endDate}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-        </div>
-        <div className={styles.time}>
-          <label>
-            간병 시간<span>*</span>
-          </label>
-          <div className={styles.timeSection}>
-            <input
-              type="time"
-              name="dailyStartTime"
-              value={formData.dailyStartTime}
-              onChange={handleChange}
-            />
-            <span> ~ </span>
-            <input
-              type="time"
-              name="dailyEndTime"
-              value={formData.dailyEndTime}
-              onChange={handleChange}
-            />
+          <div className={styles.time}>
+            <label>
+              간병 시간<span>*</span>
+            </label>
+            <div className={styles.timeSection}>
+              <input
+                type="time"
+                name="dailyStartTime"
+                value={formData.dailyStartTime}
+                onChange={handleChange}
+              />
+              <span> ~ </span>
+              <input
+                type="time"
+                name="dailyEndTime"
+                value={formData.dailyEndTime}
+                onChange={handleChange}
+              />
+            </div>
           </div>
         </div>
         <h5>

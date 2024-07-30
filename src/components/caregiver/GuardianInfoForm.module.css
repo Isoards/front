@@ -87,12 +87,25 @@ input[type="checkbox"] {
 .formGroup select {
   width: 80%;
   display: inline-block;
-  height: 30px;
   padding: 8px;
   margin-right: 10px;
   border-radius: 4px;
   border: 2px solid var(--Neutral-300, #dadada);
   background: var(--Neutral-100, #f2f2f4);
+}
+
+.formGroup select {
+  font-size: 18px;
+}
+
+.formGroup textarea {
+  display: flex;
+  width: 160%;
+  height: 30px;
+  padding: 14px 18px;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
 }
 
 .formGroup input:checked {

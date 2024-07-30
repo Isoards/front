@@ -1,9 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "../../img/Logo violet ver..png";
 
 export default function Navbar() {
+  const location = useLocation();
+
   return (
     <nav className={styles.navbar}>
       <NavLink to="/">
@@ -11,15 +13,21 @@ export default function Navbar() {
         <h1>하이케어</h1>
       </NavLink>
       <ul>
-        <li>
-          <NavLink to="/search">간병인 찾기</NavLink>
-        </li>
-        <li>
-          <NavLink to="/work">일감 찾기</NavLink>
-        </li>
-        <li>
-          <NavLink to="/register">마이 페이지</NavLink>
-        </li>
+        {location.pathname !== "/search" && (
+          <li>
+            <NavLink to="/search">간병인 찾기</NavLink>
+          </li>
+        )}
+        {location.pathname !== "/work" && (
+          <li>
+            <NavLink to="/work">일감 찾기</NavLink>
+          </li>
+        )}
+        {location.pathname !== "/register" && (
+          <li>
+            <NavLink to="/register">마이 페이지</NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
