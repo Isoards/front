@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import DaumPost from "../DaumPost";
-import TabButton from "../TabButton";
 import styles from "./CareInfoForm.module.css";
 import Modal from "../Modal";
 import DiseaseName from "../DiseaseName";
-
+import DaumPost from "../DaumPost";
 export default function CareInfoForm({ setStep }) {
   const [formData, setFormData] = useState({
     reservationReason: "",
@@ -13,7 +11,10 @@ export default function CareInfoForm({ setStep }) {
     endDate: "",
     dailyStartTime: "",
     dailyEndTime: "",
+    address: "",
   });
+
+  const [address, setAddress] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (event) => {
@@ -77,14 +78,23 @@ export default function CareInfoForm({ setStep }) {
           <label>
             간병 장소<span>*</span>
           </label>
-          <DaumPost />
-          <input
+          <div className={styles.box}>
+            <input
+              type="text"
+              className={styles.address}
+              value={address}
+              placeholder="주소를 입력해주세요."
+              readOnly
+            />
+            <DaumPost setAddress={setAddress} />
+          </div>
+          {/* <input
             type="text"
             name="reservationLocation"
             placeholder="주소를 입력해주세요."
             value={formData.reservationLocation}
             onChange={handleChange}
-          />
+          /> */}
           <input
             type="text"
             name="locationDetail"

@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       { path: "/findwork", element: <FindWork /> },
       { path: "/profile", element: <Profile /> },
       { path: "/matching", element: <Matching /> },
-      { path: "/test", element: <PatientForm /> },
+      { path: "/patient", element: <PatientForm /> },
     ],
   },
 ]);
