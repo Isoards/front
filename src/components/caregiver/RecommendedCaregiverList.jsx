@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./RecommendedCaregiverList.module.css";
 import photo from "../../img/photo1.png";
-
+import star from "../../img/Star 4.png";
 const caregivers = [
   {
     name: "김정희",
@@ -56,8 +56,8 @@ export default function RecommendedCaregiverList() {
         <div className={styles.listTable}>
           <h4>프로필사진</h4>
           <h4>간병 경력 및 지역</h4>
-          <h4>대표 이력</h4>
-          <h4>간병 평점</h4>
+          <h4 className={styles.experience}>대표 이력</h4>
+          <h4 className={styles.careRating}>간병 평점</h4>
         </div>
         <div className={styles.caregiverList}>
           {caregivers.map((caregiver) => (
@@ -79,7 +79,16 @@ export default function RecommendedCaregiverList() {
                     <p key={index}>・{intro}</p>
                   ))}
                 </div>
-                <p>평점: {caregiver.rating}</p>
+                <div className={styles.rating}>
+                  {Array.from({ length: caregiver.rating }, (_, index) => (
+                    <img
+                      key={index}
+                      src={star}
+                      alt="star"
+                      className={styles.star}
+                    />
+                  ))}
+                </div>
               </div>
               <NavLink to="/profile">
                 <button className={styles.requestButton}>간병 요청하기</button>

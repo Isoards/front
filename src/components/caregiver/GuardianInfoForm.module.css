@@ -155,6 +155,12 @@ input[type="checkbox"] {
   background-color: #5939cb;
 }
 
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
 .previousButton {
   display: flex;
   padding: 14px 54px;

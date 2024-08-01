@@ -9,6 +9,7 @@ export default function MypageForm() {
     paymentInfo: "국민카드 1234",
     caregiver: {
       name: "김정희",
+      license: "간호사 면허",
       experience: "1년",
       location: "서울특별시",
       schedule: {
@@ -19,7 +20,7 @@ export default function MypageForm() {
     },
     patient: {
       name: "박순희",
-      hospital: "파킨슨병",
+      disease: "파킨슨병",
       birthDate: "1958.02.03",
       gender: "여성",
     },
@@ -64,29 +65,39 @@ export default function MypageForm() {
         <div className={styles.section}>
           <div className={styles.matchSection}>
             <div className={styles.sectionTitle}>간병 매칭 정보</div>
-            <div className={styles.matchInfo}>
-              <div className={styles.patientInfo}>
-                <div>
-                  환자
+            <div className={styles.patientCaregiver}>
+              <div className={styles.infoBox}>
+                <label className={styles.label}>환자</label>
+                <div className={styles.box}>
+                  <h3>
+                    {formData.patient.name} / {formData.patient.disease}
+                  </h3>
                   <p>
-                    {formData.patient.name} / {formData.patient.hospital}
+                    {formData.patient.birthDate} / {formData.patient.gender}
                   </p>
                 </div>
-                <p>생년월일: {formData.patient.birthDate}</p>
-                <p>성별: {formData.patient.gender}</p>
               </div>
-              <div className={styles.caregiverInfo}>
-                <div>
-                  간병인
-                  <p>{formData.caregiver.name}</p>
+              <div className={styles.infoBox}>
+                <label className={styles.label}>간병인</label>
+                <div className={styles.box}>
+                  <h3>{formData.caregiver.name}</h3>
+                  <p>
+                    {formData.caregiver.license} ・
+                    {formData.caregiver.experience} ・
+                    {formData.caregiver.location}
+                  </p>
                 </div>
-                <p>경력: {formData.caregiver.experience}</p>
-                <p>활동 지역: {formData.caregiver.location}</p>
-                <p>간병 기간: {formData.caregiver.schedule.date}</p>
-                <p>간병 시간: {formData.caregiver.schedule.time}</p>
-                <p>장소: {formData.caregiver.schedule.place}</p>
               </div>
             </div>
+            <p>
+              <span>간병 기간</span> {formData.caregiver.schedule.date}
+            </p>
+            <p>
+              <span>간병 시간</span> {formData.caregiver.schedule.time}
+            </p>
+            <p>
+              <span>장소</span> {formData.caregiver.schedule.place}
+            </p>
           </div>
           <div className={styles.historySection}>
             <div className={styles.sectionTitle}>간병 신청 이력</div>

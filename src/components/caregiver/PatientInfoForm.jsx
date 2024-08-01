@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import TabButton from "../TabButton";
-import styles from "./PatientForm.module.css";
+import styles from "./PatientInfoForm.module.css";
 
 export default function PatientForm({ setStep }) {
   const [formData, setFormData] = useState({

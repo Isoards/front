@@ -61,25 +61,27 @@ export default function GuardianInfoForm({ setStep }) {
           <input type="checkbox" name="useMemberInfo" />
           회원정보 불러오기
         </p>
-        {contactFields.map((field, index) => (
-          <div className={styles.formGroup} key={field.id}>
-            <label>보호자 연락처 {index + 1}</label>
-            <input
-              type="text"
-              name={`guardianPhone${field.id}`}
-              placeholder="010 - 1234 - 5678"
-              value={field.value}
-              onChange={(e) => handleInputChange(field.id, e.target.value)}
-            />
-          </div>
-        ))}
-        <button
-          type="button"
-          className="addContactButton"
-          onClick={handleAddContactField}
-        >
-          + 연락처 추가하기
-        </button>
+        <div className={styles.box}>
+          {contactFields.map((field, index) => (
+            <div className={styles.formGroup} key={field.id}>
+              <label>보호자 연락처 {index + 1}</label>
+              <input
+                type="text"
+                name={`guardianPhone${field.id}`}
+                placeholder="010 - 1234 - 5678"
+                value={field.value}
+                onChange={(e) => handleInputChange(field.id, e.target.value)}
+              />
+            </div>
+          ))}
+          <button
+            type="button"
+            className="addContactButton"
+            onClick={handleAddContactField}
+          >
+            + 연락처 추가하기
+          </button>
+        </div>
         <div className={styles.formGroup}>
           <label>보호자 주소</label>
           <textarea

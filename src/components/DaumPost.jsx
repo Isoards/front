@@ -25,7 +25,6 @@ const DaumPost = ({ setAddress }) => {
       fullAddress = fullAddress.replace(localAddress, "");
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    console.log(fullAddress);
     setAddress(fullAddress); // setAddress를 호출하여 부모 컴포넌트의 상태를 업데이트
   };
 

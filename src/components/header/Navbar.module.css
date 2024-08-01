@@ -38,4 +38,9 @@
 .navbar a {
   color: #333333;
   font-weight: bold;
+  text-decoration: none;
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-md, 20px);
+  font-weight: 700;
+  line-height: 130%; /* 31.2px */
 }

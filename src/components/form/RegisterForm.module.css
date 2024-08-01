@@ -63,6 +63,10 @@ section {
   line-height: 130%; /* 36.4px */
 }
 
-.options button hover {
-  color: #fff;
+.options button:hover {
+  background: var(--Primary-300, #9170fd);
+}
+
+.options button:focus {
+  background: var(--Violet-500, #4b2cfb);
 }

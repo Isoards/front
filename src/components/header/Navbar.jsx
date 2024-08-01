@@ -23,9 +23,9 @@ export default function Navbar() {
             <NavLink to="/work">일감 찾기</NavLink>
           </li>
         )}
-        {location.pathname !== "/register" && (
+        {location.pathname !== "/mypage" && (
           <li>
-            <NavLink to="/register">마이 페이지</NavLink>
+            <NavLink to="/mypage">마이 페이지</NavLink>
           </li>
         )}
       </ul>

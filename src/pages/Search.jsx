@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import Content from "../components/form/ContentForm.jsx";
-import PatientForm from "../components/caregiver/PatientForm.jsx";
+import PatientInfoForm from "../components/caregiver/PatientInfoForm.jsx";
 import CareInfoForm from "../components/caregiver/CareInfoForm.jsx";
 import PatientSymptomsForm from "../components/caregiver/PatientSymptomsForm.jsx";
 import GuardianInfoForm from "../components/caregiver/GuardianInfoForm.jsx";
@@ -54,7 +54,7 @@ export default function Search() {
             "환자의 정보를 입력하고 맞춤 케어가 가능한 이력의 간병인을 찾아보세요!"
           }
         />
-        {step == 0 && <PatientForm setStep={handleStep} />}
+        {step == 0 && <PatientInfoForm setStep={handleStep} />}
         {step == 1 && <CareInfoForm setStep={handleStep} />}
         {step == 2 && <PatientSymptomsForm setStep={handleStep} />}
         {step == 3 && <GuardianInfoForm setStep={handleStep} />}

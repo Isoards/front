@@ -44,9 +44,9 @@ export default function MatchingForm() {
           <div className={styles.infoBox}>
             <label className={styles.label}>환자</label>
             <div className={styles.box}>
-              <p>
+              <h3>
                 {formData.patient.name} / {formData.patient.disease}
-              </p>
+              </h3>
               <p>
                 {formData.patient.birthDate} / {formData.patient.gender}
               </p>
@@ -55,7 +55,7 @@ export default function MatchingForm() {
           <div className={styles.infoBox}>
             <label className={styles.label}>간병인</label>
             <div className={styles.box}>
-              <p>{formData.caregiver.name}</p>
+              <h3>{formData.caregiver.name}</h3>
               <p>
                 {formData.caregiver.license} / {formData.caregiver.experience} /{" "}
                 {formData.caregiver.location}
@@ -66,13 +66,17 @@ export default function MatchingForm() {
       </div>
       <div className={styles.infoSection}>
         <label className={styles.label}>간병인 계약서</label>
-        <span className={styles.value}>{formData.contract}</span>
-        <button className={styles.button}>계약서 확인</button>
+        <div className={styles.section}>
+          <span className={styles.value}>{formData.contract}</span>
+          <button className={styles.button}>계약서 확인</button>
+        </div>
       </div>
       <div className={styles.infoSection}>
         <label className={styles.label}>결제 정보</label>
-        <span className={styles.value}>{formData.payment}</span>
-        <button className={styles.button}>결제 내역 확인</button>
+        <div className={styles.section}>
+          <span className={styles.value}>{formData.payment}</span>
+          <button className={styles.button}>결제 내역 확인</button>
+        </div>
       </div>
     </div>
   );

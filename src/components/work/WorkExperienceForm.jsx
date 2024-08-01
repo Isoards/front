@@ -1,7 +1,7 @@
 import { useState } from "react";
-import TabButton from "../TabButton";
 import styles from "./WorkExperienceForm.module.css";
 import { CERTIFICATIONS } from "../../data.js";
+import uploadIcon from "../../img/Upload.png";
 
 export default function WorkExperienceForm({ setStep }) {
   const [formData, setFormData] = useState({

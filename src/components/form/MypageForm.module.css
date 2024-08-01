@@ -1,6 +1,4 @@
 .container {
-  width: 1720px;
-  height: 912px;
   background: var(--Neutral-50, #f9fafc);
   padding: 24px;
   border-radius: 24px;
@@ -32,7 +30,6 @@
   font-weight: 700;
   line-height: 130%; /* 36.4px */
 }
-
 .section {
   display: flex;
   justify-content: space-between;
@@ -79,26 +76,67 @@
   font-weight: 700;
   line-height: 130%; /* 52px */
 }
-
-.matchSection {
-  width: 782px;
-  height: 400px;
-  display: inline-block;
-  padding: 30px;
-  align-items: flex-start;
-  gap: 16px;
-  border-radius: var(--Font-Size-s, 20px);
-  border: 2px solid var(--Primary-400, #714ffd);
+.matchInfo {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fafafa;
 }
 
-.matchInfo {
+.patientCaregiver {
   display: flex;
   justify-content: space-between;
 }
 
+.infoBox {
+  width: 48%;
+}
+
+.box {
+  display: flex;
+  padding: 18px 50px 18px 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: var(--Font-Size-s, 20px);
+  border: 2px solid var(--Neutral-300, #dadada);
+}
+
+.box h3 {
+  color: var(--Neutral-800, #333);
+  text-align: center;
+  font-size: var(--Font-Size-lg, 28px);
+  font-weight: 600;
+  line-height: 130%; /* 36.4px */
+}
+
+.box p {
+  color: var(--Neutral-700, #5b5b5b);
+  text-align: center;
+  font-size: var(--Font-Size-s, 20px);
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+}
+
 .patientInfo,
 .caregiverInfo {
-  display: inline-block;
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.patientInfo {
+  border-radius: var(--Font-Size-s, 20px);
+  border: 2px solid var(--Neutral-300, #dadada);
+  margin-right: 30px;
+}
+
+.caregiverInfo {
+  border-radius: var(--Font-Size-s, 20px);
+  border: 2px solid var(--Neutral-300, #dadada);
 }
 
 .historySection {

@@ -43,6 +43,13 @@
   margin-bottom: 36px;
 }
 
+.card:hover,
+.card:focus {
+  border-radius: 12px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+}
+
 .photo {
   display: inline-block;
   align-items: flex-start;
@@ -57,11 +64,10 @@
 }
 
 .info h3 {
-  height: 100%;
-  margin: 0;
-  font-size: 28px;
-  font-weight: bold;
-  display: flex;
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-lg, 28px);
+  font-weight: 700;
+  line-height: 130%; /* 36.4px */
 }
 
 .info p,
@@ -75,7 +81,7 @@
   line-height: 150%;
 }
 
-h4 {
+.request h4 {
   margin-top: 24px;
   color: var(--Secondary-600, #4c8df4);
   font-family: var(--Font-Family-Heading, Pretendard);
@@ -83,4 +89,26 @@ h4 {
   font-style: normal;
   font-weight: 700;
   line-height: 130%; /* 31.2px */
+}
+
+.confirmButton {
+  display: flex;
+  justify-content: center;
+}
+
+.confirmButton button {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: var(--Neutral-300, #dadada);
+}
+
+.confirmButton button:hover {
+  background: var(--Primary-300, #9170fd);
+}
+.confirmButton button:focus {
+  background: var(--Violet-500, #4b2cfb);
 }
