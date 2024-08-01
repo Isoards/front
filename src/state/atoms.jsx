@@ -1,6 +1,14 @@
 
 import { atom } from 'recoil';
 
+export const patientEmbedingRequestData = atom({
+  key:"careReservationRequestState",
+  default:{
+    diseaseName:"", 
+    reservationReason:""
+  }
+})
+
 export const careReservationRequest = atom({
   key: "careReservationRequestState",
   default:{

@@ -1,22 +1,86 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./RecommendedCaregiverList.module.css";
-
-const caregivers = [
-  {
-    name: "김정희",
-    experience: "8개월",
-    location: "서울특별시",
-    details: [
-      "서울대학교병원 신경외과 간호사",
-      "한강대학교병원 신경외과 간호사",
-      "해성실버병원 간호사",
-    ],
-    rating: 5,
-    reviews: 16,
-  },
-];
+import { useRecoilState } from "recoil";
+import { patientEmbedingRequestData } from "../../state/atoms";
+import { embeddingResponse, esResponse, getCaregiversByIds, careReservationRequestAPI } from "../../util/api";
+import { useNavigate } from "react-router-dom";
 
 export default function RecommendedCaregiverList() {
+  const [patientEmbedingRequestDataState] = useRecoilState(patientEmbedingRequestData);
+  const [caregivers, setCaregivers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const nav = useNavigate();
+
+  useEffect(() => {
+    const fetchCaregivers = async () => {
+      try {
+        const embeddedVector = await embeddingResponse(
+          patientEmbedingRequestDataState.diseaseName,
+          patientEmbedingRequestDataState.reservationReason
+        );
+        const caregiverIds = await esResponse(embeddedVector);
+        console.log('caregiverIds:', caregiverIds);
+
+        if (!Array.isArray(caregiverIds)) {
+          throw new Error('Invalid response structure from esResponse');
+        }
+
+        const caregiversData = await getCaregiversByIds(caregiverIds);
+        setCaregivers(caregiversData);
+      } catch (error) {
+        setError('Failed to fetch caregivers');
+        console.error('Error fetching caregivers:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCaregivers();
+  }, [patientEmbedingRequestDataState]);
+
+  const handleRequestClick = async (caregiverId) => {
+    const userId = parseInt(localStorage.getItem("userId"));
+    const reservationId = patientEmbedingRequestDataState.reservationId;
+
+    const requestPayload = {
+      caregiverId,
+      reservationId
+    };
+
+    try {
+      const response = await careReservationRequestAPI(requestPayload);
+      console.log('Reservation request successful:', response.data);
+      // 필요한 추가 로직을 여기에 작성합니다.
+      nav("/mypage"); // 성공 페이지로 이동하는 예시
+    } catch (error) {
+      console.error('Failed to request caregiver reservation:', error);
+      // 오류 처리 로직을 여기에 작성합니다.
+    }
+  };
+
+  const getRepresentativeWorkHistory = (workHistories) => {
+    if (!workHistories || workHistories.length === 0) return '정보 없음';
+
+    // 최신 경력 가져오기
+    const latestWorkHistory = workHistories.reduce((latest, current) => {
+      const latestDate = new Date(latest.workHistoryPeriod.split(' ~ ')[1]);
+      const currentDate = new Date(current.workHistoryPeriod.split(' ~ ')[1]);
+      return latestDate > currentDate ? latest : current;
+    });
+
+    return `${latestWorkHistory.workHistory} (${latestWorkHistory.workHistoryPeriod})`;
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div className={styles.recommendedCaregiverList}>
       <div className={styles.textSection}>
@@ -44,23 +108,28 @@ export default function RecommendedCaregiverList() {
           <h4>간병 평점</h4>
         </div>
         <div className={styles.caregiverList}>
-          {caregivers.map((caregiver) => (
-            <div key={caregiver.id} className={styles.caregiverCard}>
+          {caregivers.map((caregiver, index) => (
+            <div key={index} className={styles.caregiverCard}>
               <img
-                src={caregiver.profilePhoto}
+                src="placeholder.jpg"
                 alt={caregiver.name}
                 className={styles.profilePhoto}
               />
               <div className={styles.caregiverInfo}>
                 <div className={styles.caregiverDetails}>
                   <h3>{caregiver.name}</h3>
-                  <p>경력: {caregiver.experience}</p>
-                  <p>지역: {caregiver.location}</p>
+                  <p>경력: {caregiver.birthDate ? new Date().getFullYear() - new Date(caregiver.birthDate).getFullYear() : '정보 없음'}년</p>
+                  <p>지역: {caregiver.city || '정보 없음'}</p>
                 </div>
-                <p>대표이력 : {caregiver.introduction}</p>
-                <p>평점: {caregiver.rating}</p>
+                <p>대표이력 : {getRepresentativeWorkHistory(caregiver.caregiverWorkHistories)}</p>
+                <p>평점: {caregiver.averageRating ? caregiver.averageRating.toFixed(1) : '정보 없음'}</p>
               </div>
-              <button className={styles.requestButton}>간병 요청하기</button>
+              <button
+                className={styles.requestButton}
+                onClick={() => handleRequestClick(caregiver.id)}
+              >
+                간병 요청하기
+              </button>
             </div>
           ))}
         </div>

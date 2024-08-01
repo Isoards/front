@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TabButton from "../TabButton";
 import { useNavigate } from "react-router-dom";
 import styles from "./GuardianInfoForm.module.css";
 import { careReservationInputAPI, embeddingResponse, esResponse } from "../../util/api";
 import { useRecoilState } from "recoil";
-import { careReservationRequest } from "../../state/atoms";
+import { careReservationRequest, patientEmbedingRequestData } from "../../state/atoms";
 
 export default function GuardianInfoForm({ setStep }) {
   const nav = useNavigate();
+  
   const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
- 
+  const [patientEmbedingRequestDataState, setPatientEmbedingRequestDataState] = useRecoilState(patientEmbedingRequestData)
+  const [contactFields, setContactFields] = useState([{ id: 1, value: "" }]);
+  
 
   useEffect(() => {
     setCareReservationRequestState({
@@ -18,15 +21,29 @@ export default function GuardianInfoForm({ setStep }) {
     })
   }, []);
 
+  const handleAddContactField = () => {
+    setContactFields([
+      ...contactFields,
+      { id: contactFields.length + 1, value: "" },
+    ]);
+  };
+
+
+  const handleInputChange = (id, newValue) => {
+    setContactFields(
+      contactFields.map((field) =>
+        field.id === id ? { ...field, value: newValue } : field
+      )
+    );
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const response = await careReservationInputAPI(careReservationRequestState);
-      const { diseaseName, reservationReason } = response.data;
-      const embeddedVector = await embeddingResponse(diseaseName, reservationReason);
-      const esResult = await esResponse(embeddedVector);
-      console.log(esResult);
+      const { diseaseName, reservationReason, id } = response.data.data;
+      console.log(diseaseName)
+      setPatientEmbedingRequestDataState({"diseaseName":diseaseName, "reservationReason":reservationReason,"reservationId":id})
       nav("/list")
     } catch (error) {
       console.error('Submission failed:', error);
@@ -73,15 +90,38 @@ export default function GuardianInfoForm({ setStep }) {
           회원정보 불러오기
         </p>
         <div className={styles.formGroup}>
-          <label>보호자 연락처</label>
-          <input
-            type="number"
-            name="guardianPhone"
-            placeholder="010 - 1234 - 5678"
+          <label>보호자 연락처</label>{contactFields.map((field, index) => (
+          <div className={styles.formGroup} key={field.id}>
+            <label>보호자 연락처 {index + 1}</label>
+            <input
+              type="text"
+              name={`guardianPhone${field.id}`}
+              placeholder="010 - 1234 - 5678"
+              value={field.value}
+              onChange={(e) => handleInputChange(field.id, e.target.value)}
+            />
+          </div>
+        ))}
+        <button
+          type="button"
+          className="addContactButton"
+          onClick={handleAddContactField}
+        >
+          + 연락처 추가하기
+        </button>
+        <div className={styles.formGroup}>
+          <label>보호자 주소</label>
+          <textarea
+            type="text"
+            name="guardianAddress"
+            placeholder="주소를 입력해주세요."
           />
-          <button type="button" className="add-contact-btn">
-            + 연락처 추가하기
-          </button>
+          <textarea
+            type="text"
+            name="guardianAddressDetail"
+            placeholder="상세주소를 입력해주세요."
+          />
+        </div>
         </div>
         
         <div className={styles.formNavigation}>

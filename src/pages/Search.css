@@ -2,8 +2,7 @@
 .find-work,
 .matching,
 .mypage,
-.loading {
-  width: 100%;
+.sign-up {
   height: 100%;
   padding: 20px;
   display: flex;
@@ -11,6 +10,25 @@
   margin-top: 10px;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.loading h3 {
+  color: var(--Neutral-50, #f9fafc);
+  font-size: 40px;
+  text-align: center;
+}
+
+.loading p {
+  font-size: var(--Font-Size-md, 24px);
+  color: var(--Neutral-50, #f9fafc);
+  text-align: center;
+}
 .register-content {
   color: #fff;
 }
@@ -19,13 +37,13 @@
   display: flex;
   margin-top: 20px;
   width: 100%;
-  max-width: 1400px;
 }
 .content {
   height: 100%;
-  width: 45%;
+  width: 40%;
   color: #fff;
   text-align: center;
+  margin-top: 100px;
 }
 .content img {
   max-width: 100%;

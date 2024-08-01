@@ -84,3 +84,8 @@ h4 {
   font-weight: 700;
   line-height: 130%; /* 31.2px */
 }
+
+
+.noReservations{
+  background-color: #f9fafc;
+}

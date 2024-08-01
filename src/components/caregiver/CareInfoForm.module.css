@@ -1,13 +1,10 @@
+
 label {
   display: flex;
   margin-bottom: 16px;
   font-size: 20px;
   font-weight: 600;
   line-height: 150%;
-}
-
-label span {
-  color: red;
 }
 
 h5 {
@@ -87,7 +84,7 @@ input[type="checkbox"] {
   width: 90%;
   padding: 14px 18px;
   display: flex;
-  margin-right: 10px;
+  margin: 10px;
   border-radius: 4px;
   border: 2px solid var(--Neutral-300, #dadada);
   background: var(--Neutral-100, #f2f2f4);
@@ -97,23 +94,24 @@ input[type="checkbox"] {
   width: 55%;
 }
 
+.box {
+  display: flex;
+  justify-content: space-between;
+}
+
 .date,
 .time {
   margin-top: 20px;
-  display: inline-block;
-  justify-content: space-between;
+  margin-right: 100px;
 }
 
 .date input[type="date"],
 .time input[type="time"] {
   display: inline-block;
+  text-align: center;
   width: 25%;
   height: 20px;
-  gap: 10px;
   padding: 14px 30px;
-  border-radius: 4px;
-  border: 2px solid var(--Neutral-300, #dadada);
-  background: var(--Neutral-100, #f2f2f4);
 }
 
 .formNavigation {
@@ -122,8 +120,27 @@ input[type="checkbox"] {
   margin-top: 20px;
 }
 
-.selected {
-  /* 선택된 버튼 스타일 */
-  background-color: #714ffd; /* 예시 스타일 */
-  color: white;
+.previousButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  color: var(--Primary-400, #714ffd);
+  text-align: center;
+}
+
+.nextButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  background: var(--Neutral-300, #dadada);
+  color: var(--Neutral-50, #f9fafc);
 }

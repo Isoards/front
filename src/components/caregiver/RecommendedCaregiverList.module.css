@@ -3,14 +3,12 @@
 }
 
 .textSection {
-  background-color: #f9fafc;
   width: 100%;
   height: auto;
   display: inline-block;
   margin-top: 160px;
   margin-bottom: 32px;
-  margin-left: 100px;
-  margin: 160 320 100 0;
+  margin-left: 30px;
 }
 
 .textSection h2 {
@@ -19,6 +17,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 130%;
+  padding: 10px;
 }
 
 .textSection p {
@@ -27,12 +26,15 @@
   font-style: normal;
   font-weight: 500;
   line-height: 130%; /* 31.2px */
+  padding: 10px;
 }
 
 .costSection {
   display: flex;
   justify-content: center;
+  margin: 30px;
 }
+
 .costSection h3 {
   display: flex;
   width: 50%;
@@ -41,38 +43,42 @@
 }
 .estimatedCost {
   width: 1722px;
-  height: 256px;
   border-radius: 24px;
   background: var(--Primary-400, #714ffd);
   color: var(--Neutral-100, #f2f2f4);
   padding: 30px;
   margin-top: 32px;
-  align-items: center;
+  margin-bottom: 32px;
 }
 
-.costDetails {
+.costDetails p {
   color: var(--Neutral-100, #f2f2f4);
   text-align: right;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 130%;
+  padding: 10px;
 }
-.costRange {
+
+.costRange p {
+  color: var(--Neutral-50, #f9fafc);
+  text-align: right;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: 130%;
   text-align: right;
+  padding: 10px;
 }
 
 .listSection {
-  width: 1000px;
-  margin: auto;
-  padding: 20px;
-  background: #f9fafc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: auto;
+  margin: 32px;
+  padding: 40px;
+  border-radius: 25px;
+  border: 2px solid var(--Neutral-300, #dadada);
+  background: var(--Neutral-50, #f9fafc);
 }
 
 .listSection h2 {
@@ -90,10 +96,16 @@
 
 .listTable {
   display: flex;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .listTable h4 {
+  color: var(--Neutral-600, #6e6e6e);
+  text-align: center;
+  font-size: 20px;
   margin-right: 100px;
+  margin-bottom: 20px;
 }
 
 .caregiverCard {
@@ -109,8 +121,10 @@
 .profilePhoto {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 8px;
   object-fit: cover;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .caregiverInfo {
@@ -118,19 +132,21 @@
   width: 700px;
 }
 
-.caregiverDetails {
-  margin-left: 50px;
-}
-
 .caregiverInfo h3 {
-  font-size: 20px;
-  text-align: left;
-  font-weight: bold;
-  margin-bottom: 10px;
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-lg, 28px);
+  font-weight: 700;
+  line-height: 130%; /* 36.4px */
+}
+.caregiverDetails {
+  margin-right: 30px;
 }
 
-.caregiverInfo p {
-  margin-right: 94px;
+.introduction {
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: var(--Font-Size-s, 20px);
+  font-weight: 400;
+  line-height: 150%; /* 30px */
 }
 
 .requestButton {
@@ -139,7 +155,11 @@
   color: #f9fafc;
   padding: 14px 24px;
   align-items: center;
-  font-size: 18px;
+  font-size: 24px;
+  color: var(--Neutral-50, #f9fafc);
+  text-align: center;
+  font-weight: 700;
+  line-height: 130%; /* 31.2px */
 }
 
 .requestButton:hover {

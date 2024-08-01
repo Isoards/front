@@ -1,36 +1,42 @@
+
 import React, { useState } from "react";
-import DaumPost from "../DaumPost";
-import TabButton from "../TabButton";
 import styles from "./CareInfoForm.module.css";
 import Modal from "../Modal";
 import DiseaseName from "../DiseaseName";
-import { useRecoilState } from "recoil";
-import { careReservationRequest } from "../../state/atoms";
-
-
+import DaumPost from "../DaumPost";
 export default function CareInfoForm({ setStep }) {
-  const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
+  const [formData, setFormData] = useState({
+    reservationReason: "",
+    reservationLocation: "",
+    startDate: "",
+    endDate: "",
+    dailyStartTime: "",
+    dailyEndTime: "",
+    address: "",
+  });
 
+  const [address, setAddress] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setCareReservationRequestState({
-      ...careReservationRequestState,
+    setFormData({
+      ...formData,
       [name]: value,
     });
   };
 
   const handleSelectDisease = (diagnosis) => {
-    setCareReservationRequestState({
-      ...careReservationRequestState,
-      diseaseName: diagnosis,
+    setFormData({
+      ...formData,
+      reservationReason: diagnosis,
     });
     setShowModal(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     setStep(true);
   };
 
@@ -52,9 +58,9 @@ export default function CareInfoForm({ setStep }) {
           </label>
           <input
             type="text"
-            name="diseaseName"
+            name="reservationReason"
             placeholder="진단명을 입력해주세요."
-            value={careReservationRequestState.diseaseName}
+            value={formData.reservationReason}
             onChange={handleChange}
             onClick={() => setShowModal(true)}
           />
@@ -63,7 +69,7 @@ export default function CareInfoForm({ setStep }) {
               type="checkbox"
               name="noCondition"
               onChange={() =>
-                setCareReservationRequestState({ ...careReservationRequestState, reservationReason: "" })
+                setFormData({ ...formData, reservationReason: "" })
               }
             />
             현재 진단명이 없습니다.
@@ -73,14 +79,23 @@ export default function CareInfoForm({ setStep }) {
           <label>
             간병 장소<span>*</span>
           </label>
-          <DaumPost />
-          <input
+          <div className={styles.box}>
+            <input
+              type="text"
+              className={styles.address}
+              value={address}
+              placeholder="주소를 입력해주세요."
+              readOnly
+            />
+            <DaumPost setAddress={setAddress} />
+          </div>
+          {/* <input
             type="text"
             name="reservationLocation"
             placeholder="주소를 입력해주세요."
-            value={careReservationRequestState.reservationLocation}
+            value={formData.reservationLocation}
             onChange={handleChange}
-          />
+          /> */}
           <input
             type="text"
             name="locationDetail"
@@ -88,49 +103,64 @@ export default function CareInfoForm({ setStep }) {
             onChange={handleChange}
           />
         </div>
-        <div className={styles.date}>
-          <label>
-            간병 기간<span>*</span>
-          </label>
-          <input
-            type="date"
-            name="startDate"
-            value={careReservationRequestState.startDate}
-            onChange={handleChange}
-          />
-          <span> ~ </span>
-          <input
-            type="date"
-            name="endDate"
-            value={careReservationRequestState.endDate}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.time}>
-          <label>
-            간병 시간<span>*</span>
-          </label>
-          <input
-            type="time"
-            name="dailyStartTime"
-            value={careReservationRequestState.dailyStartTime}
-            onChange={handleChange}
-          />
-          <span> ~ </span>
-          <input
-            type="time"
-            name="dailyEndTime"
-            value={careReservationRequestState.dailyEndTime}
-            onChange={handleChange}
-          />
+        <div className={styles.box}>
+          <div className={styles.date}>
+            <label>
+              간병 기간<span>*</span>
+            </label>
+            <div className={styles.dateSection}>
+              <input
+                type="date"
+                name="startDate"
+                required
+                aria-required="true"
+                value={formData.startDate}
+                onChange={handleChange}
+              />
+              <span> ~ </span>
+              <input
+                type="date"
+                name="endDate"
+                required
+                aria-required="true"
+                value={formData.endDate}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className={styles.time}>
+            <label>
+              간병 시간<span>*</span>
+            </label>
+            <div className={styles.timeSection}>
+              <input
+                type="time"
+                name="dailyStartTime"
+                value={formData.dailyStartTime}
+                onChange={handleChange}
+              />
+              <span> ~ </span>
+              <input
+                type="time"
+                name="dailyEndTime"
+                value={formData.dailyEndTime}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
         </div>
         <h5>
           <input type="checkbox" name="includeWeekends" />
           주말 포함
         </h5>
         <div className={styles.formNavigation}>
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton>다음</TabButton>
+          <button
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton}>다음</button>
         </div>
       </form>
       <Modal show={showModal} onClose={() => setShowModal(false)}>

@@ -50,10 +50,10 @@ export const caregiverLogInAPI = (email, password) =>
   defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
 //간병 등록
 export const careReservationInputAPI = (careReservationRequest) =>
-  defaultInstance.post('api/v1/care-reservation/careReservationInput', careReservationRequest);
+  defaultInstance.post('/api/v1/care-reservation/careReservationInput', careReservationRequest);
 //특정 간병인 요청
-export const careReservationRequestAPI = (email, password) =>
-  defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
+export const careReservationRequestAPI = (CaregiverReservationRequest) =>
+  defaultInstance.post('/api/v1/care-reservation/careReservationRequest', CaregiverReservationRequest);
 //간병인 수락 
 export const careReservationAcceptAPI = (email, password) =>
   defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
@@ -63,9 +63,44 @@ export const careReservationDenyAPI = (email, password) =>
 //전체 간병인 요청 전환
 export const careRequestAllAPI = (email, password) =>
   defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
+//userId로 reservation 정보 가져오기
+export const getUserById = (userId) => defaultInstance.get(`/api/v1/care-reservation/user/${userId}`);
+//id로 간병인 
+export const getCaregiverById = (caregiverId) => defaultInstance.get(`/api/v1/caregiver/caregiverId/${caregiverId}`);
+//간병인 id 로 리뷰 불러오기
+export const getReviewsByCaregiverId = (caregiverId, page = 0, size = 10) => 
+  defaultInstance.get(`/api/v1/reviews/caregiver/${caregiverId}?page=${page}&size=${size}`);
+//리뷰 작성하기
+export const createReview = (reviewData) => defaultInstance.post('/api/v1/reviews', reviewData);
+//전체 예약으로 변경
+export const reservationToAll = (requestPayload) =>defaultInstance.post('/api/v1/care-reservation/careRequestAll', requestPayload);
+//특정간병인에게 요청된 예약 가져오기
+export const getRequestedReservations = (caregiverId) => {return defaultInstance.get(`api/v1/care-reservation/caregiver/requested/${caregiverId}`);};
+//예약 허가
+export const acceptReservation = (data) => {return defaultInstance.post(`api/v1/care-reservation/careReservationAccept`, data);};
+//예약 거절
+export const denyReservation = (data) => {return defaultInstance.post(`api/v1/care-reservation/careReservationDeny`, data);};
+// 모든 간병인 대상 요청 정보 불러오기
+export const getAllRequestedReservations = (caregiverId) => {
+  return defaultInstance.get(`api/v1/care-reservation/caregiver/allrequested/${caregiverId}`);
+};
 
 
 
+//id리스트로 간병인 요청
+export const getCaregiversByIds = async (ids) => {
+  try {
+    const response = await defaultInstance.post('/api/v1/caregiver/byIds', ids);
+    if (response.data && response.data.data) {
+      return response.data.data;
+    } else {
+      throw new Error('Invalid response from getCaregiversByIds');
+    }
+  } catch (error) {
+    console.error('Error in getCaregiversByIds:', error);
+    throw error;
+  }
+};
 
 
 
@@ -79,6 +114,7 @@ export const embeddingResponse = async (diseaseName, reservationReason) => {
       input: `${diseaseName} ${reservationReason}`
     }, {
       headers: {
+        'Authorization': "Bearer sk-proj-rpazBnQJWfjRoP5TOTZpT3BlbkFJRpI7NE08NHAo1ujGW1AW",
         'Content-Type': 'application/json'
       }
     });
@@ -102,13 +138,14 @@ export const esResponse = async (embeddingVector) => {
             params: { query_vector: embeddingVector }
           }
         }
-      }
+      },
+      _source: ["id"] // Limit the fields returned to only the "id" field
     }, {
       headers: {
         'Content-Type': 'application/json'
       }
     });
-    return response.data.hits.hits;
+    return response.data.hits.hits.map(hit => hit._source.id);
   } catch (error) {
     console.error('Elasticsearch API Error:', error);
     throw error;
