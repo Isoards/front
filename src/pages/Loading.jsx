@@ -5,8 +5,7 @@ export default function Loading() {
   return (
     <div className="loading">
       <img src={logo} alt="logo" />
-      <h2>간병인을 찾고 있습니다</h2>
-      <p>작성해주신 내용을 바탕으로 적합한 간병인을 찾아서 보여드립니다.</p>
+      <p>로딩 중입니다. 잠시만 기다려주세요!</p>
     </div>
   );
 }

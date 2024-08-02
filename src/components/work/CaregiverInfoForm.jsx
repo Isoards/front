@@ -6,8 +6,8 @@ import { useRecoilState } from "recoil";
 import { caregiverSignUpState } from "../../state/atoms";
 
 export default function CaregiverInfoForm({ setStep }) {
-
-  const [caregiverSignUp, setCaregiverSignUp] = useRecoilState(caregiverSignUpState)
+  const [caregiverSignUp, setCaregiverSignUp] =
+    useRecoilState(caregiverSignUpState);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setCaregiverSignUp({
@@ -15,7 +15,6 @@ export default function CaregiverInfoForm({ setStep }) {
       [name]: value,
     });
   };
-
 
   const handleSelect = (name, value) => {
     setCaregiverSignUp({
@@ -34,7 +33,7 @@ export default function CaregiverInfoForm({ setStep }) {
       <div className={styles.headerContainer}>
         <h2 className={styles.headerTitle}>간병인의 기본 정보를 알려주세요</h2>
         <div className={styles.steps}>
-          <span className={styles.step}>1</span>  
+          <span className={styles.step}>1</span>
           <span className={styles.onStep}>2</span>
           <span className={styles.step}>3</span>
         </div>
@@ -47,6 +46,7 @@ export default function CaregiverInfoForm({ setStep }) {
           <input
             type="text"
             name="name"
+            placeholder="홍길동"
             value={caregiverSignUp.name}
             onChange={handleChange}
           />
@@ -58,6 +58,9 @@ export default function CaregiverInfoForm({ setStep }) {
           <input
             type="date"
             name="birthDate"
+            placeholder="1900.01.01"
+            required
+            aria-required="true"
             value={caregiverSignUp.birthDate}
             onChange={handleChange}
           />
@@ -109,8 +112,13 @@ export default function CaregiverInfoForm({ setStep }) {
           </button>
         </div>
         <div className={styles.formNavigation}>
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton>다음</TabButton>
+          <button
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton}>다음</button>
         </div>
       </form>
     </div>

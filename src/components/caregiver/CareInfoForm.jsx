@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import styles from "./CareInfoForm.module.css";
 import Modal from "../Modal";
@@ -89,13 +88,7 @@ export default function CareInfoForm({ setStep }) {
             />
             <DaumPost setAddress={setAddress} />
           </div>
-          {/* <input
-            type="text"
-            name="reservationLocation"
-            placeholder="주소를 입력해주세요."
-            value={formData.reservationLocation}
-            onChange={handleChange}
-          /> */}
+
           <input
             type="text"
             name="locationDetail"

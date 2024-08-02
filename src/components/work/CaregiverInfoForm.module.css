@@ -104,9 +104,33 @@ label span {
   color: #fff;
 }
 
+.formNavigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.previousButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  color: var(--Primary-400, #714ffd);
+  text-align: center;
+}
+
 .nextButton {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 100px;
-  margin-right: 18px;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  background: var(--Neutral-300, #dadada);
+  color: var(--Neutral-50, #f9fafc);
 }

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { caregiverState } from "../../state/atoms";
 
 const CaregiverLoginForm = () => {
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const setCaregiverState = useSetRecoilState(caregiverState);
@@ -40,7 +39,7 @@ const CaregiverLoginForm = () => {
         <div className={styles.formGroup}>
           <label>패스워드</label>
           <input
-            type="text"
+            type="password"
             name="password"
             value={password}
             placeholder="비밀번호를 입력해주세요"

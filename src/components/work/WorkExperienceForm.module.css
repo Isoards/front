@@ -1,6 +1,5 @@
 .formSection {
   width: 988px;
-  height: 784px;
   background: var(--Neutral-50, #f9fafc);
   padding: 24px;
   border-radius: 24px;
@@ -50,7 +49,7 @@
 }
 
 .formGroup {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 label {
@@ -67,6 +66,61 @@ label {
   align-items: center;
 }
 
+.box {
+  display: flex;
+}
+
+.selectInput:focus {
+  outline-color: #714ffd;
+  color: var(--Neutral-800, #333);
+  background: var(--Neutral-50, #f9fafc);
+}
+/* select 박스 스타일 */
+.selectInput {
+  width: 100%;
+  padding: 10px;
+  appearance: none; /* 기본 브라우저 스타일 제거 */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-xs, 18px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 27px */
+  border-radius: 4px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  background-image: url("../../img/arrow_drop_down.png");
+}
+
+/* 드롭다운 옵션 스타일 */
+.selectInput option {
+  height: 300px;
+  background-color: #ffffff;
+  color: #333333; /* 기본 텍스트 색상 */
+  padding: 10px;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 선택된 옵션 스타일 */
+.selectInput option:checked {
+  color: #7c5ee3; /* 선택된 텍스트 색상 */
+  background-color: #f1f1f1; /* 선택된 배경색 */
+}
+
+/* 마우스 오버 및 포커스 상태 */
+.selectInput option:hover,
+.selectInput option:focus {
+  color: #5a4b8c; /* 호버 및 포커스 텍스트 색상 */
+}
+
+/* select 요소에 대한 추가 스타일 */
+.selectInput:focus {
+  outline: none; /* 포커스 시 외곽선 제거 */
+  border-color: #7c5ee3; /* 포커스 시 테두리 색상 */
+}
+
 .selectInput,
 .textInput,
 .dateInput,
@@ -77,7 +131,7 @@ label {
   border: 2px solid var(--Neutral-300, #dadada);
   background: var(--Neutral-100, #f2f2f4);
   border-radius: 5px;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .fileInputContainer {
@@ -85,8 +139,22 @@ label {
   align-items: center;
 }
 
+.addButton {
+  border: none;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--Primary-100, #d2c3fd);
+  margin-right: 20px;
+}
+
+.addIcon {
+  vertical-align: middle; /* 이미지가 텍스트의 중간에 위치하도록 조정 */
+}
+
 .textArea {
-  width: 100%;
+  width: 95%;
   height: 100px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -96,18 +164,44 @@ label {
 .formNavigation {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
-.submitButton {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+.formNavigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-.submitButton:hover {
-  background-color: #0056b3;
+.previousButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  color: var(--Primary-400, #714ffd);
+  text-align: center;
+}
+
+.nextButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  background: var(--Primary-400, #714ffd);
+  color: var(--Neutral-50, #f9fafc);
+}
+
+.nextButton:hover {
+  background: var(--Primary-300, #9170fd);
+}
+
+.nextButton:focus {
+  background: var(--Violet-500, #4b2cfb);
 }

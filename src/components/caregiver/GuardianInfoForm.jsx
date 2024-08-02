@@ -2,23 +2,42 @@ import React, { useEffect, useState } from "react";
 import TabButton from "../TabButton";
 import { useNavigate } from "react-router-dom";
 import styles from "./GuardianInfoForm.module.css";
-import { careReservationInputAPI, embeddingResponse, esResponse } from "../../util/api";
+import {
+  careReservationInputAPI,
+  embeddingResponse,
+  esResponse,
+} from "../../util/api";
 import { useRecoilState } from "recoil";
-import { careReservationRequest, patientEmbedingRequestData } from "../../state/atoms";
+import {
+  careReservationRequest,
+  patientEmbedingRequestData,
+} from "../../state/atoms";
+import DaumPost from "../DaumPost";
 
 export default function GuardianInfoForm({ setStep }) {
   const nav = useNavigate();
-  
-  const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
-  const [patientEmbedingRequestDataState, setPatientEmbedingRequestDataState] = useRecoilState(patientEmbedingRequestData)
+
+  const [address, setAddress] = useState("");
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const [careReservationRequestState, setCareReservationRequestState] =
+    useRecoilState(careReservationRequest);
+  const [patientEmbedingRequestDataState, setPatientEmbedingRequestDataState] =
+    useRecoilState(patientEmbedingRequestData);
   const [contactFields, setContactFields] = useState([{ id: 1, value: "" }]);
-  
 
   useEffect(() => {
     setCareReservationRequestState({
       ...careReservationRequestState,
-      ["userId"]:parseInt(localStorage.getItem("userId"))
-    })
+      ["userId"]: parseInt(localStorage.getItem("userId")),
+    });
   }, []);
 
   const handleAddContactField = () => {
@@ -27,7 +46,6 @@ export default function GuardianInfoForm({ setStep }) {
       { id: contactFields.length + 1, value: "" },
     ]);
   };
-
 
   const handleInputChange = (id, newValue) => {
     setContactFields(
@@ -38,23 +56,24 @@ export default function GuardianInfoForm({ setStep }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await careReservationInputAPI(careReservationRequestState);
+      const response = await careReservationInputAPI(
+        careReservationRequestState
+      );
       const { diseaseName, reservationReason, id } = response.data.data;
-      console.log(diseaseName)
-      setPatientEmbedingRequestDataState({"diseaseName":diseaseName, "reservationReason":reservationReason,"reservationId":id})
-      nav("/list")
+      console.log(diseaseName);
+      setPatientEmbedingRequestDataState({
+        diseaseName: diseaseName,
+        reservationReason: reservationReason,
+        reservationId: id,
+      });
+      nav("/list");
     } catch (error) {
-      console.error('Submission failed:', error);
+      console.error("Submission failed:", error);
     }
   };
 
-  
-
-  function goNext() {
-    navigate("/loading");
-  }
   return (
     <div className={styles.formSection}>
       <div className={styles.headerContainer}>
@@ -75,7 +94,7 @@ export default function GuardianInfoForm({ setStep }) {
         </div>
         <div className={styles.formGroup}>
           <label>환자와의 관계</label>
-          <select name="relationship">
+          <select className={styles.selectInput} name="relationship">
             <option value="">관계를 선택해주세요</option>
             <option value="child">자녀</option>
             <option value="parents">부모</option>
@@ -85,48 +104,58 @@ export default function GuardianInfoForm({ setStep }) {
             <option value="other">기타</option>
           </select>
         </div>
-        <p>
-          <input type="checkbox" name="useMemberInfo" />
-          회원정보 불러오기
-        </p>
-        <div className={styles.formGroup}>
-          <label>보호자 연락처</label>{contactFields.map((field, index) => (
-          <div className={styles.formGroup} key={field.id}>
-            <label>보호자 연락처 {index + 1}</label>
+        <div className={styles.box}>
+          {contactFields.map((field, index) => (
+            <div className={styles.formGroup} key={field.id}>
+              <label>보호자 연락처 {index + 1}</label>
+              <input
+                type="number"
+                name={`guardianPhone${field.id}`}
+                placeholder="010 - 1234 - 5678"
+                value={field.value}
+                onChange={(e) => handleInputChange(field.id, e.target.value)}
+              />
+            </div>
+          ))}
+          {contactFields.length < 4 && (
+            <button
+              type="button"
+              className="addContactButton"
+              onClick={handleAddContactField}
+            >
+              + 연락처 추가하기
+            </button>
+          )}
+        </div>
+        <div className={styles.location}>
+          <label>보호자 주소</label>
+          <div className={styles.flexRow}>
             <input
               type="text"
-              name={`guardianPhone${field.id}`}
-              placeholder="010 - 1234 - 5678"
-              value={field.value}
-              onChange={(e) => handleInputChange(field.id, e.target.value)}
+              className={styles.address}
+              value={address}
+              placeholder="주소를 입력해주세요."
+              readOnly
             />
+            <DaumPost setAddress={setAddress} />
           </div>
-        ))}
-        <button
-          type="button"
-          className="addContactButton"
-          onClick={handleAddContactField}
-        >
-          + 연락처 추가하기
-        </button>
-        <div className={styles.formGroup}>
-          <label>보호자 주소</label>
-          <textarea
+          <input
             type="text"
-            name="guardianAddress"
-            placeholder="주소를 입력해주세요."
-          />
-          <textarea
-            type="text"
-            name="guardianAddressDetail"
+            name="locationDetail"
             placeholder="상세주소를 입력해주세요."
           />
         </div>
-        </div>
-        
         <div className={styles.formNavigation}>
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton onSelect={handleSubmit}>찾기</TabButton>
+          <button
+            type="button"
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton} type="submit">
+            찾기
+          </button>
         </div>
       </form>
     </div>

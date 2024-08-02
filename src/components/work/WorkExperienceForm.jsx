@@ -1,70 +1,53 @@
 import { useState } from "react";
-import TabButton from "../TabButton";
 import { useRecoilState } from "recoil";
 import styles from "./WorkExperienceForm.module.css";
 import { CERTIFICATIONS } from "../../data.js";
 import { caregiverSignUpState } from "../../state/atoms";
 import { caregiverSignUpAPI } from "../../util/api.js";
 import { useNavigate } from "react-router-dom";
+import addIcon from "../../img/add.png";
 
 export default function WorkExperienceForm({ setStep }) {
-  const [caregiverSignUp, setCaregiverSignUp] = useRecoilState(caregiverSignUpState);
-  const [currentWorkHistory, setCurrentWorkHistory] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [caregiverSignUp, setCaregiverSignUp] =
+    useRecoilState(caregiverSignUpState);
+  const [workHistories, setWorkHistories] = useState([
+    { id: 1, workHistory: "", startDate: "", endDate: "" },
+  ]);
 
-  const nav = useNavigate()
+  const nav = useNavigate();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setCaregiverSignUp({
-      ...caregiverSignUp,
-      [name]: value,
-    });
+  const handleWorkHistoryChange = (id, field, value) => {
+    setWorkHistories((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, [field]: value } : item))
+    );
   };
 
-  const handleWorkHistoryChange = (event) => {
-    setCurrentWorkHistory(event.target.value);
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
-  };
-
-  const addWorkHistory = () => {
-    if (currentWorkHistory && startDate && endDate) {
-      const formattedPeriod = `${formatDate(startDate)} ~ ${formatDate(endDate)}`;
-      const newWorkHistory = {
-        workHistory: currentWorkHistory,
-        workHistoryPeriod: formattedPeriod
-      };
-      
-      setCaregiverSignUp(prevState => {
-        const updatedWorkHistory = Array.isArray(prevState.workHistory)
-          ? [...prevState.workHistory, newWorkHistory]
-          : [newWorkHistory];
-  
-        return {
-          ...prevState,
-          workHistory: updatedWorkHistory
-        };
-      });
-  
-      setCurrentWorkHistory("");
-      setStartDate("");
-      setEndDate("");
+  const addWorkHistoryField = () => {
+    if (workHistories.length < 3) {
+      setWorkHistories((prev) => [
+        ...prev,
+        { id: prev.length + 1, workHistory: "", startDate: "", endDate: "" },
+      ]);
     }
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    // 전달할 데이터 업데이트
+    setCaregiverSignUp((prev) => ({
+      ...prev,
+      workHistory: workHistories.map((history) => ({
+        workHistory: history.workHistory,
+        workHistoryPeriod: `${history.startDate} ~ ${history.endDate}`,
+      })),
+    }));
+
     try {
-        const response = await caregiverSignUpAPI(caregiverSignUp)
-        console.log(response);
-        nav("/userLogin")
+      const response = await caregiverSignUpAPI(caregiverSignUp);
+      console.log(response);
+      nav("/userLogin");
     } catch (error) {
-        console.error('Signup failed:', error);
+      console.error("Signup failed:", error);
     }
   };
 
@@ -85,7 +68,12 @@ export default function WorkExperienceForm({ setStep }) {
             <select
               name="certification"
               value={caregiverSignUp.certification}
-              onChange={handleChange}
+              onChange={(e) =>
+                setCaregiverSignUp({
+                  ...caregiverSignUp,
+                  certification: e.target.value,
+                })
+              }
               className={styles.selectInput}
             >
               {CERTIFICATIONS.map((CERTIFICATION, index) => (
@@ -97,51 +85,95 @@ export default function WorkExperienceForm({ setStep }) {
           </div>
         </div>
         <div className={styles.formGroup}>
-          <label>근무 경력 기재 및 인증</label>
           <div className={styles.flexRow}>
-            <input
-              type="text"
-              value={currentWorkHistory}
-              onChange={handleWorkHistoryChange}
-              placeholder="00병원 00동"
-              className={styles.textInput}
-            />
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              className={styles.dateInput}
-            />
-            <input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              min={startDate}
-              className={styles.dateInput}
-            />
-            <button type="button" onClick={addWorkHistory} className={styles.addButton}>
-              추가
-            </button>
+            <label>근무 경력 기재 및 인증</label>
+            {workHistories.length < 3 && (
+              <button
+                type="button"
+                onClick={addWorkHistoryField}
+                className={styles.addButton}
+              >
+                <img
+                  src={addIcon}
+                  alt="Add Work History"
+                  className={styles.addIcon}
+                />
+              </button>
+            )}
           </div>
+          {workHistories.map((history, index) => (
+            <div key={history.id} className={styles.workHistoryBlock}>
+              <div className={styles.box}>
+                <input
+                  type="text"
+                  value={history.workHistory}
+                  onChange={(e) =>
+                    handleWorkHistoryChange(
+                      history.id,
+                      "workHistory",
+                      e.target.value
+                    )
+                  }
+                  placeholder="00병원 00동 2년 근무"
+                  className={styles.textInput}
+                />
+              </div>
+              <div className={styles.flexRow}>
+                <input
+                  type="date"
+                  value={history.startDate}
+                  onChange={(e) =>
+                    handleWorkHistoryChange(
+                      history.id,
+                      "startDate",
+                      e.target.value
+                    )
+                  }
+                  className={styles.dateInput}
+                />
+                ~
+                <input
+                  type="date"
+                  value={history.endDate}
+                  onChange={(e) =>
+                    handleWorkHistoryChange(
+                      history.id,
+                      "endDate",
+                      e.target.value
+                    )
+                  }
+                  min={history.startDate}
+                  className={styles.dateInput}
+                />
+              </div>
+            </div>
+          ))}
         </div>
-        {caregiverSignUp.workHistory && caregiverSignUp.workHistory.map((history, index) => (
-        <div key={index} className={styles.workHistoryItem}>
-          {history.workHistory} - {history.workHistoryPeriod}
-        </div>
-        ))}
         <div className={styles.formGroup}>
           <label>환자나 보호자에게 설명할 수 있는 나의 소개글을 써주세요</label>
           <textarea
             name="careerDescription"
             value={caregiverSignUp.careerDescription}
-            onChange={handleChange}
+            onChange={(e) =>
+              setCaregiverSignUp({
+                ...caregiverSignUp,
+                careerDescription: e.target.value,
+              })
+            }
             placeholder="근무 경력과 관련지어 소개글을 작성하면, 더 많은 도움을 줄 수 있는 환자와 매칭이 가능해집니다."
             className={styles.textArea}
           />
         </div>
         <div className={styles.formNavigation}>
-          <TabButton onSelect={() => setStep(false)}>이전</TabButton>
-          <TabButton>가입</TabButton>
+          <button
+            className={styles.previousButton}
+            onClick={() => setStep(false)}
+          >
+            이전
+          </button>
+          <button className={styles.nextButton} type="submit">
+            가입
+          </button>
         </div>
       </form>
     </div>

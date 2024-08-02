@@ -1,6 +1,4 @@
-
 import React from "react";
-import TabButton from "../TabButton";
 import styles from "./PatientSymptomsForm.module.css";
 
 export default function PatientSymptomsForm({ setStep }) {

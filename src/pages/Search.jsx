@@ -9,7 +9,8 @@ import { useRecoilState } from "recoil";
 import { careReservationRequest } from "../state/atoms.jsx";
 
 export default function Search() {
-  const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
+  const [careReservationRequestState, setCareReservationRequestState] =
+    useRecoilState(careReservationRequest);
 
   const MAXSTEP = 3;
   const [step, setStep] = useState(0);
@@ -36,7 +37,12 @@ export default function Search() {
   return (
     <div className="caregiver-search">
       <div className="container">
-        <Content />
+        <Content
+          title={"간병인 찾기"}
+          description={
+            "환자의 정보를 입력하고 맞춤 케어가 가능한 이력의 간병인을 찾아보세요!"
+          }
+        />
         {step == 0 && <PatientForm setStep={handleStep} />}
         {step == 1 && <CareInfoForm setStep={handleStep} />}
         {step == 2 && <PatientSymptomsForm setStep={handleStep} />}

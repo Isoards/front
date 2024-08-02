@@ -114,27 +114,62 @@ input[type="checkbox"] {
   border-radius: 4px;
 }
 
+.selectInput:focus {
+  outline-color: #714ffd;
+  color: var(--Neutral-800, #333);
+  background: var(--Neutral-50, #f9fafc);
+}
+/* select 박스 스타일 */
+.selectInput {
+  width: 100%;
+  padding: 10px;
+  appearance: none; /* 기본 브라우저 스타일 제거 */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-xs, 18px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 27px */
+  border-radius: 4px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  background-image: url("../../img/arrow_drop_down.png");
+}
+
+/* 드롭다운 옵션 스타일 */
+.selectInput option {
+  height: 300px;
+  background-color: #ffffff;
+  color: #333333; /* 기본 텍스트 색상 */
+  padding: 10px;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 선택된 옵션 스타일 */
+.selectInput option:checked {
+  color: #7c5ee3; /* 선택된 텍스트 색상 */
+  background-color: #f1f1f1; /* 선택된 배경색 */
+}
+
+/* 마우스 오버 및 포커스 상태 */
+.selectInput option:hover,
+.selectInput option:focus {
+  color: #5a4b8c; /* 호버 및 포커스 텍스트 색상 */
+}
+
+/* select 요소에 대한 추가 스타일 */
+.selectInput:focus {
+  outline: none; /* 포커스 시 외곽선 제거 */
+  border-color: #7c5ee3; /* 포커스 시 테두리 색상 */
+}
+
 .formNavigation {
   align-items: end;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-}
-
-.selectionButton {
-  text-align: center;
-  width: 48%;
-  padding: 10px;
-  margin-right: 15px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  background: var(--Primary-100, #d2c3fd);
-}
-
-.selectionButton.selected {
-  border-radius: 8px;
-  background: var(--Primary-400, #714ffd);
-  color: #fff;
 }
 
 .addContactButton {
@@ -146,13 +181,44 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
   background: var(--Primary-400, #714ffd);
   cursor: pointer;
 }
 
 .addContactButton:hover {
-  background-color: #5939cb;
+  background: var(--Primary-300, #9170fd);
+}
+
+.addContactButton:focus {
+  background: var(--Violet-500, #4b2cfb);
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.flexRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.location {
+  display: block;
+  height: auto;
+  margin-top: 32px;
+}
+
+.location input[type="text"] {
+  width: 90%;
+  padding: 14px 18px;
+  display: flex;
+  margin: 10px;
+  border-radius: 4px;
+  border: 2px solid var(--Neutral-300, #dadada);
+  background: var(--Neutral-100, #f2f2f4);
 }
 
 .previousButton {
@@ -176,6 +242,14 @@ input[type="checkbox"] {
   gap: 10px;
   margin-right: 20px;
   border-radius: 8px;
-  background: var(--Neutral-300, #dadada);
+  background: var(--Primary-400, #714ffd);
   color: var(--Neutral-50, #f9fafc);
+}
+
+.nextButton:hover {
+  background: var(--Primary-300, #9170fd);
+}
+
+.nextButton:focus {
+  background: var(--Violet-500, #4b2cfb);
 }

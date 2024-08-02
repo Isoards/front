@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import TabButton from "../TabButton";
 import styles from "./PatientForm.module.css";
 import { useRecoilState } from "recoil";
 import { careReservationRequest } from "../../state/atoms";
 
 export default function PatientForm({ setStep }) {
-  const [careReservationRequestState, setCareReservationRequestState] = useRecoilState(careReservationRequest)
-  
+  const [careReservationRequestState, setCareReservationRequestState] =
+    useRecoilState(careReservationRequest);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setCareReservationRequestState({
@@ -57,6 +57,7 @@ export default function PatientForm({ setStep }) {
           <input
             type="date"
             name="patientBirthDate"
+            placeholder="1900.01.01"
             value={careReservationRequestState.patientBirthDate}
             onChange={handleChange}
           />
@@ -92,7 +93,9 @@ export default function PatientForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              careReservationRequestState.patientGender === "남성" ? styles.selected : ""
+              careReservationRequestState.patientGender === "남성"
+                ? styles.selected
+                : ""
             }`}
             onClick={() => handleGenderSelect("남성")}
           >
@@ -101,7 +104,9 @@ export default function PatientForm({ setStep }) {
           <button
             type="button"
             className={`${styles.selectionButton} ${
-              careReservationRequestState.patientGender === "여성" ? styles.selected : ""
+              careReservationRequestState.patientGender === "여성"
+                ? styles.selected
+                : ""
             }`}
             onClick={() => handleGenderSelect("여성")}
           >
@@ -109,7 +114,7 @@ export default function PatientForm({ setStep }) {
           </button>
         </div>
         <div className={styles.nextButton}>
-          <TabButton>다음</TabButton>
+          <button>다음</button>
         </div>
       </form>
     </div>

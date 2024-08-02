@@ -1,5 +1,4 @@
 import React from "react";
-import TabButton from "../TabButton.jsx";
 import { useNavigate } from "react-router-dom";
 import styles from "./RegisterForm.module.css";
 
@@ -26,7 +25,7 @@ export default function RegisterForm() {
             환자 정보를 등록하고
             <br /> 나에게 꼭 맞는 간병인을 만나보세요!
           </h2>
-          <TabButton onSelect={goPatient}>환자/보호자 가입하기</TabButton>
+          <button onClick={goPatient}>환자/보호자 가입하기</button>
         </section>
         <section>
           <h2>
@@ -34,7 +33,7 @@ export default function RegisterForm() {
             <br />
             전문 간병인이 되어보세요!
           </h2>
-          <TabButton onSelect={goCaregiver}>간병인 가입하기</TabButton>
+          <button onClick={goCaregiver}>간병인 가입하기</button>
         </section>
       </div>
     </div>

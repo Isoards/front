@@ -71,17 +71,21 @@ label span {
 
 .formGroup input {
   display: flex;
+  height: 24px;
+  padding: 14px 18px;
   width: 90%;
   padding: 8px;
   margin-right: 10px;
   margin-bottom: 36px;
+  border-radius: 4px;
+  border: 2px solid var(--Neutral-300, #dadada);
+  background: var(--Neutral-100, #f2f2f4);
 }
 
-.formNavigation {
-  align-items: end;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+.formGroup input:checked {
+  border: 1px solid #bd0e0e;
+  color: #bd0e0e;
+  border-radius: 4px;
 }
 
 .selectionButton {
@@ -98,6 +102,25 @@ label span {
   border-radius: 8px;
   background: var(--Primary-400, #714ffd);
   color: #fff;
+}
+
+.formNavigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.previousButton {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
+  color: var(--Primary-400, #714ffd);
+  text-align: center;
 }
 
 .nextButton {

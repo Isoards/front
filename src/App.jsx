@@ -17,14 +17,15 @@ import Profile from "./pages/Profile.jsx";
 import Matching from "./pages/Matching.jsx";
 import UserSignUp from "./pages/UserSignUp.jsx";
 import UserLogin from "./pages/UserLogin.jsx";
+import PatientInfoForm from "./components/work/PatientInfoForm.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
-      { path: "/userLogin", element : <UserLogin/>},
-      { path: "/userSignUp", element : <UserSignUp/>},
+      { path: "/userLogin", element: <UserLogin /> },
+      { path: "/userSignUp", element: <UserSignUp /> },
       { path: "/register", element: <Register /> },
       { path: "/search", element: <Search /> },
       { path: "/work", element: <Work /> },
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: "/findwork", element: <FindWork /> },
       { path: "/profile", element: <Profile /> },
       { path: "/matching", element: <Matching /> },
+      { path: "/patient", element: <PatientInfoForm /> },
     ],
   },
 ]);
