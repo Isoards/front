@@ -32,6 +32,7 @@
 .card {
   width: 530px;
   height: 400px;
+  height: 400px;
   padding: 41px;
   border-radius: 12px;
   border: 2px solid var(--Neutral-300, #dadada);
@@ -39,9 +40,16 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: inline-block;
   align-items: left;
+  align-items: left;
   gap: 24px;
   margin-left: 30px;
   margin-bottom: 36px;
+}
+
+.card:hover,
+.card:focus {
+  border: 2px solid var(--Primary-400, #714ffd);
+  background: var(--Neutral-50, #f9fafc);
 }
 
 .card:hover,
@@ -68,6 +76,10 @@
   font-size: var(--Font-Size-lg, 28px);
   font-weight: 700;
   line-height: 130%; /* 36.4px */
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-lg, 28px);
+  font-weight: 700;
+  line-height: 130%; /* 36.4px */
 }
 
 .info p,
@@ -82,6 +94,7 @@
 }
 
 .request h4 {
+.request h4 {
   margin-top: 24px;
   color: var(--Secondary-600, #4c8df4);
   font-family: var(--Font-Family-Heading, Pretendard);
@@ -91,6 +104,35 @@
   line-height: 130%; /* 31.2px */
 }
 
+.confirmButton {
+  display: flex;
+  justify-content: center;
+}
+
+.confirmButton button {
+  display: flex;
+  padding: 14px 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: var(--Neutral-300, #dadada);
+  margin: 15px;
+}
+
+.confirmButton button:hover {
+  background: var(--Primary-300, #9170fd);
+}
+.confirmButton button:focus {
+  background: var(--Violet-500, #4b2cfb);
+}
+
+.section h3 {
+  color: var(--Primary-400, #714ffd);
+  font-size: var(--Font-Size-s, 24px);
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+  margin-left: 30px;
 .confirmButton {
   display: flex;
   justify-content: center;

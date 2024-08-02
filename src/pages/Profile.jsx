@@ -1,27 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import star from "../img/Star 4.png"; // 별 이미지 import
+import { useRecoilState } from "recoil";
+import { patientEmbedingRequestData } from "../state/atoms";
+import { careReservationRequestAPI, getCaregiverById } from "../util/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  const caregiverInfo = {
-    name: "김정희",
-    experience: "1년",
-    availableAreas: "서울특별시, 경기도 전지역, 충청도 전지역",
-    license: "간호사 면허증",
-    hospitals: [
-      "OO대학교병원 신경외과",
-      "OO대학교병원 신경외과",
-      "OO대학교병원 신경외과",
-    ],
-    introduction:
-      "안녕하세요, 저는 김정희입니다. 저는 간호사로서 20여년의 경험을 보유하고 있으며, 그동안 신경과 병원과 응급실에서 근무하며 다양한 경험을 쌓았습니다. 제 경험을 통해 많은 환자분들과 그 가족들에게 조금이라도 더 나은 도움을 드리고자 하는 마음에서 시작되었습니다. 간병을 바탕으로 환자분들의 건강과 안위를 책임질 수 있을 것이라고, 그들의 선택지, 정서적 필요를 세심하게 돌보는 것을 목표로 하고 있습니다.",
-    reviews: [
-      { text: "최고의 간병인입니다.", rating: 5 },
-      { text: "정말 감사드려요 :)", rating: 5 },
-      { text: "어머니가 정말 좋아하셨어요", rating: 4 },
-    ],
-    rating: 4,
-    profileImage: "https://via.placeholder.com/150",
+  const [patientEmbedingRequestDataState] = useRecoilState(
+    patientEmbedingRequestData
+  );
+  const [caregiver, setCaregiver] = useState(null);
+  const [error, setError] = useState(null);
+  const caregiverId = patientEmbedingRequestDataState.caregiverId;
+  const nav = useNavigate();
+
+  useEffect(() => {
+    const fetchCaregiverInfo = async () => {
+      try {
+        const response = await getCaregiverById(caregiverId);
+        if (response.data.status === "SUCCESS") {
+          setCaregiver(response.data.data);
+        } else {
+          setError("Failed to fetch caregiver info");
+        }
+      } catch (error) {
+        setError("Failed to fetch caregiver info");
+      }
+    };
+
+    fetchCaregiverInfo();
+  }, [caregiverId]);
+
+  const handleRequestClick = async (caregiverId) => {
+    const userId = parseInt(localStorage.getItem("userId"));
+    const reservationId = patientEmbedingRequestDataState.reservationId;
+
+    const requestPayload = {
+      caregiverId,
+      reservationId,
+    };
+
+    try {
+      const response = await careReservationRequestAPI(requestPayload);
+      console.log("Reservation request successful:", response.data);
+      // 필요한 추가 로직을 여기에 작성합니다.
+      // 예시로 성공 페이지로 이동
+      nav("/mypage");
+    } catch (error) {
+      console.error("Failed to request caregiver reservation:", error);
+      // 오류 처리 로직을 여기에 작성합니다.
+    }
   };
 
   const renderStars = (rating) => {
@@ -32,6 +61,14 @@ export default function Profile() {
     return stars;
   };
 
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!caregiver) {
+    return <div>로딩 중...</div>;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.textSection}>
@@ -41,40 +78,39 @@ export default function Profile() {
       <div className={styles.profileSection}>
         <div className={styles.introSection}>
           <img
-            src={caregiverInfo.profileImage}
-            alt="간병인 프로필"
+            src="https://example.com/photo.jpg" // Placeholder image URL
+            alt={`${caregiver.name} 사진`}
             className={styles.profileImage}
           />
           <div className={styles.introductionSection}>
-            <h4>김정희 간병인의 소개글</h4>
-            <p>{caregiverInfo.introduction}</p>
+            <h4>{caregiver.name} 간병인의 소개글</h4>
+            <p>{caregiver.careerDescription}</p>
           </div>
         </div>
         <div className={styles.rightSection}>
           <div className={styles.profileInfo}>
             <div className={styles.basicInfo}>
               <p>
-                <span className={styles.label}>이름</span> {caregiverInfo.name}
+                <span className={styles.label}>이름</span> {caregiver.name}
               </p>
               <p>
-                <span className={styles.label}>간병 경력</span>{" "}
-                {caregiverInfo.experience}
+                <span className={styles.label}>간병 경력</span> 2
               </p>
               <p>
                 <span className={styles.label}>간병 가능 지역</span>
-                {caregiverInfo.availableAreas}
+                서울특별시, 경기도 전지역, 충청도 전지역
               </p>
             </div>
             <p className={styles.line}></p>
             <div className={styles.box}>
               <p>
-                <span className={styles.label}>보유 면허증</span>{" "}
-                {caregiverInfo.license}
+                <span className={styles.label}>보유 면허증</span>간호사자격증
+                {caregiver.certifications.join(", ")}
               </p>
               <p className={styles.flexRow}>
                 <span className={styles.label}>간병 후기</span>{" "}
                 <div className={styles.rating}>
-                  {renderStars(caregiverInfo.rating)}
+                  {renderStars(caregiver.averageRating)}
                 </div>
               </p>
             </div>
@@ -84,21 +120,22 @@ export default function Profile() {
               <p>
                 <span>간병인을 대표하는 3가지 이력</span>
                 <ul>
-                  {caregiverInfo.hospitals.map((hospital, index) => (
-                    <li key={index}>{hospital}</li>
+                  {caregiver.caregiverWorkHistories.map((history, index) => (
+                    <li key={index}>{history.workHistory}</li>
                   ))}
                 </ul>
               </p>
             </div>
             <div className={styles.reviewsSection}>
-              {caregiverInfo.reviews.map((review, index) => (
-                <div key={index} className={styles.review}>
-                  <p>{review.text}</p>
-                  <div className={styles.rating}>
-                    {renderStars(review.rating)}
+              {caregiver.reviews &&
+                caregiver.reviews.map((review, index) => (
+                  <div key={index} className={styles.review}>
+                    <p>{review.text}</p>
+                    <div className={styles.rating}>
+                      {renderStars(review.rating)}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
@@ -118,7 +155,12 @@ export default function Profile() {
         </form>
       </div>
       <div className={styles.request}>
-        <button className={styles.requestButton}>간병 요청하기</button>
+        <button
+          className={styles.requestButton}
+          onClick={() => handleRequestClick(caregiver.id)}
+        >
+          간병 요청하기
+        </button>
       </div>
     </div>
   );

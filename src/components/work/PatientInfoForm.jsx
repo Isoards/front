@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { reservationId } from "../../state/atoms";
 import styles from "./PatientInfoForm.module.css";
+import { getReservationById } from "../../util/api";
 
 export default function PatientInfoForm() {
-  const patientInfo = {
-    name: "박순희",
-    disease: "파킨슨 병",
-    location: "자택 (서울특별시 강남구 대치동 789-01)",
-    carePeriod: "24.07.01 ~ 24.08.15",
-    careTime: "09:00 ~ 18:00",
-    request:
-      "일상 생활 활동을 지원하며, 특히 아침과 저녁에 약물 복용을 철저히 관리해 주세요. 식사 준비 시에는 씹기 쉽고 소화가 잘 되는 음식을 준비해 주시고, 식사 후에는 설거지와 주방 정리를 맡아주세요. 하루에 1시간 정도 대화를 나누며 정서적 지지를 제공하고, 필요 시 마사지나 스트레칭을 도와주세요.",
-  };
+  const { id } = useParams();
+  const reservationState = useRecoilValue(reservationId);
+  const [patientInfo, setPatientInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPatientInfo = async () => {
+      try {
+        const reservationIdToUse = id || reservationState.reservationId;
+        const response = await getReservationById(reservationIdToUse);
+
+        console.log("Response:", response); // Check if this line logs the response
+
+        if (response && response.data && response.data.status === "SUCCESS") {
+          setPatientInfo(response.data.data);
+        } else {
+          setError("환자 정보를 가져오는데 실패했습니다.");
+        }
+      } catch (error) {
+        console.error("Fetch error:", error); // Check if this line logs the error
+        setError("환자 정보를 가져오는 중 오류가 발생했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPatientInfo();
+  }, [id, reservationState.reservationId]);
+
+  if (loading) return <div className={styles.container}>로딩 중...</div>;
+  if (error) return <div className={styles.container}>{error}</div>;
+  if (!patientInfo)
+    return <div className={styles.container}>환자 정보가 없습니다.</div>;
 
   return (
     <div className={styles.container}>
@@ -23,33 +52,43 @@ export default function PatientInfoForm() {
           <div className={styles.box}>
             <div className={styles.basicInfo}>
               <p>
-                <span className={styles.label}>이름</span> {patientInfo.name}
+                <span className={styles.label}>이름</span>{" "}
+                {patientInfo.patientName}
               </p>
               <p>
-                <span className={styles.label}>병명</span> {patientInfo.disease}
+                <span className={styles.label}>성별</span>{" "}
+                {patientInfo.patientGender}
               </p>
               <p>
-                <span className={styles.label}>간병 요청 지역</span>
-                {patientInfo.location}
+                <span className={styles.label}>생년월일</span>{" "}
+                {patientInfo.patientBirthDate}
               </p>
-              <p class={styles.line}></p>
+              <p>
+                <span className={styles.label}>병명</span>{" "}
+                {patientInfo.diseaseName}
+              </p>
+              <p>
+                <span className={styles.label}>간병 요청 지역</span>{" "}
+                {patientInfo.reservationLocation}
+              </p>
+              <p className={styles.line}></p>
             </div>
             <div className={styles.requestSection}>
-              <span>{patientInfo.name} 환자님 요청사항</span>
-              <p>{patientInfo.request}</p>
+              <span>{patientInfo.patientName} 환자님 요청사항</span>
+              <p>{patientInfo.reservationReason}</p>
             </div>
           </div>
           <div className={styles.careInfo}>
             <p>
               <span className={styles.label}>요청 간병 기간</span>{" "}
-              {patientInfo.carePeriod}
+              {`${patientInfo.startDate} ~ ${patientInfo.endDate}`}
             </p>
             <p>
               <span className={styles.label}>요청 간병 시간</span>{" "}
-              {patientInfo.careTime}
+              {`${patientInfo.dailyStartTime} ~ ${patientInfo.dailyEndTime}`}
             </p>
           </div>
-          <p class={styles.line}></p>
+          <p className={styles.line}></p>
         </div>
       </div>
       <div className={styles.requestButton}>
