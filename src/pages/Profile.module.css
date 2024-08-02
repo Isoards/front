@@ -1,101 +1,240 @@
 .container {
-  width: 800px;
+  width: 100%;
   margin: auto;
-  padding: 20px;
-  background: #f9fafc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: var(--Neutral-50, #f9fafc);
 }
 
-.title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
+.container span {
+  color: var(--Primary-400, #714ffd);
+  font-size: var(--Font-Size-s, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
 }
 
-.subtitle {
-  text-align: center;
+.textSection {
+  background-color: #f9fafc;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-top: 100px;
+  margin-bottom: 36px;
+  margin-left: 70px;
+}
+
+.textSection h2 {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-2xlg, 56px);
+  font-weight: 700;
+  line-height: 130%;
   margin-bottom: 20px;
-  color: #666;
+}
+
+.textSection p {
+  padding: 5px;
+  color: var(--Neutral-600, #6e6e6e);
+  font-size: var(--Font-Size-md, 24px);
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
+}
+
+.profileSection {
+  width: 100%;
+  height: 100%;
+}
+
+.introSection {
+  width: 500px;
+  display: inline-block;
+  border-radius: 25px;
+  border: 2px solid var(--Neutral-300, #dadada);
+
+  padding: 51px 43px 38px 44px;
+  justify-content: center;
+  align-items: center;
+}
+
+.introSection p {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-s, 20px);
+  font-weight: 400;
+  line-height: 150%; /* 30px */
+  padding: 0;
+}
+
+.line {
+  width: 100%;
+  border-top: 2px solid #dadada;
+  margin: 30px 0px;
+}
+
+.profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profileInfo {
+  margin-bottom: 12px;
+  display: inline-block;
 }
 
 .profileSection {
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-left: 70px;
 }
 
-.photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-right: 20px;
-  object-fit: cover;
+.basicInfo,
+.box {
+  display: flex;
+  justify-content: space-between;
 }
 
-.info {
-  flex: 1;
+.profileInfo h3 {
+  color: var(--Primary-400, #714ffd);
+  font-size: var(--Font-Size-s, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
 }
 
-.info h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: bold;
+.basicInfo span,
+.box span {
+  color: var(--Primary-400, #714ffd);
+  font-family: var(--Font-Family-Body, Pretendard);
+  font-size: var(--Font-Size-s, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+}
+.basicInfo p,
+.careInfo p,
+.box p {
+  display: inline-grid;
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-lg, 28px);
+  font-weight: 700;
+  line-height: 130%; /* 36.4px */
+  margin: 20px;
 }
 
-.experience,
-.location,
-.license {
-  margin: 5px 0;
+.hospitals ul {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-lg, 24px);
+  font-weight: 700;
+  line-height: 130%; /* 36.4px */
+  padding: 30px;
 }
 
-.sectionTitle {
-  margin: 20px 0 10px;
-  font-size: 20px;
-  font-weight: bold;
+.hospitals li {
+  margin: 10px;
 }
 
-.reviewsSection {
-  margin-bottom: 20px;
-}
-
-.reviews {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
+.star {
+  width: 20px;
+  height: 20px;
 }
 
 .review {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  border-radius: 8px;
+  background: var(--Secondary-50, #e5f3ff);
+  margin: 10px;
+  padding: 10px;
 }
-
-.reviewText {
-  margin: 0;
-}
-
-.reviewRating {
-  margin: 0;
-  color: #007bff;
+.review p {
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-s, 24px);
+  font-weight: 400;
+  line-height: 150%; /* 30px */
 }
 
 .costSection {
+  background: #714ffd;
+  width: 70%;
   padding: 20px;
-  background: #f0f0f0;
+  color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
   border-radius: 10px;
+  margin: 70px;
 }
 
-.costDetails {
+.costInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.totalCost {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.requestButton {
-  width: 100%;
+.costSection h3 {
+  display: flex;
+  width: 50%;
+  height: 10px;
+  font-size: 28px;
+}
+
+.estimatedCost {
+  justify-content: center;
+  width: 1722px;
+  border-radius: 24px;
+  background: var(--Primary-400, #714ffd);
+  color: var(--Neutral-100, #f2f2f4);
+  padding: 30px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.costDetails p {
+  color: var(--Neutral-100, #f2f2f4);
+  text-align: right;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
   padding: 10px;
-  background: #007bff;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
+}
+
+.costRange p {
+  color: var(--Neutral-50, #f9fafc);
+  text-align: right;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  text-align: right;
+  padding: 10px;
+}
+
+.request {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.requestButton {
+  border-radius: 8px;
+  background: var(--Primary-400, #714ffd);
+  color: #f9fafc;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 130%;
+  padding: 14px 54px;
+  gap: 10px;
+}
+
+.requestButton:hover {
+  background-color: #d2c3fd;
 }

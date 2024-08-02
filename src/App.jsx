@@ -17,23 +17,25 @@ import Profile from "./pages/Profile.jsx";
 import Matching from "./pages/Matching.jsx";
 import UserSignUp from "./pages/UserSignUp.jsx";
 import UserLogin from "./pages/UserLogin.jsx";
+import PatientInfoForm from "./components/work/PatientInfoForm.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
-      { path: "/userLogin", element : <UserLogin/>},
-      { path: "/userSignUp", element : <UserSignUp/>},
+      { path: "/userLogin", element : <UserLogin/>},//유저, 간병인 로그인 1.
+      { path: "/userSignUp", element : <UserSignUp/>},//유저 회원가입 2.
       { path: "/register", element: <Register /> },
-      { path: "/search", element: <Search /> },
-      { path: "/work", element: <Work /> },
+      { path: "/search", element: <Search /> },//한번 csss 고칠거 있나 보기 4.
+      { path: "/work", element: <Work /> },//간병인 회원가입 3.
       { path: "/mypage", element: <Mypage /> },
       { path: "/loading", element: <Loading /> },
-      { path: "/list", element: <RecommendedCaregiverList /> },
+      { path: "/list", element: <RecommendedCaregiverList /> },//이 부분 동영님꺼 복붙
       { path: "/findwork", element: <FindWork /> },
       { path: "/profile", element: <Profile /> },
       { path: "/matching", element: <Matching /> },
+      { path: "/patient/:id?", element:<PatientInfoForm/>},
     ],
   },
 ]);

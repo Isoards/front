@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MypageForm.module.css";
-import { getUserById, getCaregiverById, reservationToAll, createReview, getReviewsByCaregiverId } from "../../util/api";
+import { getUserById, getCaregiverById, reservationToAll, createReview, getReviewsByCaregiverId, getReviewsByUserId } from "../../util/api";
 
 export default function MypageForm() {
   const [userData, setUserData] = useState(null);
@@ -47,9 +47,10 @@ export default function MypageForm() {
     }
   };
 
-  const fetchReviews = async (caregiverId) => {
+  const fetchReviews = async () => {
+    const userId = localStorage.getItem("userId")
     try {
-      const response = await getReviewsByCaregiverId(caregiverId);
+      const response = await getReviewsByUserId(userId);
       if (response.data.status === "SUCCESS") {
         setReviews(response.data.data.content);
       }

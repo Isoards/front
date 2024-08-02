@@ -9,6 +9,13 @@ export const patientEmbedingRequestData = atom({
   }
 })
 
+export const reservationId = atom({
+  key:"reservationIdState",
+  default:{
+    reservationId:""
+  }
+})
+
 export const careReservationRequest = atom({
   key: "careReservationRequestState",
   default:{

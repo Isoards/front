@@ -6,7 +6,7 @@ import { embeddingResponse, esResponse, getCaregiversByIds, careReservationReque
 import { useNavigate } from "react-router-dom";
 
 export default function RecommendedCaregiverList() {
-  const [patientEmbedingRequestDataState] = useRecoilState(patientEmbedingRequestData);
+  const [patientEmbedingRequestDataState, setPatientEmbedingRequestDataState] = useRecoilState(patientEmbedingRequestData);
   const [caregivers, setCaregivers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,23 +41,8 @@ export default function RecommendedCaregiverList() {
   }, [patientEmbedingRequestDataState]);
 
   const handleRequestClick = async (caregiverId) => {
-    const userId = parseInt(localStorage.getItem("userId"));
-    const reservationId = patientEmbedingRequestDataState.reservationId;
-
-    const requestPayload = {
-      caregiverId,
-      reservationId
-    };
-
-    try {
-      const response = await careReservationRequestAPI(requestPayload);
-      console.log('Reservation request successful:', response.data);
-      // 필요한 추가 로직을 여기에 작성합니다.
-      nav("/mypage"); // 성공 페이지로 이동하는 예시
-    } catch (error) {
-      console.error('Failed to request caregiver reservation:', error);
-      // 오류 처리 로직을 여기에 작성합니다.
-    }
+    setPatientEmbedingRequestDataState({...patientEmbedingRequestDataState,"caregiverId":caregiverId})
+    nav("/profile"); // 성공 페이지로 이동하는 예시
   };
 
   const getRepresentativeWorkHistory = (workHistories) => {

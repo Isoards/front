@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./FindWork.module.css";
 import photo from "../../img/photo1.png";
 import { getRequestedReservations, acceptReservation, denyReservation, getAllRequestedReservations } from "../../util/api";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { reservationId } from "../../state/atoms";
 
 export default function FindWork() {
   const [reservations, setReservations] = useState([]);
@@ -9,6 +12,9 @@ export default function FindWork() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const caregiverId = parseInt(localStorage.getItem("caregiverId"), 10);
+  const setReservationIdState = useSetRecoilState(reservationId);
+  
+  const nav = useNavigate();
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -43,9 +49,13 @@ export default function FindWork() {
   const handleAccept = async (reservationId) => {
     try {
       await acceptReservation({ caregiverId, reservationId });
-      setReservations(reservations.map(reservation =>
-        reservation.id === reservationId ? { ...reservation, state: 2 } : reservation
-      ));
+      setReservations(prevReservations =>
+        prevReservations.map(reservation =>
+          reservation.id === reservationId ? { ...reservation, state: 2 } : reservation
+        )
+      );
+      setReservationIdState({ reservationId: reservationId.toString() });
+      nav(`/patient/${reservationId}`);
     } catch (error) {
       setError('예약 수락에 실패했습니다.');
     }
@@ -54,9 +64,11 @@ export default function FindWork() {
   const handleDeny = async (reservationId) => {
     try {
       await denyReservation({ caregiverId, reservationId });
-      setReservations(reservations.map(reservation =>
-        reservation.id === reservationId ? { ...reservation, state: 3 } : reservation
-      ));
+      setReservations(prevReservations =>
+        prevReservations.map(reservation =>
+          reservation.id === reservationId ? { ...reservation, state: 3 } : reservation
+        )
+      );
     } catch (error) {
       setError('예약 거절에 실패했습니다.');
     }

@@ -48,6 +48,9 @@ export const caregiverSignUpAPI = (caregiverSignupState) =>
 
 export const caregiverLogInAPI = (email, password) =>
   defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
+export const getReservationById = (reservationId) =>{
+  defaultInstance.get(`/api/v1/care-reservation/${reservationId}`);
+}
 //간병 등록
 export const careReservationInputAPI = (careReservationRequest) =>
   defaultInstance.post('/api/v1/care-reservation/careReservationInput', careReservationRequest);
@@ -70,6 +73,11 @@ export const getCaregiverById = (caregiverId) => defaultInstance.get(`/api/v1/ca
 //간병인 id 로 리뷰 불러오기
 export const getReviewsByCaregiverId = (caregiverId, page = 0, size = 10) => 
   defaultInstance.get(`/api/v1/reviews/caregiver/${caregiverId}?page=${page}&size=${size}`);
+//유저 id로 리뷰 불러오기
+export const getReviewsByUserId = (userId, page = 0, size = 10) => 
+  defaultInstance.get(`/api/v1/reviews/userId/${userId}?page=${page}&size=${size}`);
+
+
 //리뷰 작성하기
 export const createReview = (reviewData) => defaultInstance.post('/api/v1/reviews', reviewData);
 //전체 예약으로 변경
@@ -114,7 +122,7 @@ export const embeddingResponse = async (diseaseName, reservationReason) => {
       input: `${diseaseName} ${reservationReason}`
     }, {
       headers: {
-        'Authorization': "Bearer sk-proj-rpazBnQJWfjRoP5TOTZpT3BlbkFJRpI7NE08NHAo1ujGW1AW",
+        'Authorization': "Bearer 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",
         'Content-Type': 'application/json'
       }
     });
