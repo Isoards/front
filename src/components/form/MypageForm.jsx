@@ -192,7 +192,7 @@ export default function MypageForm() {
               ))}
             </div>
 
-            <div className={styles.sectionTitle}>리뷰 작성</div>
+            {/* <div className={styles.sectionTitle}>리뷰 작성</div>
             <div className={styles.reviewForm}>
               <select value={reviewData.rating} onChange={(e) => setReviewData({ ...reviewData, rating: parseInt(e.target.value) })}>
                 <option value="0">평점 선택</option>
@@ -223,7 +223,7 @@ export default function MypageForm() {
                   </div>
                 ))
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </form>

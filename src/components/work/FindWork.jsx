@@ -47,18 +47,7 @@ export default function FindWork() {
   }, [caregiverId]);
 
   const handleAccept = async (reservationId) => {
-    try {
-      await acceptReservation({ caregiverId, reservationId });
-      setReservations(prevReservations =>
-        prevReservations.map(reservation =>
-          reservation.id === reservationId ? { ...reservation, state: 2 } : reservation
-        )
-      );
-      setReservationIdState({ reservationId: reservationId.toString() });
-      nav(`/patient/${reservationId}`);
-    } catch (error) {
-      setError('예약 수락에 실패했습니다.');
-    }
+    nav(`/patient/${reservationId}`);
   };
 
   const handleDeny = async (reservationId) => {
@@ -113,11 +102,10 @@ export default function FindWork() {
               <div className={styles.actions}>
                 {reservation.state === 1 && (
                   <>
-                    <button onClick={() => handleAccept(reservation.id)}>허가</button>
+                    <button onClick={() => handleAccept(reservation.id)}>환자 보러가기</button>
                     <button onClick={() => handleDeny(reservation.id)}>거절</button>
                   </>
                 )}
-                {reservation.state === 2 && <p>허가됨</p>}
                 {reservation.state === 3 && <p>거절됨</p>}
               </div>
             </div>
@@ -147,13 +135,12 @@ export default function FindWork() {
                 <p>{reservation.reservationReason}</p>
               </div>
               <div className={styles.actions}>
-                {reservation.state === 1 && (
+                {reservation.state === 4 && (
                   <>
-                    <button onClick={() => handleAccept(reservation.id)}>허가</button>
+                    <button onClick={() => handleAccept(reservation.id)}>환자 보러가기</button>
                     <button onClick={() => handleDeny(reservation.id)}>거절</button>
                   </>
                 )}
-                {reservation.state === 2 && <p>허가됨</p>}
                 {reservation.state === 3 && <p>거절됨</p>}
               </div>
             </div>
