@@ -7,7 +7,6 @@ import logo from "../../img/Logo violet ver..png";
 
 export default function Navbar() {
   const location = useLocation();
-  const user = useRecoilValue(userState); // Recoil을 사용하여 현재 사용자 정보 가져오기
 
   return (
     <nav className={styles.navbar}>
@@ -26,17 +25,11 @@ export default function Navbar() {
             <NavLink to="/work">일감 찾기</NavLink>
           </li>
         )}
-        {user
-          ? location.pathname !== "/mypage" && (
-              <li>
-                <NavLink to="/mypage">마이 페이지</NavLink>
-              </li>
-            )
-          : location.pathname !== "/userSignUp" && (
-              <li>
-                <NavLink to="/userSignUp">회원가입</NavLink>
-              </li>
-            )}
+        {location.pathname !== "/mypage" && (
+          <li>
+            <NavLink to="/mypage">마이 페이지</NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );

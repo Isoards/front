@@ -30,21 +30,8 @@
   margin-top: 100px;
   margin-bottom: 36px;
   margin-left: 70px;
-.textSection {
-  background-color: #f9fafc;
-  width: auto;
-  height: auto;
-  display: inline-block;
-  margin-top: 100px;
-  margin-bottom: 36px;
-  margin-left: 70px;
 }
 
-.textSection h2 {
-  color: var(--Neutral-800, #333);
-  font-size: var(--Font-Size-2xlg, 56px);
-  font-weight: 700;
-  line-height: 130%;
 .textSection h2 {
   color: var(--Neutral-800, #333);
   font-size: var(--Font-Size-2xlg, 56px);
@@ -126,7 +113,6 @@
   margin: 30px 0px;
 }
 
-.profileImage {
 .profileImage {
   width: 150px;
   height: 150px;
@@ -161,18 +147,8 @@
 .box {
   display: flex;
   justify-content: space-between;
-.basicInfo,
-.box {
-  display: flex;
-  justify-content: space-between;
 }
 
-.profileInfo h3 {
-  color: var(--Primary-400, #714ffd);
-  font-size: var(--Font-Size-s, 20px);
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%; /* 30px */
 .profileInfo h3 {
   color: var(--Primary-400, #714ffd);
   font-size: var(--Font-Size-s, 20px);
@@ -207,6 +183,8 @@
   font-weight: 700;
   line-height: 130%; /* 36.4px */
   padding: 30px;
+}
+
 .basicInfo span,
 .box span {
   color: var(--Primary-400, #714ffd);
@@ -237,13 +215,8 @@
 
 .hospitals li {
   margin: 10px;
-.hospitals li {
-  margin: 10px;
 }
 
-.star {
-  width: 20px;
-  height: 20px;
 .star {
   width: 20px;
   height: 20px;
@@ -269,11 +242,7 @@
   margin: 10px;
   padding: 10px;
 }
-.review p {
-  color: var(--Neutral-800, #333);
-  font-size: var(--Font-Size-s, 24px);
-  font-weight: 400;
-  line-height: 150%; /* 30px */
+
 .review p {
   color: var(--Neutral-800, #333);
   font-size: var(--Font-Size-s, 24px);
@@ -306,9 +275,6 @@
   margin-bottom: 10px;
 }
 
-.totalCost {
-  font-size: 24px;
-  font-weight: bold;
 .costInfo {
   display: flex;
   justify-content: space-between;
@@ -419,10 +385,6 @@
   line-height: 130%;
   padding: 14px 54px;
   gap: 10px;
-}
-
-.requestButton:hover {
-  background-color: #d2c3fd;
 }
 
 .requestButton:hover {

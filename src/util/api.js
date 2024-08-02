@@ -54,10 +54,10 @@ export const caregiverSignUpAPI = (caregiverSignupState) =>
   defaultInstance.post("/api/v1/auth/caregiver/signup", caregiverSignupState);
 
 export const caregiverLogInAPI = (email, password) =>
-  defaultInstance.post('/api/v1/auth/caregiver/login', {email, password});
-export const getReservationById = (reservationId) =>{
+  defaultInstance.post("/api/v1/auth/caregiver/login", { email, password });
+export const getReservationById = (reservationId) => {
   defaultInstance.get(`/api/v1/care-reservation/${reservationId}`);
-}
+};
 //간병 등록
 export const careReservationInputAPI = (careReservationRequest) =>
   defaultInstance.post(
@@ -86,12 +86,15 @@ export const getUserById = (userId) =>
 export const getCaregiverById = (caregiverId) =>
   defaultInstance.get(`/api/v1/caregiver/caregiverId/${caregiverId}`);
 //간병인 id 로 리뷰 불러오기
-export const getReviewsByCaregiverId = (caregiverId, page = 0, size = 10) => 
-  defaultInstance.get(`/api/v1/reviews/caregiver/${caregiverId}?page=${page}&size=${size}`);
+export const getReviewsByCaregiverId = (caregiverId, page = 0, size = 10) =>
+  defaultInstance.get(
+    `/api/v1/reviews/caregiver/${caregiverId}?page=${page}&size=${size}`
+  );
 //유저 id로 리뷰 불러오기
-export const getReviewsByUserId = (userId, page = 0, size = 10) => 
-  defaultInstance.get(`/api/v1/reviews/userId/${userId}?page=${page}&size=${size}`);
-
+export const getReviewsByUserId = (userId, page = 0, size = 10) =>
+  defaultInstance.get(
+    `/api/v1/reviews/userId/${userId}?page=${page}&size=${size}`
+  );
 
 //리뷰 작성하기
 export const createReview = (reviewData) =>
@@ -103,159 +106,30 @@ export const reservationToAll = (requestPayload) =>
     requestPayload
   );
 //특정간병인에게 요청된 예약 가져오기
-export const getRequestedReservations = async (caregiverId) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        data: {
-          status: "SUCCESS",
-          data: {
-            totalPages: 1,
-            totalElements: 2,
-            size: 20,
-            content: [
-              {
-                id: 31,
-                startDate: "2024-08-11",
-                endDate: "2024-08-30",
-                dailyStartTime: "19:10:00",
-                dailyEndTime: "19:11:00",
-                reservationReason: "이 새키 정신 오락가락함",
-                reservationLocation: "인천 청라국제도시",
-                diseaseName: "조현병",
-                caregiverResponse: {
-                  id: 51,
-                  name: "박명수",
-                },
-                userResponse: {
-                  id: 11,
-                  name: "강한남자 박강식",
-                  phone: "0101234568",
-                },
-                patientName: "민정연",
-                patientGender: "여성",
-                patientBirthDate: "1998-02-17",
-                patientHeight: "158",
-                patientWeight: "48",
-                state: 1,
-              },
-              {
-                id: 33,
-                startDate: "2024-08-03",
-                endDate: "2024-08-24",
-                dailyStartTime: "20:10:00",
-                dailyEndTime: "20:11:00",
-                reservationReason: "sad",
-                reservationLocation: "sad",
-                diseaseName: "알츠하이머",
-                caregiverResponse: {
-                  id: 51,
-                  name: "박명수",
-                },
-                userResponse: {
-                  id: 12,
-                  name: "이도경",
-                  phone: "21323234",
-                },
-                patientName: "sdfa",
-                patientGender: "남성",
-                patientBirthDate: "2024-08-16",
-                patientHeight: "21",
-                patientWeight: "12",
-                state: 1,
-              },
-            ],
-          },
-        },
-      });
-    }, 1000);
-  });
+export const getRequestedReservations = (caregiverId) => {
+  return defaultInstance.get(
+    `api/v1/care-reservation/caregiver/requested/${caregiverId}`
+  );
 };
-
 //예약 허가
-export const acceptReservation = async ({ caregiverId, reservationId }) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ status: "SUCCESS" });
-    }, 500);
-  });
+export const acceptReservation = (data) => {
+  return defaultInstance.post(
+    `api/v1/care-reservation/careReservationAccept`,
+    data
+  );
 };
-
-export const denyReservation = async ({ caregiverId, reservationId }) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ status: "SUCCESS" });
-    }, 500);
-  });
+//예약 거절
+export const denyReservation = (data) => {
+  return defaultInstance.post(
+    `api/v1/care-reservation/careReservationDeny`,
+    data
+  );
 };
 // 모든 간병인 대상 요청 정보 불러오기
-export const getAllRequestedReservations = async (caregiverId) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        data: {
-          status: "SUCCESS",
-          data: {
-            totalPages: 1,
-            totalElements: 2,
-            size: 20,
-            content: [
-              {
-                id: 29,
-                startDate: "2024-08-17",
-                endDate: "2024-09-07",
-                dailyStartTime: "13:38:00",
-                dailyEndTime: "13:37:00",
-                reservationReason: "치매",
-                reservationLocation: "asef@asdf.com",
-                diseaseName: "알츠하이머",
-                caregiverResponse: {
-                  id: 50,
-                  name: "야나두",
-                },
-                userResponse: {
-                  id: 10,
-                  name: "이수근",
-                  phone: "12321321",
-                },
-                patientName: "asef@asdf.com",
-                patientGender: "남성",
-                patientBirthDate: "2024-08-21",
-                patientHeight: "123",
-                patientWeight: "123",
-                state: 4,
-              },
-              {
-                id: 32,
-                startDate: null,
-                endDate: null,
-                dailyStartTime: null,
-                dailyEndTime: null,
-                reservationReason: "",
-                reservationLocation: "",
-                diseaseName: "",
-                caregiverResponse: {
-                  id: 50,
-                  name: "야나두",
-                },
-                userResponse: {
-                  id: 12,
-                  name: "이도경",
-                  phone: "21323234",
-                },
-                patientName: "이상혁",
-                patientGender: "남성",
-                patientBirthDate: "2024-08-22",
-                patientHeight: "21",
-                patientWeight: "12",
-                state: 4,
-              },
-            ],
-          },
-        },
-      });
-    }, 1000);
-  });
+export const getAllRequestedReservations = (caregiverId) => {
+  return defaultInstance.get(
+    `api/v1/care-reservation/caregiver/allrequested/${caregiverId}`
+  );
 };
 
 //id리스트로 간병인 요청
@@ -276,13 +150,18 @@ export const getCaregiversByIds = async (ids) => {
 // OpenAI Embedding API
 export const embeddingResponse = async (diseaseName, reservationReason) => {
   try {
-    const response = await axios.post('https://api.openai.com/v1/embeddings', {
-      model: "text-embedding-ada-002",
-      input: `${diseaseName} ${reservationReason}`
-    }, {
-      headers: {
-        'Authorization': "Bearer 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",
-        'Content-Type': 'application/json'
+    const response = await axios.post(
+      "https://api.openai.com/v1/embeddings",
+      {
+        model: "text-embedding-ada-002",
+        input: `${diseaseName} ${reservationReason}`,
+      },
+      {
+        headers: {
+          Authorization:
+            "Bearer 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",
+          "Content-Type": "application/json",
+        },
       }
     );
     return response.data.data[0].embedding;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./FindWork.module.css";
-import photo from "../../img/photo1.png";
+import Loading from "../../pages/Loading";
+
 import {
   getRequestedReservations,
   acceptReservation,

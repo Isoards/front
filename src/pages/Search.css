@@ -15,19 +15,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 200px;
 }
 
 .loading h3 {
   color: var(--Neutral-50, #f9fafc);
   font-size: 40px;
   text-align: center;
+  margin-top: 100px;
 }
 
 .loading p {
   font-size: var(--Font-Size-md, 24px);
   color: var(--Neutral-50, #f9fafc);
   text-align: center;
+  margin-top: 30px;
 }
 .register-content {
   color: #fff;

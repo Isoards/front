@@ -1,4 +1,6 @@
-.container {
+.formSection {
+  width: 988px;
+  height: 912px;
   background: var(--Neutral-50, #f9fafc);
   padding: 24px;
   border-radius: 24px;
@@ -6,113 +8,49 @@
   align-items: center;
 }
 
-.profileHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 38px;
-  margin-left: 50px;
-  margin-bottom: 24px;
-  border-radius: 0 0 10px 10px;
-}
-
-.profileHeader h2 {
-  color: var(--Neutral-800, #333);
-  font-size: var(--Font-Size-xlg, 40px);
-  font-weight: 700;
-  line-height: 130%; /* 52px */
-}
-
-.sectionTitle {
-  display: flex;
-  color: var(--Neutral-800, #333);
-  font-size: var(--Font-Size-lg, 28px);
-  font-weight: 700;
-  line-height: 130%; /* 36.4px */
-  text-decoration: none;
-}
-
-.section {
-  display: flex;
-  justify-content: space-between;
-  gap: 36px;
-}
-
-.section h2 {
-  margin-left: 30px;
-}
-
-.profileSection {
-  display: inline-block;
-  width: 45%;
-  height: 236px;
-  padding: 30px;
+.title {
+  font-size: 40px;
+  font-weight: bold;
   margin-bottom: 30px;
-  border-radius: var(--Font-Size-s, 20px);
-  background: var(--Primary-400, #714ffd);
-}
-
-.profileSection p {
-  color: #fff;
-  font-size: var(--Font-Size-s, 20px);
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%; /* 30px */
-}
-
-.profileSection h2 {
-  color: var(--Neutral-50, #f9fafc);
-  font-size: var(--Font-Size-xlg, 40px);
   font-weight: 700;
   line-height: 130%; /* 52px */
 }
 
-.paymentSection {
-  width: 45%;
-  height: 236px;
-  padding: 30px;
-  align-items: center;
-  border-radius: var(--Font-Size-s, 20px);
-  background: var(--Secondary-600, #4c8df4);
+.formGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.paymentInfo p {
-  color: #fff;
-  text-align: right;
-  font-size: var(--Font-Size-xlg, 40px);
-  font-weight: 700;
-  line-height: 130%; /* 52px */
-  margin-top: 30px;
+.formGroup span {
+  width: 400px;
 }
-
-.matchSection {
-  width: 48%;
-  text-decoration: none;
-  border-radius: var(--Font-Size-s, 20px);
-  border: 2px solid var(--Primary-400, #714ffd);
-  padding: 30px;
-}
-
 .label {
-  margin-top: 15px;
+  display: block;
   color: var(--Primary-400, #714ffd);
   font-size: var(--Font-Size-s, 20px);
   font-weight: 600;
   line-height: 150%; /* 30px */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.matchInfo {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 20px;
-  background-color: #fafafa;
+.value {
+  display: block;
+  color: var(--Neutral-800, #333);
+  font-size: var(--Font-Size-md, 24px);
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
+  margin-bottom: 10px;
 }
 
 .patientCaregiver {
   display: flex;
   justify-content: space-between;
+}
+
+.infoBox {
+  width: 48%;
 }
 
 .box {
@@ -149,36 +87,16 @@
 
 .button {
   display: flex;
+  padding: 14px 24px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  border: 2px solid var(--Neutral-50, #f9fafc);
+  background: var(--Primary-400, #714ffd);
+  color: #f9fafc;
   cursor: pointer;
-  background: var(--Primary-400, #714ffd);
 }
 
-.editButton {
-  background: var(--Primary-400, #714ffd);
-  border: none;
-}
-
-.infoSection {
-  margin-top: 35px;
-  padding: 30px;
-}
-
-.infoSection span {
-  color: #fff;
-  font-size: var(--Font-Size-s, 20px);
-  font-weight: 400;
-  line-height: 150%; /* 30px */
-  margin-right: 30px;
-}
-
-.infoSection p {
-  color: #fff;
-  font-size: var(--Font-Size-s, 20px);
-  font-weight: 600;
-  line-height: 150%; /* 30px */
+.button:hover {
+  background: var(--Neutral-300, #dadada);
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "./MypageForm.module.css";
+import Loading from "../../pages/Loading";
+import editIcon from "../../img/mode_edit_outline.png";
 import {
   getUserById,
   getCaregiverById,
