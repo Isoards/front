@@ -76,6 +76,13 @@
   background: var(--Secondary-600, #4c8df4);
 }
 
+.paymentTitle {
+  color: var(--Neutral-50, #f9fafc);
+  font-size: var(--Font-Size-lg, 28px);
+  font-weight: 700;
+  line-height: 130%; /* 36.4px */
+}
+
 .paymentInfo p {
   color: #fff;
   text-align: right;
@@ -86,7 +93,6 @@
 }
 
 .matchSection {
-  width: 48%;
   text-decoration: none;
   border-radius: var(--Font-Size-s, 20px);
   border: 2px solid var(--Primary-400, #714ffd);
@@ -154,7 +160,7 @@
   font-weight: 500;
   line-height: 130%; /* 31.2px */
   margin-top: 20px;
-  margin-right: 140px;
+  margin-right: 50px;
 }
 
 .flexRow span {
@@ -165,6 +171,11 @@
   font-style: normal;
   font-weight: 600;
   line-height: 150%; /* 30px */
+}
+
+.flexRow ul {
+  padding: 0;
+  margin: 0;
 }
 
 .patientInfo,
@@ -187,11 +198,20 @@
 
 .historySection {
   width: 782px;
-  height: 400px;
   display: inline-block;
-  padding: 30px;
+}
+
+.history,
+.reviewSection {
+  display: flex;
+  padding: 31px 40px 40px 38px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 56px;
+  align-self: stretch;
   border-radius: var(--Font-Size-s, 20px);
   background: var(--Neutral-100, #f2f2f4);
+  margin-bottom: 20px;
 }
 
 .historyInfo {
@@ -203,11 +223,22 @@
   margin-bottom: 30px;
 }
 
+.review p {
+  color: var(--Neutral-500, #979797);
+  text-align: left;
+
+  font-size: var(--Font-Size-md, 24px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 31.2px */
+}
+
 .logoutButton {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  padding: 14px 24px;
   border-radius: 8px;
   border: 2px solid var(--Neutral-50, #f9fafc);
   cursor: pointer;

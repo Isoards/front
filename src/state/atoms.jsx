@@ -1,68 +1,66 @@
-
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const patientEmbedingRequestData = atom({
-  key:"careReservationRequestState",
-  default:{
-    diseaseName:"", 
-    reservationReason:""
-  }
-})
+  key: "careReservationRequestState",
+  default: {
+    diseaseName: "",
+    reservationReason: "",
+  },
+});
 
 export const reservationId = atom({
-  key:"reservationIdState",
-  default:{
-    reservationId:""
-  }
-})
+  key: "reservationIdState",
+  default: {
+    reservationId: "",
+  },
+});
 
 export const careReservationRequest = atom({
   key: "careReservationRequestState",
-  default:{
-    patientName:"",
-    patientBirthDate:"",
-    patientHeight:"",
-    patientWeight:"",
-    patientGender:"",
+  default: {
+    patientName: "",
+    patientBirthDate: "",
+    patientHeight: "",
+    patientWeight: "",
+    patientGender: "",
 
     diseaseName: "",
-    reservationLocation:"",
-    startDate:"",
-    endDate:"",
-    dailyStartTime:"",
-    dailyEndTime:"",
+    reservationLocation: "",
+    startDate: "",
+    endDate: "",
+    dailyStartTime: "",
+    dailyEndTime: "",
 
-    reservationReason:"",
-    UnAcceptedBehavior:"",
-    RecentDiseaseData:"",
+    reservationReason: "",
+    UnAcceptedBehavior: "",
+    RecentDiseaseData: "",
 
-    userId:""
-  }
-})
+    userId: "",
+  },
+});
 
 export const userState = atom({
-  key: 'userState',
+  key: "userState",
   default: null,
 });
 
 export const caregiverState = atom({
-  key: 'caregiverState',
+  key: "caregiverState",
   default: null,
 });
 
 export const caregiverSignUpState = atom({
-  key: 'caregiverSignUpState',
+  key: "caregiverSignUpState",
   default: {
-    "email": "",
-    "password":"",
-    "phone": "",
-    "name": "",
-    "birthDate": "",
-    "gender": "",
-    "certification": "",
-    "workHistory": [],
-    "careerDescription":"",
-    "foreigner": ""
-
+    email: "",
+    password: "",
+    phone: "",
+    name: "",
+    birthDate: "",
+    gender: "",
+    certification: "",
+    workHistory: [],
+    careerDescription: "",
+    foreigner: "",
   },
 });

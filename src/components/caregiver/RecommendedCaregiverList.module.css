@@ -1,4 +1,3 @@
-
 .recommendedCaregiverList {
   background-color: #f9fafc;
 }
@@ -174,6 +173,12 @@
 
 .requestButton:hover {
   background-color: #d2c3fd;
+}
+
+.starContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 div {

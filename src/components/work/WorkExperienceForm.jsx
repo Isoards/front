@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import styles from "./WorkExperienceForm.module.css";
 import { CERTIFICATIONS } from "../../data.js";
@@ -6,6 +6,7 @@ import { caregiverSignUpState } from "../../state/atoms";
 import { caregiverSignUpAPI } from "../../util/api.js";
 import { useNavigate } from "react-router-dom";
 import addIcon from "../../img/add.png";
+import Loading from "../../pages/Loading.jsx";
 
 export default function WorkExperienceForm({ setStep }) {
   const [caregiverSignUp, setCaregiverSignUp] =
@@ -13,6 +14,7 @@ export default function WorkExperienceForm({ setStep }) {
   const [workHistories, setWorkHistories] = useState([
     { id: 1, workHistory: "", startDate: "", endDate: "" },
   ]);
+  const [loading, setLoading] = useState(false);
 
   const nav = useNavigate();
 
@@ -33,7 +35,8 @@ export default function WorkExperienceForm({ setStep }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 전달할 데이터 업데이트
+    setLoading(true);
+
     setCaregiverSignUp((prev) => ({
       ...prev,
       workHistory: workHistories.map((history) => ({
@@ -43,13 +46,20 @@ export default function WorkExperienceForm({ setStep }) {
     }));
 
     try {
-      const response = await caregiverSignUpAPI(caregiverSignUp);
-      console.log(response);
-      nav("/userLogin");
+      await caregiverSignUpAPI(caregiverSignUp);
+      setTimeout(() => {
+        setLoading(false);
+        nav("/userLogin");
+      }, 2000); // 2초 동안 Loading 컴포넌트 표시
     } catch (error) {
       console.error("Signup failed:", error);
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return <Loading />; // 로딩 상태일 때 로딩 컴포넌트를 렌더링
+  }
 
   return (
     <div className={styles.formSection}>

@@ -54,20 +54,7 @@ export default function FindWork() {
   }, [caregiverId]);
 
   const handleAccept = async () => {
-    try {
-      await acceptReservation({ caregiverId, reservationId });
-      setReservations((prevReservations) =>
-        prevReservations.map((reservation) =>
-          reservation.id === reservationId
-            ? { ...reservation, state: 2 }
-            : reservation
-        )
-      );
-      setReservationIdState({ reservationId: reservationId.toString() });
-      nav(`/patient/${reservationId}`);
-    } catch (error) {
-      setError("예약 수락에 실패했습니다.");
-    }
+    nav(`/patient/${reservationId}`);
   };
 
   const handleDeny = async () => {

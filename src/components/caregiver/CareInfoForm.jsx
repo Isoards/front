@@ -3,6 +3,7 @@ import styles from "./CareInfoForm.module.css";
 import Modal from "../Modal";
 import DiseaseName from "../DiseaseName";
 import DaumPost from "../DaumPost";
+
 export default function CareInfoForm({ setStep }) {
   const [formData, setFormData] = useState({
     reservationReason: "",
@@ -14,7 +15,6 @@ export default function CareInfoForm({ setStep }) {
     address: "",
   });
 
-  const [address, setAddress] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (event) => {
@@ -31,6 +31,13 @@ export default function CareInfoForm({ setStep }) {
       reservationReason: diagnosis,
     });
     setShowModal(false);
+  };
+
+  const handleAddressChange = (selectedAddress) => {
+    setFormData({
+      ...formData,
+      reservationLocation: selectedAddress,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -82,11 +89,11 @@ export default function CareInfoForm({ setStep }) {
             <input
               type="text"
               className={styles.address}
-              value={address}
+              value={formData.reservationLocation}
               placeholder="주소를 입력해주세요."
               readOnly
             />
-            <DaumPost setAddress={setAddress} />
+            <DaumPost setAddress={handleAddressChange} />
           </div>
 
           <input

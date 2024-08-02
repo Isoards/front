@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { reservationId } from "../../state/atoms";
 import styles from "./PatientInfoForm.module.css";
-import { getReservationById } from "../../util/api";
+import { acceptReservation, getReservationById } from "../../util/api";
+import Loading from "../../pages/Loading";
 
 export default function PatientInfoForm() {
   const { id } = useParams();
@@ -11,6 +12,7 @@ export default function PatientInfoForm() {
   const [patientInfo, setPatientInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [requestWording, setRequestWording] = useState("간병 수락하기");
 
   useEffect(() => {
     const fetchPatientInfo = async () => {
@@ -18,15 +20,15 @@ export default function PatientInfoForm() {
         const reservationIdToUse = id || reservationState.reservationId;
         const response = await getReservationById(reservationIdToUse);
 
-        console.log("Response:", response); // Check if this line logs the response
+        console.log("Response:", response);
 
-        if (response && response.data && response.data.status === "SUCCESS") {
-          setPatientInfo(response.data.data);
+        if (response && response.status === "SUCCESS") {
+          setPatientInfo(response.data);
         } else {
           setError("환자 정보를 가져오는데 실패했습니다.");
         }
       } catch (error) {
-        console.error("Fetch error:", error); // Check if this line logs the error
+        console.error("Fetch error:", error);
         setError("환자 정보를 가져오는 중 오류가 발생했습니다.");
       } finally {
         setLoading(false);
@@ -36,7 +38,17 @@ export default function PatientInfoForm() {
     fetchPatientInfo();
   }, [id, reservationState.reservationId]);
 
-  if (loading) return <div className={styles.container}>로딩 중...</div>;
+  const handleAccept = async (reservationId) => {
+    const caregiverId = localStorage.getItem("caregiverId");
+    try {
+      await acceptReservation({ caregiverId, reservationId });
+      setRequestWording("간병 수락 완료");
+    } catch (error) {
+      setError("예약 수락에 실패했습니다.");
+    }
+  };
+
+  if (loading) return <Loading />;
   if (error) return <div className={styles.container}>{error}</div>;
   if (!patientInfo)
     return <div className={styles.container}>환자 정보가 없습니다.</div>;
@@ -75,24 +87,28 @@ export default function PatientInfoForm() {
             </div>
             <div className={styles.requestSection}>
               <span>{patientInfo.patientName} 환자님 요청사항</span>
-              <p>{patientInfo.reservationReason}</p>
+              <p>{patientInfo.reservationReason || "요청사항이 없습니다."}</p>
             </div>
           </div>
           <div className={styles.careInfo}>
             <p>
               <span className={styles.label}>요청 간병 기간</span>{" "}
-              {`${patientInfo.startDate} ~ ${patientInfo.endDate}`}
+              {patientInfo.startDate && patientInfo.endDate
+                ? `${patientInfo.startDate} ~ ${patientInfo.endDate}`
+                : "정보 없음"}
             </p>
             <p>
               <span className={styles.label}>요청 간병 시간</span>{" "}
-              {`${patientInfo.dailyStartTime} ~ ${patientInfo.dailyEndTime}`}
+              {patientInfo.dailyStartTime && patientInfo.dailyEndTime
+                ? `${patientInfo.dailyStartTime} ~ ${patientInfo.dailyEndTime}`
+                : "정보 없음"}
             </p>
           </div>
           <p className={styles.line}></p>
         </div>
       </div>
       <div className={styles.requestButton}>
-        <button>간병 요청하기</button>
+        <button onClick={() => handleAccept(id)}>{requestWording}</button>
       </div>
     </div>
   );

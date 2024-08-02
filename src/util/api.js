@@ -55,8 +55,8 @@ export const caregiverSignUpAPI = (caregiverSignupState) =>
 
 export const caregiverLogInAPI = (email, password) =>
   defaultInstance.post("/api/v1/auth/caregiver/login", { email, password });
-export const getReservationById = (reservationId) => {
-  defaultInstance.get(`/api/v1/care-reservation/${reservationId}`);
+export const getReservationById = async (reservationId) => {
+  await defaultInstance.get(`/api/v1/care-reservation/${reservationId}`);
 };
 //간병 등록
 export const careReservationInputAPI = (careReservationRequest) =>
@@ -158,9 +158,9 @@ export const embeddingResponse = async (diseaseName, reservationReason) => {
       },
       {
         headers: {
-          Authorization:
-            "Bearer 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",
           "Content-Type": "application/json",
+          Authorization:
+            "Bearer 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",
         },
       }
     );

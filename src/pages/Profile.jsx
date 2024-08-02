@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { patientEmbedingRequestData } from "../state/atoms";
 import { careReservationRequestAPI, getCaregiverById } from "../util/api";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function Profile() {
   const [patientEmbedingRequestDataState] = useRecoilState(
@@ -44,8 +45,6 @@ export default function Profile() {
     try {
       const response = await careReservationRequestAPI(requestPayload);
       console.log("Reservation request successful:", response.data);
-      // 필요한 추가 로직을 여기에 작성합니다.
-      // 예시로 성공 페이지로 이동
       nav("/mypage");
     } catch (error) {
       console.error("Failed to request caregiver reservation:", error);
@@ -66,7 +65,7 @@ export default function Profile() {
   }
 
   if (!caregiver) {
-    return <div>로딩 중...</div>;
+    return <Loading />;
   }
 
   return (

@@ -58,11 +58,18 @@
   background: var(--Neutral-50, #f9fafc);
 }
 
-.photo {
-  display: inline-block;
-  align-items: flex-start;
-  width: 154px;
-  height: 154px;
+.noReservations {
+  margin: 30px;
+}
+
+.noReservations h2 {
+  font-size: 28px;
+}
+.noReservations p {
+  color: var(--Neutral-700, #5b5b5b);
+  font-size: var(--Font-Size-s, 20px);
+  font-weight: 600;
+  line-height: 150%; /* 30px */
 }
 
 .info {
