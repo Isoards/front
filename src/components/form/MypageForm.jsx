@@ -12,6 +12,8 @@ import {
   getReviewsByCaregiverId,
   getReviewsByUserId,
 } from "../../util/api";
+import { useRecoilState } from "recoil";
+import { reservationId } from "../../state/atoms";
 
 export default function MypageForm() {
   const [userData, setUserData] = useState(null);
@@ -19,10 +21,11 @@ export default function MypageForm() {
   const [caregiverDetails, setCaregiverDetails] = useState({});
   const [reviewData, setReviewData] = useState({ rating: 0, comment: "" });
   const [reviews, setReviews] = useState([]);
+  const [reservationIdState, setReservationIdState] = useRecoilState(reservationId)
 
   useEffect(() => {
     const userId = parseInt(localStorage.getItem("userId"));
-
+    
     const fetchUserData = async () => {
       try {
         const response = await getUserById(userId);
@@ -33,7 +36,7 @@ export default function MypageForm() {
           const content = response.data.data.content[0];
           setUserData(content.userResponse);
           setReservations([content]);
-
+          setReservationIdState(content.id)
           if (content.caregiverResponse && content.caregiverResponse.id) {
             fetchCaregiverDetails(content.caregiverResponse.id);
             fetchReviews(content.caregiverResponse.id);

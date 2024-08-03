@@ -54,7 +54,7 @@ export default function FindWork() {
   }, [caregiverId]);
 
   const handleAccept = async () => {
-    nav(`/patient/${reservationId}`);
+    nav(`/patient/${selectedReservation}`);
   };
 
   const handleDeny = async () => {
@@ -91,7 +91,7 @@ export default function FindWork() {
       </div>
 
       <div className={styles.section}>
-        <h3>개인 요청된 예약</h3>
+        <h3  className={styles.sectionTitle}>개인 요청된 예약</h3>
         {reservations.length === 0 ? (
           <div className={styles.noReservations}>
             <h2>예약이 없습니다</h2>
@@ -102,7 +102,12 @@ export default function FindWork() {
             <button
               key={reservation.id}
               className={styles.card}
-              onClick={() => setSelectedReservation(reservation.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log('Button clicked');
+                console.log('Reservation:', reservation);
+                setSelectedReservation(reservation.id);
+              }}
             >
               <div className={styles.info}>
                 <h3>
@@ -125,7 +130,7 @@ export default function FindWork() {
       </div>
 
       <div className={styles.section}>
-        <h3>전체 요청된 예약</h3>
+        <h3 className={styles.sectionTitle}>전체 요청된 예약</h3>
         {allReservations.length === 0 ? (
           <div className={styles.noReservations}>
             <h2>예약이 없습니다</h2>
@@ -136,7 +141,13 @@ export default function FindWork() {
             <button
               key={reservation.id}
               className={styles.card}
-              onClick={() => setSelectedReservation(reservation.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log('Button clicked');
+                console.log('Reservation:', reservation);
+                setSelectedReservation(reservation.id);
+                console.log(selectedReservation)
+              }}
             >
               <div className={styles.info}>
                 <h3>

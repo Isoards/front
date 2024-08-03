@@ -44,14 +44,14 @@
 }
 
 .introSection {
-  width: 500px;
+  width: 700px;
   display: inline-block;
   border-radius: 25px;
   border: 2px solid var(--Neutral-300, #dadada);
-
   padding: 51px 43px 38px 44px;
   justify-content: center;
   align-items: center;
+  margin-right: 50px;
 }
 
 .introSection p {
@@ -157,7 +157,6 @@
 
 .costSection {
   background: #714ffd;
-  width: 70%;
   padding: 20px;
   color: white;
   display: flex;

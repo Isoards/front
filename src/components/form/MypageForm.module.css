@@ -130,7 +130,7 @@
   gap: 20px;
   border-radius: var(--Font-Size-s, 20px);
   border: 2px solid var(--Neutral-300, #dadada);
-  margin-bottom: 24px;
+  margin: 20px;
 }
 
 .box h3 {
@@ -197,7 +197,7 @@
 }
 
 .historySection {
-  width: 782px;
+  width: 720px;
   display: inline-block;
 }
 

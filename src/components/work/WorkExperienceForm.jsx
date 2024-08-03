@@ -6,7 +6,6 @@ import { caregiverSignUpState } from "../../state/atoms";
 import { caregiverSignUpAPI } from "../../util/api.js";
 import { useNavigate } from "react-router-dom";
 import addIcon from "../../img/add.png";
-import Loading from "../../pages/Loading.jsx";
 
 export default function WorkExperienceForm({ setStep }) {
   const [caregiverSignUp, setCaregiverSignUp] =
@@ -31,6 +30,7 @@ export default function WorkExperienceForm({ setStep }) {
         { id: prev.length + 1, workHistory: "", startDate: "", endDate: "" },
       ]);
     }
+    console.log(workHistories);
   };
 
   const handleSubmit = async (e) => {
@@ -44,22 +44,20 @@ export default function WorkExperienceForm({ setStep }) {
         workHistoryPeriod: `${history.startDate} ~ ${history.endDate}`,
       })),
     }));
-
+    
     try {
       await caregiverSignUpAPI(caregiverSignUp);
+      // Navigate to /LOADING
+      nav("/loading");
       setTimeout(() => {
-        setLoading(false);
+        // Navigate to /USERLOGIN after 2 seconds
         nav("/userLogin");
-      }, 2000); // 2초 동안 Loading 컴포넌트 표시
+      }, 2000); // 2 seconds
     } catch (error) {
       console.error("Signup failed:", error);
       setLoading(false);
     }
   };
-
-  if (loading) {
-    return <Loading />; // 로딩 상태일 때 로딩 컴포넌트를 렌더링
-  }
 
   return (
     <div className={styles.formSection}>

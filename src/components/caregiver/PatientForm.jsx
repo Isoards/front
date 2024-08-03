@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./PatientForm.module.css";
 import { useRecoilState } from "recoil";
 import { careReservationRequest } from "../../state/atoms";
@@ -14,6 +14,7 @@ export default function PatientForm({ setStep }) {
       [name]: value,
     });
   };
+
   const handleGenderSelect = (gender) => {
     setCareReservationRequestState({
       ...careReservationRequestState,

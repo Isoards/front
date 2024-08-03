@@ -19,22 +19,19 @@ export default function PatientInfoForm() {
       try {
         const reservationIdToUse = id || reservationState.reservationId;
         const response = await getReservationById(reservationIdToUse);
-
-        console.log("Response:", response);
-
-        if (response && response.status === "SUCCESS") {
-          setPatientInfo(response.data);
-        } else {
-          setError("환자 정보를 가져오는데 실패했습니다.");
-        }
+  
+        console.log('Response:', response); 
+  
+        setPatientInfo(response.data);
+        
       } catch (error) {
-        console.error("Fetch error:", error);
+        console.error('Fetch error:', error);
         setError("환자 정보를 가져오는 중 오류가 발생했습니다.");
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchPatientInfo();
   }, [id, reservationState.reservationId]);
 

@@ -1,26 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MatchingForm.module.css";
+import { useRecoilState } from "recoil";
+import { reservationId } from "../../state/atoms";
+import { getReservationById } from "../../util/api"; // API 요청 함수 임포트
 
 export default function MatchingForm() {
-  const formData = {
-    period: "2024.07.01 ~ 2024.08.15",
-    time: "09:00 ~ 18:00",
-    location: "서울 영등포구 63로 10 여의도성모병원 본관 2층 입원실",
-    patient: {
-      name: "박순희",
-      disease: "파킨슨병",
-      birthDate: "1958.02.03",
-      gender: "여성",
-    },
-    caregiver: {
-      name: "김정희",
-      license: "간호사 면허",
-      experience: "8개월",
-      location: "서울특별시",
-    },
-    contract: "2000.00.00_홍길동,김정희_간병계약서.pdf",
-    payment: "500,000원 결제 완료 카드결제(신한) / 무이자 할부 2개월",
-  };
+  const [reservationIdState] = useRecoilState(reservationId);
+  const [formData, setFormData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchReservationData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await getReservationById(reservationIdState);
+        console.log("API Response: ", response); // 응답 데이터 콘솔에 출력
+
+        if (response.status === "SUCCESS") {
+          const data = response.data;
+          const formattedData = {
+            period: `${data.startDate || "N/A"} ~ ${data.endDate || "N/A"}`,
+            time: `${data.dailyStartTime || "N/A"} ~ ${data.dailyEndTime || "N/A"}`,
+            location: data.reservationLocation || "N/A",
+            patient: {
+              name: data.patientName || "N/A",
+              disease: data.diseaseName || "N/A",
+              birthDate: data.patientBirthDate || "N/A",
+              gender: data.patientGender || "N/A",
+            },
+            caregiver: {
+              name: data.caregiverResponse?.name || "N/A",
+              license: "간호사 면허", // 예시 라이선스
+              experience: "8개월", // 예시 경력
+              location: data.caregiverResponse?.city || "N/A",
+            },
+            contract: "2000.00.00_홍길동,김정희_간병계약서.pdf", // 예시 계약서
+            payment: "500,000원 결제 완료 카드결제(신한) / 무이자 할부 2개월", // 예시 결제 정보
+          };
+          setFormData(formattedData);
+        } else {
+          setError("데이터를 불러오는 데 실패했습니다.");
+        }
+      } catch (error) {
+        setError("네트워크 오류가 발생했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReservationData();
+  }, [reservationIdState]);
+
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!formData) {
+    return <div>데이터가 없습니다.</div>;
+  }
 
   return (
     <div className={styles.formSection}>
